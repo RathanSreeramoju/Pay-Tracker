@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_reg_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_ename"
+            android:hint="Name"
+            android:padding="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/edittext_rounded"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:hint="Emali"
+            android:padding="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/edittext_rounded"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/et_phno"
+            android:hint="Phone Number"
+            android:padding="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/edittext_rounded"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+            android:id="@+id/et_username"
+            android:hint="Username"
+            android:padding="@dimen/_8sdp"
+            android:background="@drawable/edittext_rounded"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/edittext_rounded"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:padding="@dimen/_8sdp" />
+
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:text="Next"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginRight="@dimen/_30sdp"
+            android:textColor="#03DAC5"
+            android:background="@drawable/button_rounded3"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_35sdp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_sal_per_hour"
+        android:visibility="gone"
+        android:layout_marginTop="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f1f5f8"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="Salary Per Hour"
+            android:textSize="@dimen/_25sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <EditText
+            android:id="@+id/et_sal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/edittext_rounded"
+            android:hint="Salary Per Hour"
+            android:padding="@dimen/_8sdp" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginRight="@dimen/_30sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:id="@+id/btn_sal_prev"
+                android:text="Previous"
+                android:layout_weight="1"
+                android:textColor="#03DAC5"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:background="@drawable/button_rounded3"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_35sdp" />
+
+            <Button
+                android:id="@+id/btn_sal_next"
+                android:text="Next"
+                android:layout_weight="1"
+                android:textColor="#03DAC5"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:background="@drawable/button_rounded3"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_35sdp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_job_title"
+        android:visibility="gone"
+        android:layout_marginTop="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="#f1f5f8"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="Job Title "
+            android:textSize="@dimen/_25sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <EditText
+            android:id="@+id/et_job_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/edittext_rounded"
+            android:hint="Job Title"
+            android:padding="@dimen/_8sdp" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginRight="@dimen/_30sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:id="@+id/job_previous"
+                android:text="Previous"
+                android:layout_weight="1"
+                android:textColor="#03DAC5"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:background="@drawable/button_rounded3"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_35sdp" />
+
+            <Button
+                android:id="@+id/job_next"
+                android:text="Next"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:textColor="#03DAC5"
+                android:background="@drawable/button_rounded3"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_35sdp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_company_name"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:background="#f1f5f8"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="Company Name "
+            android:textSize="@dimen/_25sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <EditText
+            android:id="@+id/et_company_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/edittext_rounded"
+            android:hint="Company Name"
+            android:padding="@dimen/_8sdp" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginRight="@dimen/_30sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:id="@+id/btn_company_prev"
+                android:text="Previous"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:textColor="#03DAC5"
+                android:background="@drawable/button_rounded3"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_35sdp" />
+
+            <Button
+                android:id="@+id/btn_company_next"
+                android:text="Next"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:textColor="#03DAC5"
+                android:background="@drawable/button_rounded3"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_35sdp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_img_upload"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:background="#f1f5f8"
+        android:orientation="vertical">
+
+
+
+
+        <Button
+            android:id="@+id/btn_upload_img"
+            android:text="Upload Image"
+            android:layout_margin="@dimen/_40sdp"
+            android:textColor="#03DAC5"
+            android:background="@drawable/button_rounded3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp" />
+
+
+
+        <Button
+            android:id="@+id/btn_submit_all"
+            android:text="Submit"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginRight="@dimen/_30sdp"
+            android:textColor="#03DAC5"
+            android:background="@drawable/button_rounded3"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_35sdp" />
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
