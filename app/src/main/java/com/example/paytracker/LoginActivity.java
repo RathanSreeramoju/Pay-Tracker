@@ -3,12 +3,20 @@ package com.example.paytracker;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     Button bt_signin;
@@ -55,3 +63,37 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     }
+    ProgressDialog pd;
+    public  void loginData() {
+        pd= new ProgressDialog(LoginActivity.this);
+        pd.setTitle("Loading...");
+        pd.show();
+        ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+        Call<ResponseData> call = apiService.userLogin(et_uname.getText().toString(),et_pwd.getText().toString());
+        call.enqueue(new Callback<ResponseData>() {
+            @Override
+            public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
+                pd.dismiss();
+                if (response.body().status.equals("true")) {
+                    SharedPreferences sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor et=sharedPreferences.edit();
+                    et.putString("uname",et_uname.getText().toString());
+                    et.commit();
+                    Toast.makeText(LoginActivity.this, response.body().message, Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(LoginActivity.this, UserDashboardActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(LoginActivity.this, response.body().message, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseData> call, Throwable t) {
+                pd.dismiss();
+                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+}
+
+
