@@ -146,13 +146,13 @@ public class SignupActivity extends AppCompatActivity implements EasyPermissions
 
                 /*Intent intent=new Intent(RegistrationActivity.this,LoginActivity.class);
                 startActivity(intent);*/
-                uploadImageToServer();
+                 uploadImageToServer();
                 finish();
 
             }
         });
 
-        private void uploadImageToServer () {
+        private void uploadImageToServer() {
         }
 
     }

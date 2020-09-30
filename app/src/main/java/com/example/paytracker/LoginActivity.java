@@ -1,5 +1,6 @@
 package com.example.paytracker;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +15,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.paytracker.api.GetApiService;
+import com.example.paytracker.api.RetrofitClient;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView tv_forget_pass, bt_signup;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ActionBar actionBar = getSupportActionBar();
@@ -35,13 +39,14 @@ public class LoginActivity extends AppCompatActivity {
         et_pwd = (EditText) findViewById(R.id.et_pwd);
         bt_signup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+            public void onClick(View v) {
+                Intent intent=new Intent(LoginActivity.this,RegistrationActivity.class);
                 startActivity(intent);
 
             }
         });
+
+
         bt_signin = (Button) findViewById(R.id.bt_signin);
         bt_signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
                /* Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);*/
-
+                loginData();
             }
         });
         tv_forget_pass = (TextView) findViewById(R.id.tv_forget_pass);
@@ -62,13 +67,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-}
+
     ProgressDialog pd;
     public  void loginData() {
         pd= new ProgressDialog(LoginActivity.this);
         pd.setTitle("Loading...");
         pd.show();
-        ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+        GetApiService apiService = RetrofitClient.getRetrofitInstance().create(GetApiService.class);
         Call<ResponseData> call = apiService.userLogin(et_uname.getText().toString(),et_pwd.getText().toString());
         call.enqueue(new Callback<ResponseData>() {
             @Override
@@ -77,9 +82,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.body().status.equals("true")) {
                     SharedPreferences sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
                     SharedPreferences.Editor et=sharedPreferences.edit();
-                    et.putString("uname",et_uname.getText().toString());
+                    et.putString( "uname",et_uname.getText().toString());
                     et.commit();
-                    Toast.makeText(LoginActivity.this, response.body().message, Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this,"Login Success", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(LoginActivity.this, UserDashboardActivity.class));
                     finish();
                 } else {
