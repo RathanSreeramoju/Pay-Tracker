@@ -1,6 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TableLayout
+        android:id="@+id/tlContactDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/_14sdp"
+            android:background="#42DDCF"
+            android:padding="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_50sdp"
+            android:text="Choose Date " />
+
+        <RelativeLayout
+            android:id="@+id/ll_reg_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_15sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_shift_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:text="Shift Start Time" />
+
+            <EditText
+                android:id="@+id/et_start_time"
+                android:layout_below="@+id/tv_shift_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/edittext_rounded"
+                android:hint="Start Time"
+                android:padding="@dimen/_8sdp" />
+
+            <TextView
+                android:id="@+id/tv_shift_end"
+                android:layout_toRightOf="@+id/tv_shift_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_70sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:text="Shift End Time" />
+
+            <EditText
+                android:id="@+id/et_end_time"
+                android:layout_below="@+id/tv_shift_end"
+                android:layout_toRightOf="@+id/tv_shift_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_70sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/edittext_rounded"
+                android:hint="Start Time"
+                android:padding="@dimen/_8sdp" />
+
+
+
+
+        </RelativeLayout>
+        <Button
+            android:id="@+id/btn_calculate_hours"
+            android:text="Calculate Hours"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+
+        <TableRow
+
+            android:padding="@dimen/_5sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_weight="0"
+                android:text="Total Hours " />
+
+            <EditText
+                android:id="@+id/et_total_hours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:editable="false"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/edittext_rounded"
+                android:hint=""
+                android:padding="@dimen/_8sdp" />
+        </TableRow>
+
+        <TableRow
+            android:padding="@dimen/_5sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_weight="0"
+                android:text="Earning Before Tax" />
+
+            <EditText
+                android:id="@+id/et_earn_before_tax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:editable="false"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/edittext_rounded"
+                android:hint="Earning Before Tax"
+                android:padding="@dimen/_8sdp" />
+        </TableRow>
+
+        <TableRow
+            android:padding="@dimen/_5sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_weight="0"
+                android:text="Tax Deducted" />
+
+            <EditText
+                android:id="@+id/et_tax_deducted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/edittext_rounded"
+                android:hint="Tax Deducted"
+                android:padding="@dimen/_8sdp" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_marginTop="@dimen/_16sdp"
+            android:padding="@dimen/_5sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_weight="0"
+                android:text="Net Income" />
+
+            <EditText
+                android:id="@+id/et_net_income"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/edittext_rounded"
+                android:hint="Net Income"
+                android:padding="@dimen/_8sdp" />
+        </TableRow>
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:text="Submit"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:textColor="#03DAC5"
+            android:background="@drawable/button_rounded3"
+            android:layout_marginLeft="@dimen/_70sdp"
+            android:layout_marginRight="@dimen/_70sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </TableLayout>
+
+
+</ScrollView>

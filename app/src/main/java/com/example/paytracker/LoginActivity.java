@@ -20,8 +20,8 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     Button bt_signin;
-    EditText et_uname,et_pwd;
-    TextView tv_forget_pass,bt_signup;
+    EditText et_uname, et_pwd;
+    TextView tv_forget_pass, bt_signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,19 +30,19 @@ public class LoginActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        bt_signup=(TextView) findViewById(R.id.bt_signup);
-        et_uname=(EditText)findViewById(R.id.et_uname);
-        et_pwd=(EditText)findViewById(R.id.et_pwd);
+        bt_signup = (TextView) findViewById(R.id.bt_signup);
+        et_uname = (EditText) findViewById(R.id.et_uname);
+        et_pwd = (EditText) findViewById(R.id.et_pwd);
         bt_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent=new Intent(LoginActivity.this,RegistrationActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
                 startActivity(intent);
 
             }
         });
-        bt_signin=(Button)findViewById(R.id.bt_signin);
+        bt_signin = (Button) findViewById(R.id.bt_signin);
         bt_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,17 +52,17 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        tv_forget_pass=(TextView)findViewById(R.id.tv_forget_pass);
+        tv_forget_pass = (TextView) findViewById(R.id.tv_forget_pass);
         tv_forget_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this,ForgotPasswordActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
 
             }
         });
     }
-    }
+}
     ProgressDialog pd;
     public  void loginData() {
         pd= new ProgressDialog(LoginActivity.this);
