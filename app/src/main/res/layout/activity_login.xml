@@ -16,7 +16,6 @@
         android:layout_marginLeft="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         app:cardCornerRadius="0dp"
         app:cardElevation="0dp">
 
@@ -42,10 +41,9 @@
 
             <EditText
                 android:id="@+id/et_uname"
-                android:hint="Username"
+                android:hint="Email"
                 android:padding="@dimen/_9sdp"
                 android:layout_marginTop="20dp"
-
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_width="match_parent"
@@ -55,6 +53,7 @@
             <EditText
                 android:id="@+id/et_pwd"
                 android:hint="Password"
+                android:inputType="textPassword"
                 android:padding="@dimen/_9sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
@@ -64,8 +63,7 @@
 
             <TextView
                 android:id="@+id/tv_forget_pass"
-                android:text="Forgot Password"
-                android:visibility="gone"
+                android:text="Forgot Password ?"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:textSize="@dimen/_13sdp"
@@ -97,7 +95,6 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
-
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

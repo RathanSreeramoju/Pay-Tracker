@@ -45,22 +45,22 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch(id)
                 {
-                  /*  case R.id.myprofile:
+                  case R.id.myprofile:
                         Intent intent=new Intent(getApplicationContext(), EditProfileActivity.class);
                         startActivity(intent);
                         break;
 
-                    case R.id.settings:
+                   /* case R.id.settings:
                         Intent set=new Intent(getApplicationContext(), SettingsActivity.class);
                         startActivity(set);
-                        break;
+                        break;*/
 
                     case R.id.logout:
                         Intent logout=new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(logout);
                         break;
                     default:
-                        return true;*/
+                        return true;
                 }
                 dl.closeDrawer(GravityCompat.START);
                 return true;

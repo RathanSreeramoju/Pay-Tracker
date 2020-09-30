@@ -4,93 +4,61 @@ import com.google.gson.annotations.SerializedName;
 
 public class EditProfilePojo {
 
-    public String getName() {
-        return name;
+
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getPhno() {
-        return phno;
+    public String getDob() {
+        return dob;
     }
 
-    public void setPhno(String phno) {
-        this.phno = phno;
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPass() {
+        return pass;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getProfile_pic() {
+        return profile_pic;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setProfile_pic(String profile_pic) {
+        this.profile_pic = profile_pic;
     }
 
-    public String getSalary_per_hour() {
-        return salary_per_hour;
-    }
+    @SerializedName("firstname")
+    private String firstname;
 
-    public void setSalary_per_hour(String salary_per_hour) {
-        this.salary_per_hour = salary_per_hour;
-    }
+    @SerializedName("lastname")
+    private String lastname;
 
-    public String getCompany_name() {
-        return company_name;
-    }
+    @SerializedName("dob")
+    private String dob;
 
-    public void setCompany_name(String company_name) {
-        this.company_name = company_name;
-    }
+    @SerializedName("pass")
+    private String pass;
 
-    public String getImg_url() {
-        return img_url;
-    }
-
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
-    }
-
-    @SerializedName("name")
-    private String name;
-
-    @SerializedName("email")
-    private String email;
-
-    @SerializedName("phno")
-    private String phno;
-
-    @SerializedName("username")
-    private String username;
-
-    @SerializedName("pwd")
-    private String pwd;
-
-    @SerializedName("salary_per_hour")
-    private String salary_per_hour;
-
-    @SerializedName("company_name")
-    private String company_name;
-
-    @SerializedName("img_url")
-    private String img_url;
+    @SerializedName("profile_pic")
+    private String profile_pic;
 
 
 }
