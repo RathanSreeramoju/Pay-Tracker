@@ -17,11 +17,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.paytracker.R;
-import com.paytracker.ResponseData;
-import com.paytracker.Utils;
-import com.paytracker.api.ApiService;
-import com.paytracker.api.RetroClient;
+import com.example.paytracker.api.ApiService;
+import com.example.paytracker.api.RetroClient;
+
 
 
 import java.text.SimpleDateFormat;

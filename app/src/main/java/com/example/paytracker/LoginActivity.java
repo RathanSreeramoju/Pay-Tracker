@@ -15,8 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.paytracker.api.GetApiService;
-import com.example.paytracker.api.RetrofitClient;
+import com.example.paytracker.api.ApiService;
+import com.example.paytracker.api.RetroClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         bt_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(LoginActivity.this,RegistrationActivity.class);
+                Intent intent=new Intent(LoginActivity.this,SignupActivity.class);
                 startActivity(intent);
 
             }
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         pd= new ProgressDialog(LoginActivity.this);
         pd.setTitle("Loading...");
         pd.show();
-        GetApiService apiService = RetrofitClient.getRetrofitInstance().create(GetApiService.class);
+        ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
         Call<ResponseData> call = apiService.userLogin(et_uname.getText().toString(),et_pwd.getText().toString());
         call.enqueue(new Callback<ResponseData>() {
             @Override

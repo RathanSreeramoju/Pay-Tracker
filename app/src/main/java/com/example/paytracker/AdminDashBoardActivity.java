@@ -1,4 +1,4 @@
-package com.example.paytracker.model;
+package com.example.paytracker;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +25,7 @@ public class AdminDashBoardActivity extends AppCompatActivity {
         cd_view_texas=(CardView)findViewById(R.id.cd_view_texas);
         cd_add_texas=(CardView)findViewById(R.id.cd_add_texas);
 
-        cd_add_provinces.setOnClickListener(new View.OnClickListener() {
+       /* cd_add_provinces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(AdminDashBoardActivity.this,AddProvincesActivity.class);
@@ -60,7 +60,7 @@ public class AdminDashBoardActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        });
+        });*/
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

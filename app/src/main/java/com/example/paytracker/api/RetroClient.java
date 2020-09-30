@@ -1,7 +1,7 @@
 package com.example.paytracker.api;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-public class RetrofitClient {
+public class RetroClient {
 
     private static final String ROOT_URL = "http://paytracker.ca/";
     public static Retrofit getRetrofitInstance() {
@@ -10,7 +10,7 @@ public class RetrofitClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-    public static GetApiService getApiService() {
-        return getRetrofitInstance().create(GetApiService.class);
+    public static ApiService getApiService() {
+        return getRetrofitInstance().create(ApiService.class);
     }
 }

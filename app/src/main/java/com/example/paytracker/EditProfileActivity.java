@@ -23,10 +23,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.paytracker.api.GetApiService;
-import com.example.paytracker.api.RetrofitClient;
+import com.example.paytracker.api.ApiService;
+import com.example.paytracker.api.RetroClient;
 import com.example.paytracker.model.EditProfilePojo;
-import com.example.paytracker.model.ResponseData;
 
 
 import java.io.File;
@@ -53,7 +52,7 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
     ResponseData a2;
     Button bt_update,btn_upload_img;
     ImageView image_view;
-    private static final String TAG = RegistrationActivity.class.getSimpleName();
+    private static final String TAG = SignupActivity.class.getSimpleName();
     private static final int REQUEST_GALLERY_CODE = 200;
     private static final int READ_REQUEST_CODE = 300;
     private static final String SERVER_PATH = "http://cegepclm.com/";
@@ -107,7 +106,7 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
-        GetApiService service = RetrofitClient.getRetrofitInstance().create(GetApiService.class);
+        ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
         Call<List<EditProfilePojo>> call = service.get_user_profile(session);
 
         call.enqueue(new Callback<List<EditProfilePojo>>() {
@@ -200,7 +199,7 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
                 .baseUrl(SERVER_PATH)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        GetApiService uploadImage = retrofit.create(GetApiService.class);
+        ApiService uploadImage = retrofit.create(ApiService.class);
         Call<ResponseData> fileUpload = uploadImage.user_update_profile(fileToUpload, map);
         fileUpload.enqueue(new Callback<ResponseData>() {
             @Override
