@@ -59,7 +59,7 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
     String DAY,MONTH,YEAR;
     Button bt_update,btn_upload_img;
     ImageView image_view;
-    private static final String TAG = SignupActivity.class.getSimpleName();
+    private static final String TAG = RegistrationActivity.class.getSimpleName();
     private static final int REQUEST_GALLERY_CODE = 200;
     private static final int READ_REQUEST_CODE = 300;
     private static final String SERVER_PATH = "http://paytracker.ca/";

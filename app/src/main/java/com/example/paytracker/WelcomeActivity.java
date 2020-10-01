@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import androidx.appcompat.app.ActionBar;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -32,7 +33,7 @@ public class WelcomeActivity extends AppCompatActivity {
         bt_signupaccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(WelcomeActivity.this,SignupActivity.class);
+                Intent intent=new Intent(WelcomeActivity.this,RegistrationActivity.class);
                 startActivity(intent);
             }
         });

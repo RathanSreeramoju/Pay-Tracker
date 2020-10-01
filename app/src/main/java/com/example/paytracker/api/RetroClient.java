@@ -1,6 +1,7 @@
 package com.example.paytracker.api;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 public class RetroClient {
 
     private static final String ROOT_URL = "http://paytracker.ca/";

@@ -20,13 +20,6 @@ import retrofit2.http.Query;
 public interface ApiService {
 
 
-    @GET("PayTracker/user_registration.php")
-    Call<ResponseData> userRegistration(
-            @Query("name") String name,
-            @Query("email") String email,
-            @Query("phonenumber") String phonenumber,
-            @Query("pwd") String pwd);
-
 
     @GET("/PayTracker/user_login.php?")
     Call<ResponseData> userLogin(

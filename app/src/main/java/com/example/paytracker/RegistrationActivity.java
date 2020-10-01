@@ -1,8 +1,6 @@
 package com.example.paytracker;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+
 
 import android.Manifest;
 import android.app.Activity;
@@ -26,6 +24,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+
 import com.example.paytracker.api.ApiService;
 import com.example.paytracker.api.RetroClient;
 import com.example.paytracker.model.ProvincesPojo;
@@ -46,7 +49,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SignupActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
+public class RegistrationActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
     ProgressDialog pd;
     TextView tv_dob;
     int mYear,mMonth,mDay;
@@ -55,7 +58,7 @@ public class SignupActivity extends AppCompatActivity implements EasyPermissions
     Button btn_submit,btn_sal_prev,btn_sal_next,job_previous,job_next,btn_company_prev,btn_company_next,btn_submit_all;
     EditText et_first_name,et_last_name,et_email,et_username,et_password,et_sal,et_job_title,et_company_name;
     Button btn_upload_img,btn_provinces_submit;
-    private static final String TAG = SignupActivity.class.getSimpleName();
+    private static final String TAG = RegistrationActivity.class.getSimpleName();
     private static final int REQUEST_GALLERY_CODE = 200;
     private static final int READ_REQUEST_CODE = 300;
     private static final String SERVER_PATH = "http://paytracker.ca/";
@@ -63,11 +66,11 @@ public class SignupActivity extends AppCompatActivity implements EasyPermissions
     Spinner spin_provinces;
     List<ProvincesPojo> a2;
     String[] proviences,ids;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_registration);
+
 
 
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -206,19 +209,19 @@ public class SignupActivity extends AppCompatActivity implements EasyPermissions
             }
         });
 
-    }
 
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, SignupActivity.this);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, RegistrationActivity.this);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == REQUEST_GALLERY_CODE && resultCode == Activity.RESULT_OK){
             uri = data.getData();
             if(EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                String filePath = getRealPathFromURIPath(uri, SignupActivity.this);
+                String filePath = getRealPathFromURIPath(uri, RegistrationActivity.this);
                 file = new File(filePath);
 
             }else{
@@ -240,7 +243,7 @@ public class SignupActivity extends AppCompatActivity implements EasyPermissions
     @Override
     public void onPermissionsGranted(int requestCode, List<String> perms) {
         if(uri != null){
-            String filePath = getRealPathFromURIPath(uri, SignupActivity.this);
+            String filePath = getRealPathFromURIPath(uri, RegistrationActivity.this);
             file = new File(filePath);
             // uploadImageToServer();
         }
@@ -252,7 +255,7 @@ public class SignupActivity extends AppCompatActivity implements EasyPermissions
     }
 
     private void uploadImageToServer(){
-        pd=new ProgressDialog(SignupActivity.this);
+        pd=new ProgressDialog(RegistrationActivity.this);
         pd.setTitle("Loading");
         pd.show();
         Map<String, String> map = new HashMap<>();
@@ -276,13 +279,13 @@ public class SignupActivity extends AppCompatActivity implements EasyPermissions
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
                 pd.dismiss();
-                Toast.makeText(SignupActivity.this, response.body().message, Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistrationActivity.this, response.body().message, Toast.LENGTH_LONG).show();
                 //finish();
             }
             @Override
             public void onFailure(Call<ResponseData> call, Throwable t) {
                 pd.dismiss();
-                Toast.makeText(SignupActivity.this, "Error"+t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistrationActivity.this, "Error"+t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -292,7 +295,7 @@ public class SignupActivity extends AppCompatActivity implements EasyPermissions
         String jobtitle = et_job_title.getText().toString();
         String email = et_email.getText().toString();
 
-        pd = new ProgressDialog(SignupActivity.this);
+        pd = new ProgressDialog(RegistrationActivity.this);
         pd.setMessage("Loading....");
         pd.show();
 
@@ -303,19 +306,19 @@ public class SignupActivity extends AppCompatActivity implements EasyPermissions
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
                 pd.dismiss();
                 if (response.body().status.equals("true")) {
-                    Toast.makeText(SignupActivity.this, response.body().message, Toast.LENGTH_LONG).show();
-                    Intent intent=new Intent(SignupActivity.this, LoginActivity.class);
+                    Toast.makeText(RegistrationActivity.this, response.body().message, Toast.LENGTH_LONG).show();
+                    Intent intent=new Intent(RegistrationActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
 
                 } else {
-                    Toast.makeText(SignupActivity.this, response.body().message, Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this, response.body().message, Toast.LENGTH_LONG).show();
                 }
             }
             @Override
             public void onFailure(Call<ResponseData> call, Throwable t) {
                 pd.dismiss();
-                Toast.makeText(SignupActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistrationActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -338,7 +341,7 @@ public class SignupActivity extends AppCompatActivity implements EasyPermissions
                     ids[i + 1] = a2.get(i).getId();
 
                 }
-                ArrayAdapter aa = new ArrayAdapter(SignupActivity.this, android.R.layout.simple_spinner_item, proviences);
+                ArrayAdapter aa = new ArrayAdapter(RegistrationActivity.this, android.R.layout.simple_spinner_item, proviences);
                 aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spin_provinces.setAdapter(aa);
                 spin_provinces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -388,7 +391,7 @@ public class SignupActivity extends AppCompatActivity implements EasyPermissions
         datePickerDialog.show();
     }
 
-    @Override
+    @Override                                                                                                                    //add this method in your program
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

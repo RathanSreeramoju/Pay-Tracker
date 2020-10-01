@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
 
-                   /* case R.id.settings:
+                    case R.id.settings:
                         Intent set=new Intent(getApplicationContext(), SettingsActivity.class);
                         startActivity(set);
-                        break;*/
+                        break;
 
                     case R.id.logout:
                         Intent logout=new Intent(getApplicationContext(), LoginActivity.class);
