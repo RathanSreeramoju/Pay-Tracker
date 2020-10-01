@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Spinner
+        android:id="@+id/spin_prov_names"
+        android:layout_below="@+id/et_phno"
+        android:singleLine="true"
+        android:background="@drawable/edittext_rounded"
+        android:padding="@dimen/_13sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:textColor="#37b4ee"
+        android:textColorHint="#37b4ee"
+        android:textSize="@dimen/_13sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/prov_names"
+        android:scrollbars="none"
+        android:spinnerMode="dropdown"/>
+
+    <EditText
+        android:id="@+id/et_tax_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:background="@drawable/edittext_rounded"
+        android:hint="Tax Amount"
+        android:padding="@dimen/_13sdp" />
+
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:text="Submit"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:background="@drawable/button_rounded1"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_35sdp" />
+
+</LinearLayout>

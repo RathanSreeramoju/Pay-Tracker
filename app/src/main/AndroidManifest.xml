@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegistrationActivity"></activity>
+        <activity android:name=".AddTaxActivity"></activity>
+        <activity android:name=".RegistrationActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".ReportsActivity" />
         <activity android:name=".UserDashboardActivity" />
