@@ -21,6 +21,9 @@ import retrofit2.Response;
 
 public class AdminLoginActivity extends AppCompatActivity {
 
+    EditText et_adminun,et_adminpass;
+    Button Btn_adminlogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,5 +86,4 @@ public class AdminLoginActivity extends AppCompatActivity {
         });
     }
 }
-    }
-}
+

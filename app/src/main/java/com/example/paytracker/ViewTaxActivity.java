@@ -38,8 +38,7 @@ public class ViewTaxActivity extends AppCompatActivity {
         list_view=(ListView)findViewById(R.id.list_view);
         a1= new ArrayList<>();
         serverData();
-        /*a1.add(new ViewTaxesPojo("1","Mallangi Parameswar reddy","300")); //static data
-        a1.add(new ViewTaxesPojo("2","Mohan Bhavya","254"));*/
+
 
 
 

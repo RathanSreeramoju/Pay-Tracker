@@ -8,7 +8,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -28,12 +31,7 @@ import retrofit2.Response;
 
 public class AddJobProfileActivity extends AppCompatActivity {
     ProgressDialog pd;
-    TextView tv_dob;
-    int mYear,mMonth,mDay;
-    String DAY,MONTH,YEAR;
-    LinearLayout ll_reg_form,ll_sal_per_hour,ll_job_title,ll_company_name,ll_img_upload,ll_provinces;
-    Button btn_sal_prev,btn_sal_next,job_previous,job_next,btn_company_prev,btn_company_next,btn_submit_all;
-    EditText et_first_name,et_last_name,et_email,et_username,et_password,et_sal,et_job_title,et_company_name;
+    EditText et_sal,et_job_title,et_company_name;
     Button btn_submit;
     private static final String SERVER_PATH = "http://paytracker.ca/";
     private Uri uri;
@@ -45,6 +43,7 @@ public class AddJobProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_job_profile);
+
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add Job Profile");
@@ -79,7 +78,46 @@ public class AddJobProfileActivity extends AppCompatActivity {
     }
 
     private void getProvinces() {
+
+        ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+        Call<List<ProvincesPojo>> call = apiService.get_provinces();
+        call.enqueue(new Callback<List<ProvincesPojo>>() {
+            @Override
+            public void onResponse(Call<List<ProvincesPojo>> call, Response<List<ProvincesPojo>> response) {
+                a2 = response.body();
+                Log.d("TAG", "Response = " + a2);
+                proviences = new String[a2.size() + 1];
+                ids=new String[a2.size()+1];
+                ids[0] = "-1";
+                proviences[0] = "Select Provinces";
+                for (int i = 0; i < a2.size(); i++) {
+                    proviences[i + 1] = a2.get(i).getProvince_name();
+                    ids[i + 1] = a2.get(i).getId();
+
+                }
+                ArrayAdapter aa = new ArrayAdapter(AddJobProfileActivity.this, android.R.layout.simple_spinner_item, proviences);
+                aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spin_provinces.setAdapter(aa);
+                spin_provinces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+                        if (pos > 0) {
+                        }
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<List<ProvincesPojo>> call, Throwable t) {
+                Log.d("TAG", "Response = " + t.toString());
+            }
+        });
     }
+
 
     private void addJobProfile() {
 

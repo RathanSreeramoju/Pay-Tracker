@@ -25,29 +25,13 @@ public class AdminDashBoardActivity extends AppCompatActivity {
         cd_view_texas=(CardView)findViewById(R.id.cd_view_texas);
         cd_add_texas=(CardView)findViewById(R.id.cd_add_texas);
 
-       /* cd_add_provinces.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(AdminDashBoardActivity.this,AddProvincesActivity.class);
-                startActivity(intent);
 
-            }
-        });
 
-        cd_view_provinces.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent=new Intent(AdminDashBoardActivity.this,ViewProvincesActivity.class);
-                startActivity(intent);
-
-            }
-        });
 
         cd_add_texas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(AdminDashBoardActivity.this,AddTaxesActivity.class);
+                Intent intent=new Intent(AdminDashBoardActivity.this,AddTaxActivity.class);
                 startActivity(intent);
 
             }
@@ -56,11 +40,11 @@ public class AdminDashBoardActivity extends AppCompatActivity {
         cd_view_texas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(AdminDashBoardActivity.this,ViewTaxesActivity.class);
+                Intent intent=new Intent(AdminDashBoardActivity.this,ViewTaxActivity.class);
                 startActivity(intent);
 
             }
-        });*/
+        });
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

@@ -94,4 +94,16 @@ public interface ApiService {
 
     @GET("/PayTracker/get_taxes.php?")
     Call<List<ViewTaxesPojo>> get_taxes();
+
+    @GET("/PayTracker/add_taxes.php?")
+    Call<ResponseData> add_taxes(
+            @Query("provinces_name") String provinces_name,
+            @Query("tax") String tax
+    );
+
+    @GET("/PayTracker/adminlogin.php?")
+    Call<ResponseData> adminLogin(
+            @Query("uname") String uname,
+            @Query("pwd") String pwd
+    );
 }
