@@ -136,12 +136,12 @@ public class AddWorkActivity extends AppCompatActivity {
             long diffHours = diff / (60 * 60 * 1000) % 24;
             et_total_hours.setText(diffHours+"Hr : "+diffMinutes+"Min");
             if(diffMinutes!=0){
-                salary=(100)*(diffHours)+(100/60)*diffMinutes;
+                salary=(15)*(diffHours)+(15/60)*diffMinutes;
                 et_earn_before_tax.setText(""+salary);
                 salary_tax=(float)15/100;
                 //Toast.makeText(this,"Salary -> "+salary_tax,Toast.LENGTH_LONG).show();
             }else{
-                salary=(100)*(diffHours);
+                salary=(15)*(diffHours);
                 et_earn_before_tax.setText(""+salary);
                 salary_tax=(float)15/100;
                 //Toast.makeText(this,"Salary -> "+salary_tax,Toast.LENGTH_LONG).show();

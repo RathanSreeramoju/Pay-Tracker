@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch(id)
                 {
-                  /*  case R.id.myprofile:
+                  case R.id.myprofile:
                         Intent intent=new Intent(getApplicationContext(), EditProfileActivity.class);
                         startActivity(intent);
                         break;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(logout);
                         break;
                     default:
-                        return true;*/
+                        return true;
                 }
                 dl.closeDrawer(GravityCompat.START);
                 return true;

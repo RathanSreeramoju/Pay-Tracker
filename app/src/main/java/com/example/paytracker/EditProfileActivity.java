@@ -2,6 +2,7 @@ package com.example.paytracker;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +15,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +32,7 @@ import com.example.paytracker.model.EditProfilePojo;
 
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,24 +48,26 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EditProfileActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
-    EditText et_ename,et_email,et_phno,et_username,et_password,et_sal,et_job_title,et_company_name;
+    EditText et_first_name,et_lastname,et_pass,et_username;
     ProgressDialog progressDialog;
     List<EditProfilePojo> a1;
     SharedPreferences sharedPreferences;
     String session;
     ResponseData a2;
+    TextView tv_dob;
+    int mYear,mMonth,mDay;
+    String DAY,MONTH,YEAR;
     Button bt_update,btn_upload_img;
     ImageView image_view;
-    private static final String TAG = SignupActivity.class.getSimpleName();
+    private static final String TAG = RegistrationActivity.class.getSimpleName();
     private static final int REQUEST_GALLERY_CODE = 200;
     private static final int READ_REQUEST_CODE = 300;
-    private static final String SERVER_PATH = "http://cegepclm.com/";
+    private static final String SERVER_PATH = "http://paytracker.ca/";
     private Uri uri;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
 
         getSupportActionBar().setTitle("Edit Profile");
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -70,14 +76,25 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
         sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
         session = sharedPreferences.getString("uname", "def-val");
 
-        et_ename=(EditText)findViewById(R.id.et_ename);
-        et_email=(EditText)findViewById(R.id.et_email);
-        et_phno=(EditText)findViewById(R.id.et_phno);
+        tv_dob=(TextView)findViewById(R.id.tv_dob);
+        tv_dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                datepicker();
+            }
+        });
+
+        et_first_name=(EditText)findViewById(R.id.et_first_name);
+        et_lastname=(EditText)findViewById(R.id.et_lastname);
+        et_pass=(EditText)findViewById(R.id.et_pass);
         et_username=(EditText)findViewById(R.id.et_username);
+/*
+
         et_password=(EditText)findViewById(R.id.et_password);
         et_sal=(EditText)findViewById(R.id.et_sal);
         et_job_title=(EditText)findViewById(R.id.et_job_title);
-        et_company_name=(EditText)findViewById(R.id.et_company_name);
+        et_company_name=(EditText)findViewById(R.id.et_company_name);*/
 
         image_view=(ImageView)findViewById(R.id.image_view);
 
@@ -116,14 +133,11 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
                 progressDialog.dismiss();
                 a1 = response.body();
                 EditProfilePojo user = a1.get(0);
-                et_ename.setText(user.getName());
-                et_email.setText(user.getEmail());
-                et_phno.setText(user.getPhno());
-                et_password.setText(user.getPwd());
-                et_sal.setText(user.getSalary_per_hour());
-                et_company_name.setText(user.getCompany_name());
-
-                Glide.with(EditProfileActivity.this).load(a1.get(0).getImg_url()).into(image_view);
+                et_first_name.setText(user.getFirstname());
+                et_lastname.setText(user.getLastname());
+                et_pass.setText(user.getPass());
+                tv_dob.setText(user.getDob());
+                Glide.with(EditProfileActivity.this).load(a1.get(0).getProfile_pic()).into(image_view);
 
             }
 
@@ -182,13 +196,11 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
         progressDialog.setTitle("Loading");
         progressDialog.show();
         Map<String, String> map = new HashMap<>();
-        map.put("name",et_ename.getText().toString());
-        map.put("email",et_email.getText().toString());
-        map.put("phno",et_phno.getText().toString());
-        map.put("uname",et_username.getText().toString());
-        map.put("pwd",et_password.getText().toString());
-        map.put("salary_per_hour",et_sal.getText().toString());
-        map.put("company_name",et_company_name.getText().toString());
+        map.put("fname",et_first_name.getText().toString());
+        map.put("email",session);
+        map.put("lname",et_lastname.getText().toString());
+        map.put("dob",tv_dob.getText().toString());
+        map.put("pwd",et_pass.getText().toString());
 
 
 
@@ -214,6 +226,31 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
                 Toast.makeText(EditProfileActivity.this, "Error"+t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+    public void datepicker() {
+
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        DAY = dayOfMonth + "";
+                        MONTH = monthOfYear + 1 + "";
+                        YEAR = year + "";
+
+                        //tv_dob.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        tv_dob.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+
+                    }
+                }, mYear, mMonth, mDay);
+        datePickerDialog.show();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -20,13 +20,6 @@ import retrofit2.http.Query;
 public interface ApiService {
 
 
-    @GET("PayTracker/user_registration.php")
-    Call<ResponseData> userRegistration(
-            @Query("name") String name,
-            @Query("email") String email,
-            @Query("phonenumber") String phonenumber,
-            @Query("pwd") String pwd);
-
 
     @GET("/PayTracker/user_login.php?")
     Call<ResponseData> userLogin(
@@ -42,32 +35,7 @@ public interface ApiService {
                     @Query("emailid") String emailid
             );
 
-    @GET("/PayTracker/add_provinces.php?")
-    Call<ResponseData> add_provinces(
-            @Query("provinces_name") String provinces_name
-    );
-/*
-    @GET("/PayTracker/get_provinces.php?")
-    Call<List<ProvincesPojo>> get_provinces();*/
 
-    @GET("/PayTracker/delete_provinces.php?")
-    Call<ResponseData> delete_provinces(
-            @Query("id") String id
-
-    );
-
-    @GET("/PayTracker/update_provinces.php?")
-    Call<ResponseData> update_provinces(
-            @Query("id") String id,
-            @Query("provinces_name") String provinces_name
-
-    );
-
-    @GET("/PayTracker/add_taxes.php?")
-    Call<ResponseData> add_taxes(
-            @Query("provinces_name") String provinces_name,
-            @Query("tax") String tax
-    );
 
     @GET("/PayTracker/add_payment_history.php?")
     Call<ResponseData> add_payment(
@@ -83,18 +51,6 @@ public interface ApiService {
     @GET("/PayTracker/get_payment_history.php?")
     Call<List<PaymentPojo>> get_reports(@Query("uname") String uname, @Query("start_date") String start_date, @Query("end_date") String end_date);
 
-    @GET("/PayTracker/delete_taxes.php?")
-    Call<ResponseData> delete_taxes(
-            @Query("id") String id
-
-    );
-
-    @GET("/PayTracker/update_taxes.php?")
-    Call<ResponseData> update_taxes(
-            @Query("provinces_name") String provinces_name,
-            @Query("tax") String tax,
-            @Query("id") String id
-    );
 
 
     @Multipart
