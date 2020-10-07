@@ -2,6 +2,7 @@ package com.example.paytracker.api;
 
 import com.example.paytracker.ResponseData;
 import com.example.paytracker.model.EditProfilePojo;
+import com.example.paytracker.model.GetAllJobProfilePojo;
 import com.example.paytracker.model.PaymentPojo;
 import com.example.paytracker.model.ProvincesPojo;
 import com.example.paytracker.model.ViewTaxesPojo;
@@ -61,6 +62,9 @@ public interface ApiService {
             @PartMap Map<String, String> partMap
 
     );
+
+    @GET("/PayTracker/getmyjobprofile.php?")
+    Call<List<GetAllJobProfilePojo>> getmyjobprofile(@Query("uname") String uname);
 
     @Multipart
     @POST("/PayTracker/user_update_profile.php?")
