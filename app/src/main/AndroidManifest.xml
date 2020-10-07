@@ -14,16 +14,12 @@
         android:roundIcon="@mipmap/app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".AddJobProfileActivity"></activity>
-
-        <activity android:name=".model.AdminLoginActivity"></activity>
+        <activity android:name="AdminLoginActivity"></activity>
         <activity android:name=".ViewTaxActivity" />
         <activity android:name=".AddTaxActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".ReportsActivity" />
-
         <activity android:name=".UserDashboardActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".ForgotPasswordActivity" />
