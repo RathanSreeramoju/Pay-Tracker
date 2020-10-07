@@ -4,6 +4,7 @@ import com.example.paytracker.ResponseData;
 import com.example.paytracker.model.EditProfilePojo;
 import com.example.paytracker.model.PaymentPojo;
 import com.example.paytracker.model.ProvincesPojo;
+import com.example.paytracker.model.ViewTaxesPojo;
 
 import java.util.List;
 import java.util.Map;
@@ -86,4 +87,7 @@ public interface ApiService {
             @Query("uemail") String uemail,
             @Query("pid") String pid
     );
+
+    @GET("/PayTracker/get_taxes.php?")
+    Call<List<ViewTaxesPojo>> get_taxes();
 }
