@@ -25,7 +25,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     Button bt_signin;
     EditText et_uname, et_pwd;
-    TextView tv_forget_pass, bt_signup;
+    TextView tv_forget_pass, bt_signup,tv_admin;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +37,16 @@ public class LoginActivity extends AppCompatActivity {
         bt_signup = (TextView) findViewById(R.id.bt_signup);
         et_uname = (EditText) findViewById(R.id.et_uname);
         et_pwd = (EditText) findViewById(R.id.et_pwd);
+
+        tv_admin=(TextView)findViewById(R.id.tv_admin);
+        tv_admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(LoginActivity.this,AdminLoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
         bt_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -17,7 +17,9 @@
         <activity android:name=".BaseActivity"></activity>
         <activity android:name=".GetAllJobProfileActivity" />
         <activity android:name=".DailyReportActivity" />
+        <activity android:name=".AddJobProfileActivity" />
         <activity android:name=".AdminLoginActivity" />
+        <activity android:name=".AdminDashBoardActivity" />
         <activity android:name=".ViewTaxActivity" />
         <activity android:name=".AddTaxActivity" />
         <activity android:name=".RegistrationActivity" />
