@@ -70,7 +70,7 @@ public class AddTaxActivity extends AppCompatActivity {
             }
         });
     }
-    @Override                                                                                                                    //add this method in your program
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

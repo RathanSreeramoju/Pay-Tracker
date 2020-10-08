@@ -54,6 +54,7 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
     SharedPreferences sharedPreferences;
     String session;
     ResponseData a2;
+    ImageView imgeditenable;
     TextView tv_dob;
     int mYear,mMonth,mDay;
     String DAY,MONTH,YEAR;
@@ -75,6 +76,7 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
 
         sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
         session = sharedPreferences.getString("uname", "def-val");
+        imgeditenable=(ImageView)findViewById(R.id.imgeditenable);
 
         tv_dob=(TextView)findViewById(R.id.tv_dob);
         tv_dob.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +121,40 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
 
             }
         });
+        imgeditenable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                et_first_name.setEnabled(true);
+                et_first_name.setFocusable(true);
+                et_first_name.setFocusableInTouchMode(true);
+                et_first_name.setClickable(true);
+
+                et_lastname.setEnabled(true);
+                et_lastname.setFocusable(true);
+                et_lastname.setFocusableInTouchMode(true);
+                et_lastname.setClickable(true);
+
+                tv_dob.setEnabled(true);
+                tv_dob.setFocusable(true);
+                tv_dob.setFocusableInTouchMode(true);
+                tv_dob.setClickable(true);
+
+                et_username.setEnabled(true);
+                et_username.setFocusable(true);
+                et_username.setFocusableInTouchMode(true);
+                et_username.setClickable(true);
+
+
+                et_pass.setEnabled(true);
+                et_pass.setFocusable(true);
+                et_pass.setFocusableInTouchMode(true);
+                et_pass.setClickable(true);
+                bt_update.setVisibility(View.VISIBLE);
+            }
+        });
+
+
         progressDialog = new ProgressDialog(EditProfileActivity.this);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
