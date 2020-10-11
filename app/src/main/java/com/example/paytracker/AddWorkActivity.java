@@ -6,11 +6,16 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -20,12 +25,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.paytracker.api.ApiService;
 import com.example.paytracker.api.RetroClient;
-
+import com.example.paytracker.model.GetAllJobProfilePojo;
 
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,16 +41,46 @@ public class AddWorkActivity extends AppCompatActivity {
     int mYear,mMonth,mDay;
     String DAY,MONTH,YEAR;
     String work_date;
-    EditText et_start_time,et_end_time,et_earn_before_tax,et_total_hours,et_tax_deducted,et_net_income;
+    EditText et_start_time,et_end_time,et_earn_before_tax,et_total_hours,et_tax_deducted,et_net_income,et_salperhour;
     Button btn_calculate_hours,btn_submit;
     String time;
+    Spinner sp_jobs;
+    ImageView imgeditenable;
+    String[] myjobs;
+    String[] mytax;
+    List<GetAllJobProfilePojo> array_jobs;
+
+    SharedPreferences sharedPreferences;
+    String session;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_work);
+
         getSupportActionBar().setTitle("Add Work");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
+        session = sharedPreferences.getString("uname", "def-val");
+        sp_jobs = (Spinner) findViewById(R.id.spin_jobs);
+        et_salperhour=(EditText)findViewById(R.id.et_salperhour);
+        getJobs();
+
+        imgeditenable=(ImageView)findViewById(R.id.imgeditenable);
+
+        imgeditenable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                et_salperhour.setEnabled(true);
+                et_salperhour.setFocusable(true);
+                et_salperhour.setFocusableInTouchMode(true);
+                et_salperhour.setClickable(true);
+
+            }
+        });
+
+
         tv_date=(TextView)findViewById(R.id.tv_date);
         btn_calculate_hours=(Button)findViewById(R.id.btn_calculate_hours);
         btn_submit=(Button)findViewById(R.id.btn_submit);
@@ -74,7 +110,7 @@ public class AddWorkActivity extends AppCompatActivity {
 
             }
         });
-        et_end_time=(EditText)findViewById(R.id.et_end_time);
+        et_end_time = (EditText) findViewById(R.id.et_end_time);
         et_end_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -221,5 +257,49 @@ public class AddWorkActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+    private void getJobs() {
+        ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+        Call<List<GetAllJobProfilePojo>> call = apiService.getmyjobprofile(session);
+        call.enqueue(new Callback<List<GetAllJobProfilePojo>>() {
+            @Override
+            public void onResponse(Call<List<GetAllJobProfilePojo>> call, Response<List<GetAllJobProfilePojo>> response) {
+                array_jobs = response.body();
+                Log.d("TAG", "Response = " + array_jobs);
+                myjobs = new String[array_jobs.size() + 1];
+                // mytax = new String[array_jobs.size() + 1];
+                myjobs[0] = "Select Job";
+                // mytax[0] = "-1";
+                for (int i = 0; i < array_jobs.size(); i++) {
+                    myjobs[i + 1] = array_jobs.get(i).getCompanyname();
+                    //  mytax[i + 1] = array_jobs.get(i).getSalaryperhour();
+                    et_salperhour.setText(array_jobs.get(i).getSalaryperhour().toString());
+                }
+                ArrayAdapter aa = new ArrayAdapter(AddWorkActivity.this, android.R.layout.simple_spinner_item, myjobs);
+                aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                sp_jobs.setAdapter(aa);
+
+                sp_jobs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+                        if (pos > 0) {
+                            // Toast.makeText(getApplicationContext(), cities[pos], Toast.LENGTH_LONG).show();
+                            //getAreas(state,cities[pos]);
+                        }
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<List<GetAllJobProfilePojo>> call, Throwable t) {
+                Log.d("TAG", "Response = " + t.toString());
+            }
+        });
+    }
+
+
 }
 

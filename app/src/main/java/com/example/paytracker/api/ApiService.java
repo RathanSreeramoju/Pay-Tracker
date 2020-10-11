@@ -51,7 +51,10 @@ public interface ApiService {
 
 
     @GET("/PayTracker/get_payment_history.php?")
-    Call<List<PaymentPojo>> get_reports(@Query("uname") String uname, @Query("start_date") String start_date, @Query("end_date") String end_date);
+    Call<List<PaymentPojo>> get_reports(
+            @Query("uname") String uname,
+            @Query("start_date") String start_date,
+            @Query("end_date") String end_date);
 
 
 
