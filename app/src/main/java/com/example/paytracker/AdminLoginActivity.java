@@ -65,7 +65,20 @@ public class AdminLoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
                 progress.dismiss();
-               
+                
+                if (response.body().status.equals("true")) {
+                    SharedPreferences sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor et=sharedPreferences.edit();
+                    et.putString("uname",et_adminun.getText().toString());
+                    et.commit();
+                    Toast.makeText(AdminLoginActivity.this, "Login Successfully", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(AdminLoginActivity.this, AdminDashBoardActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(AdminLoginActivity.this, response.body().message, Toast.LENGTH_LONG).show();
+                }
+            }
+
 
             @Override
             public void onFailure(Call<ResponseData> call, Throwable t) {
