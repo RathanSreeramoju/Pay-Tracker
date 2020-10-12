@@ -8,6 +8,8 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -66,6 +68,9 @@ public class RegistrationActivity extends AppCompatActivity implements EasyPermi
     Spinner spin_provinces;
     List<ProvincesPojo> a2;
     String[] proviences,ids;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+    String date;
+    int limit_year=0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,10 +125,41 @@ public class RegistrationActivity extends AppCompatActivity implements EasyPermi
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadImageToServer();
+
+                if(et_first_name.getText().toString().equals(""))
+                {
+                    Toast.makeText(RegistrationActivity.this, "Enter First Name", Toast.LENGTH_LONG).show();
+                }
+                else if(et_last_name.getText().toString().equals(""))
+                {
+                    Toast.makeText(RegistrationActivity.this, "Enter Lastname", Toast.LENGTH_LONG).show();
+                }
+
+                else if(et_email.getText().toString().equals(""))
+                {
+                    Toast.makeText(RegistrationActivity.this, "Enter Email", Toast.LENGTH_LONG).show();
+                }
+
+                else if(tv_dob.getText().toString().equals(""))
+                {
+                    Toast.makeText(RegistrationActivity.this, "Select DOB", Toast.LENGTH_LONG).show();
+                }
+
+                else if(et_password.getText().toString().equals(""))
+                {
+                    Toast.makeText(RegistrationActivity.this, "Enter Password", Toast.LENGTH_LONG).show();
+                }
+
+
+                else {
+                    uploadImageToServer();
+                    ll_reg_form.setVisibility(View.GONE);
+                    ll_company_name.setVisibility(View.VISIBLE);
+                }
+
+
                 //Toast.makeText(RegistrationActivity.this, "Submitted to server", Toast.LENGTH_SHORT).show();
-                ll_reg_form.setVisibility(View.GONE);
-                ll_company_name.setVisibility(View.VISIBLE);
+
 
 
             }
@@ -365,7 +401,34 @@ public class RegistrationActivity extends AppCompatActivity implements EasyPermi
             }
         });
     }
+
     public void datepicker() {
+        Calendar cal_limit = Calendar.getInstance();
+        limit_year=cal_limit.get(Calendar.YEAR)-18;
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                Log.d(String.valueOf(RegistrationActivity.this), "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
+                date = month + "/" + day + "/" + year;
+                DAY = month + "";
+                MONTH = day + "";
+                YEAR = year + "";
+                tv_dob.setText(date);
+            }
+        };
+        DatePickerDialog dialog = new DatePickerDialog(
+                RegistrationActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener, limit_year, 0, 1);
+        Calendar c = Calendar.getInstance();
+        c.set(limit_year, 11, 31);//Year,Mounth -1,Day
+        DatePicker datePicker = dialog.getDatePicker();
+
+        datePicker.setMaxDate(c.getTimeInMillis());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+    }
+    /*public void datepicker() {
 
         final Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
@@ -389,7 +452,7 @@ public class RegistrationActivity extends AppCompatActivity implements EasyPermi
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
-    }
+    }*/
 
     @Override                                                                                                                    //add this method in your program
     public boolean onOptionsItemSelected(MenuItem item) {
