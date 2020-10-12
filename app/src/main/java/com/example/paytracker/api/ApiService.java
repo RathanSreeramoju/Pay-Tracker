@@ -106,4 +106,11 @@ public interface ApiService {
             @Query("uname") String uname,
             @Query("pwd") String pwd
     );
+
+    @GET("/PayTracker/update_taxes.php?")
+    Call<ResponseData> update_taxes(
+            @Query("provinces_name") String provinces_name,
+            @Query("tax") String tax,
+            @Query("id") String id
+    );
 }
