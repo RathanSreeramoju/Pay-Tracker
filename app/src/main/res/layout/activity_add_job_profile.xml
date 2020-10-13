@@ -21,7 +21,7 @@
             android:text="Company Name "
             android:textSize="@dimen/_25sdp"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -45,7 +45,7 @@
     <LinearLayout
         android:id="@+id/ll_job_title"
 
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -55,7 +55,7 @@
             android:text="Job Title "
             android:textSize="@dimen/_25sdp"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -81,7 +81,7 @@
     <LinearLayout
         android:id="@+id/ll_sal_per_hour"
 
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -90,7 +90,7 @@
             android:text="Salary Per Hour"
             android:textSize="@dimen/_25sdp"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
@@ -112,7 +112,7 @@
     <LinearLayout
         android:id="@+id/ll_provinces"
 
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -122,7 +122,7 @@
             android:text="Provinces"
             android:textSize="@dimen/_25sdp"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -143,36 +143,22 @@
             android:scrollbars="none"
             android:spinnerMode="dropdown"/>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_30sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <Button
-                android:text="Previous"
-                android:visibility="gone"
-                android:layout_weight="1"
-                android:textColor="#03DAC5"
-                android:layout_marginLeft="@dimen/_15sdp"
-                android:background="@drawable/button_rounded3"
-                android:layout_width="@dimen/_130sdp"
-                android:layout_height="@dimen/_35sdp" />
 
             <Button
                 android:id="@+id/btn_submit"
                 android:text="Submit"
-                android:layout_weight="1"
-                android:textColor="#03DAC5"
-                android:layout_marginLeft="@dimen/_45sdp"
-                android:background="@drawable/button_rounded3"
+
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:textColor="#ffffff"
+                android:background="#03DAC5"
+                android:textStyle="bold"
                 android:layout_width="@dimen/_130sdp"
-                android:layout_height="@dimen/_35sdp" />
+                android:layout_height="@dimen/_35sdp"
+                />
 
         </LinearLayout>
 
     </LinearLayout>
-</LinearLayout>
 
