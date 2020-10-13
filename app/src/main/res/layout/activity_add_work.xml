@@ -11,7 +11,7 @@
         <TextView
             android:text="Select Job"
             android:textSize="16dp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_gravity="left"
             android:layout_marginLeft="@dimen/_20sdp"
             android:textColor="#111111"
@@ -26,16 +26,22 @@
             android:background="@drawable/edittext_rounded"
             android:layout_marginRight="@dimen/_20sdp"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_2sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
             android:spinnerMode="dropdown"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+
+        <TextView
+            android:text="Salary Per Hour"
+            android:textSize="16dp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:textColor="#111111"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/et_salperhour"
@@ -46,14 +52,16 @@
                 android:enabled="false"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:layout_marginRight="@dimen/_20sdp"
                 android:background="@drawable/edittext_rounded"
                 android:hint="Salary Per Hour"
                 android:padding="@dimen/_8sdp" />
+
             <TextView
                 android:text="Tax in Percentage"
                 android:textSize="16dp"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="@dimen/_20sdp"
@@ -65,6 +73,7 @@
                 android:id="@+id/et_tax"
                 android:layout_below="@+id/tv_shift_start"
                 android:inputType="number"
+                android:visibility="gone"
                 android:layout_width="250dp"
                 android:clickable="false"
                 android:enabled="false"
@@ -99,20 +108,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="@dimen/_14sdp"
+            android:textSize="@dimen/_10sdp"
             android:background="#42DDCF"
             android:padding="@dimen/_8sdp"
             android:layout_marginLeft="@dimen/_50sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_50sdp"
             android:text="Choose Date " />
+
         <Spinner
             android:id="@+id/spin_break"
             android:padding="@dimen/_10sdp"
             android:background="@drawable/edittext_rounded"
             android:layout_marginRight="@dimen/_20sdp"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/break_timings"
@@ -124,7 +134,7 @@
             android:id="@+id/ll_reg_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_15sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:orientation="vertical">
 
             <TextView
@@ -132,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:text="Shift Start Time" />
 
