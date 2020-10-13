@@ -1,7 +1,7 @@
 package com.example.paytracker;
 
-
-
+import com.example.paytracker.model.ProvincesPojo;
+import com.example.paytracker.api.ApiService;
 import android.Manifest;
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -28,12 +28,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.example.paytracker.api.ApiService;
-import com.example.paytracker.api.RetroClient;
-import com.example.paytracker.model.ProvincesPojo;
 
 import java.io.File;
 import java.util.Calendar;
@@ -53,7 +51,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegistrationActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
     ProgressDialog pd;
-    TextView tv_dob;
+    TextView tv_dob, tv_skip;
     int mYear,mMonth,mDay;
     String DAY,MONTH,YEAR;
     LinearLayout ll_reg_form,ll_sal_per_hour,ll_job_title,ll_company_name,ll_img_upload,ll_provinces;
@@ -103,6 +101,17 @@ public class RegistrationActivity extends AppCompatActivity implements EasyPermi
         et_company_name=(EditText)findViewById(R.id.et_company_name);
         spin_provinces=(Spinner)findViewById(R.id.spin_provinces);
         getProvinces();
+
+        tv_skip=(TextView)findViewById(R.id.tv_skip);
+tv_skip.setOnClickListener( new View.OnClickListener()  {
+    @Override
+    public void onClick(View view) {
+        Intent intent=new Intent(RegistrationActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
+});
+
+
 
         btn_upload_img=(Button)findViewById(R.id.btn_upload_img);
         btn_upload_img.setOnClickListener(new View.OnClickListener() {
@@ -170,8 +179,11 @@ public class RegistrationActivity extends AppCompatActivity implements EasyPermi
             @Override
             public void onClick(View view) {
 
-                ll_reg_form.setVisibility(View.VISIBLE);
-                ll_company_name.setVisibility(View.GONE);
+          //      ll_reg_form.setVisibility(View.VISIBLE);
+          //      ll_company_name.setVisibility(View.GONE);
+                Intent intent=new Intent(RegistrationActivity.this, LoginActivity.class);
+                startActivity(intent);
+
 
             }
         });
@@ -181,18 +193,23 @@ public class RegistrationActivity extends AppCompatActivity implements EasyPermi
             @Override
             public void onClick(View view) {
 
-                ll_job_title.setVisibility(View.VISIBLE);
-                ll_company_name.setVisibility(View.GONE);
+                if(et_company_name.getText().toString().equals(""))
+                {
+                    Toast.makeText(RegistrationActivity.this, "Enter Company Name", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    ll_job_title.setVisibility(View.VISIBLE);
+                    ll_company_name.setVisibility(View.GONE);
+                }
 
 
-            }
+                }
         });
 
         job_previous=(Button)findViewById(R.id.job_previous);
         job_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 ll_company_name.setVisibility(View.VISIBLE);
                 ll_job_title.setVisibility(View.GONE);
 
@@ -202,10 +219,14 @@ public class RegistrationActivity extends AppCompatActivity implements EasyPermi
         job_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (et_job_title.getText().toString().equals("")) {
+                    Toast.makeText(RegistrationActivity.this, "Job Title", Toast.LENGTH_SHORT).show();
+                } else {
 
-                ll_sal_per_hour.setVisibility(View.VISIBLE);
-                ll_job_title.setVisibility(View.GONE);
+                    ll_sal_per_hour.setVisibility(View.VISIBLE);
+                    ll_job_title.setVisibility(View.GONE);
 
+                }
             }
         });
 
@@ -224,10 +245,16 @@ public class RegistrationActivity extends AppCompatActivity implements EasyPermi
         btn_sal_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(et_sal.getText().toString().equals(""))
+                {
+                    Toast.makeText(RegistrationActivity.this, "Enter Salary Per Hour", Toast.LENGTH_SHORT).show();
+                }
+                else {
 
 
-                ll_sal_per_hour.setVisibility(View.GONE);
-                ll_provinces.setVisibility(View.VISIBLE);
+                    ll_sal_per_hour.setVisibility(View.GONE);
+                    ll_provinces.setVisibility(View.VISIBLE);
+                }
 
             }
         });
@@ -237,11 +264,18 @@ public class RegistrationActivity extends AppCompatActivity implements EasyPermi
             @Override
             public void onClick(View view) {
                 //Toast.makeText(RegistrationActivity.this, "Test", Toast.LENGTH_SHORT).show();
-                submitData();
 
                /* ll_sal_per_hour.setVisibility(View.GONE);
                 ll_provinces.setVisibility(View.VISIBLE);
 */
+                if(spin_provinces.getSelectedItem().toString().equals("Select Provinces"))
+                {
+                    Toast.makeText(RegistrationActivity.this, "Select Province", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    submitData();
+
+                }
             }
         });
 
@@ -431,7 +465,7 @@ public class RegistrationActivity extends AppCompatActivity implements EasyPermi
     /*public void datepicker() {
 
         final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
+        mYear = c.get(Calendar.YEAR -18);
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
