@@ -121,4 +121,9 @@ public interface ApiService {
             @Query("tax") String tax,
             @Query("id") String id
     );
+    @GET("/PayTracker/delete_provinces.php?")
+    Call<ResponseData> delete_provinces(
+            @Query("id") String id
+
+    );
 }
