@@ -46,7 +46,12 @@ public interface ApiService {
             @Query("start_time") String start_time,
             @Query("end_time") String end_time,
             @Query("payment") String payment,
-            @Query("payment_deduct") String payment_deduct
+            @Query("payment_deduct") String payment_deduct,
+            @Query("company_name") String company_name,
+            @Query("tax") String tax,
+            @Query("sal_hour") String sal_hour,
+            @Query("break_time") String break_time,
+            @Query("total_hours") String total_hours
     );
 
 
