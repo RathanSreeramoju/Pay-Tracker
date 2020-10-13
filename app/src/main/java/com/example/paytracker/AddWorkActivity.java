@@ -41,12 +41,12 @@ public class AddWorkActivity extends AppCompatActivity {
     int mYear,mMonth,mDay;
     String DAY,MONTH,YEAR;
     String work_date;
-    EditText et_start_time,et_end_time,et_earn_before_tax,et_total_hours,et_tax_deducted,et_net_income,et_salperhour;
+    EditText et_start_time,et_end_time,et_earn_before_tax,et_total_hours,et_tax_deducted,et_net_income,et_salperhour,et_tax;
     Button btn_calculate_hours,btn_submit;
     String time;
-    Spinner sp_jobs;
+    Spinner sp_jobs,spin_break;;
     ImageView imgeditenable;
-    String[] myjobs;
+    String[] myjobs,sal_pe_hour,tax_amount;
     String[] mytax;
     List<GetAllJobProfilePojo> array_jobs;
 
@@ -62,11 +62,13 @@ public class AddWorkActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
         session = sharedPreferences.getString("uname", "def-val");
+
         sp_jobs = (Spinner) findViewById(R.id.spin_jobs);
+        spin_break = (Spinner) findViewById(R.id.spin_break);
         et_salperhour=(EditText)findViewById(R.id.et_salperhour);
         getJobs();
 
-        imgeditenable=(ImageView)findViewById(R.id.imgeditenable);
+      /* * imgeditenable=(ImageView)findViewById(R.id.imgeditenable);
 
         imgeditenable.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +81,7 @@ public class AddWorkActivity extends AppCompatActivity {
 
             }
         });
+        */
 
 
         tv_date=(TextView)findViewById(R.id.tv_date);
@@ -121,7 +124,29 @@ public class AddWorkActivity extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                serverData();
+
+                if(sp_jobs.getSelectedItem().toString().equals("Select Job"))
+                {
+                    Toast.makeText(AddWorkActivity.this, "Select Job ", Toast.LENGTH_LONG).show();
+                }
+                else if(spin_break.getSelectedItem().toString().equals("Choose Break Timings"))
+                {
+                    Toast.makeText(AddWorkActivity.this, "Select Break Time", Toast.LENGTH_LONG).show();
+                }
+
+                else if(et_start_time.getText().toString().equals(""))
+                {
+                    Toast.makeText(AddWorkActivity.this, "Select Start Time", Toast.LENGTH_LONG).show();
+                }
+
+                else if(et_start_time.getText().toString().equals(""))
+                {
+                    Toast.makeText(AddWorkActivity.this, "Select End Time", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    serverData();
+                }
+                //serverData();
             }
         });
     }
@@ -132,7 +157,10 @@ public class AddWorkActivity extends AppCompatActivity {
         pd.setTitle("Please wait,Data is being submit...");
         pd.show();
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<ResponseData> call = apiService.add_payment(sharedPreferences.getString("uname","-"),work_date,et_start_time.getText().toString(),et_end_time.getText().toString(),et_earn_before_tax.getText().toString(),et_tax_deducted.getText().toString());
+        Call<ResponseData> call = apiService.add_payment(sharedPreferences.getString("uname","-"),work_date,
+                et_start_time.getText().toString(),et_end_time.getText().toString(),et_earn_before_tax.getText().toString(),
+                et_tax_deducted.getText().toString(),sp_jobs.getSelectedItem().toString(),et_tax.getText().toString(),
+                et_salperhour.getText().toString(),spin_break.getSelectedItem().toString(),et_total_hours.getText().toString());
         call.enqueue(new Callback<ResponseData>() {
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
@@ -164,9 +192,11 @@ public class AddWorkActivity extends AppCompatActivity {
         try {
             String start_time = et_start_time.getText().toString();
             String end_time = et_end_time.getText().toString();
+            String break_time=spin_break.getSelectedItem().toString();
             SimpleDateFormat format = new SimpleDateFormat("HH:mm");
             Date date1 = format.parse(start_time);
             Date date2 = format.parse(end_time);
+            Date date3 = format.parse(break_time);
             long diff = date2.getTime() - date1.getTime();
             if(diff<0){
                 Toast.makeText(this,"End time should be greater than start date.",Toast.LENGTH_LONG).show();
@@ -176,14 +206,15 @@ public class AddWorkActivity extends AppCompatActivity {
             long diffHours = diff / (60 * 60 * 1000) % 24;
             et_total_hours.setText(diffHours+"Hr : "+diffMinutes+"Min");
             if(diffMinutes!=0){
-                salary=(15)*(diffHours)+(15/60)*diffMinutes;
-                et_earn_before_tax.setText(""+salary);
-                salary_tax=(float)15/100;
+                salary = Integer.parseInt(et_salperhour.getText().toString())* (diffHours) + (100 / 60) * diffMinutes;
+                et_earn_before_tax.setText("" + salary);
+                //salary_tax = (float) et_tax.getText().toString() / 100;
+                salary_tax = Float.parseFloat(et_tax.getText().toString())  / 100;
                 //Toast.makeText(this,"Salary -> "+salary_tax,Toast.LENGTH_LONG).show();
             }else{
-                salary=(15)*(diffHours);
-                et_earn_before_tax.setText(""+salary);
-                salary_tax=(float)15/100;
+                salary = Integer.parseInt(et_salperhour.getText().toString())* (diffHours);
+                et_earn_before_tax.setText("" + salary);
+                salary_tax = Float.parseFloat(et_tax.getText().toString()) / 100;
                 //Toast.makeText(this,"Salary -> "+salary_tax,Toast.LENGTH_LONG).show();
             }
             et_tax_deducted.setText(""+(salary_tax*salary));
@@ -193,6 +224,7 @@ public class AddWorkActivity extends AppCompatActivity {
         }catch (Exception e){}
     }
     float salary_tax,salary;
+
     public void datepicker() {
         final Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
@@ -266,13 +298,16 @@ public class AddWorkActivity extends AppCompatActivity {
                 array_jobs = response.body();
                 Log.d("TAG", "Response = " + array_jobs);
                 myjobs = new String[array_jobs.size() + 1];
+                sal_pe_hour = new String[array_jobs.size() + 1];
+                tax_amount = new String[array_jobs.size() + 1];
                 // mytax = new String[array_jobs.size() + 1];
                 myjobs[0] = "Select Job";
+
                 // mytax[0] = "-1";
                 for (int i = 0; i < array_jobs.size(); i++) {
                     myjobs[i + 1] = array_jobs.get(i).getCompanyname();
-                    //  mytax[i + 1] = array_jobs.get(i).getSalaryperhour();
-                    et_salperhour.setText(array_jobs.get(i).getSalaryperhour().toString());
+                    sal_pe_hour[i + 1] = array_jobs.get(i).getSalaryperhour();
+                    tax_amount[i + 1] = array_jobs.get(i).getTax_percentage();
                 }
                 ArrayAdapter aa = new ArrayAdapter(AddWorkActivity.this, android.R.layout.simple_spinner_item, myjobs);
                 aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -282,8 +317,8 @@ public class AddWorkActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
                         if (pos > 0) {
-                            // Toast.makeText(getApplicationContext(), cities[pos], Toast.LENGTH_LONG).show();
-                            //getAreas(state,cities[pos]);
+                            et_salperhour.setText(sal_pe_hour[pos]/*+"/ hour salary"*/);
+                            et_tax.setText(tax_amount[pos]/*+"/ Tax"*/);
                         }
                     }
                     @Override
