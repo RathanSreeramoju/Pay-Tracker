@@ -186,7 +186,7 @@
                 android:layout_marginTop="@dimen/_2sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:background="@drawable/edittext_rounded"
-                android:hint="Start Time"
+                android:hint="End Time"
                 android:padding="@dimen/_8sdp" />
 
 
