@@ -72,5 +72,16 @@ public class GetAllJobProfilePojo {
     @SerializedName("uemail")
     private String uemail;
 
+    @SerializedName("jid")
+    private String jid;
+
+    public String getJid() {
+        return jid;
+    }
+
+    public void setJid(String jid) {
+        this.jid = jid;
+    }
+
 
 }

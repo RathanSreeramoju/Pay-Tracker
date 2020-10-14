@@ -103,6 +103,7 @@ public class AddWorkActivity extends AppCompatActivity {
         et_start_time=(EditText)findViewById(R.id.et_start_time);
         et_net_income=(EditText)findViewById(R.id.et_net_income);
         et_tax_deducted=(EditText)findViewById(R.id.et_tax_deducted);
+        et_tax = (EditText) findViewById(R.id.et_tax);
         et_net_income=(EditText)findViewById(R.id.et_net_income);
         et_total_hours=(EditText)findViewById(R.id.et_total_hours);
         et_earn_before_tax=(EditText)findViewById(R.id.et_earn_before_tax);
@@ -180,6 +181,7 @@ public class AddWorkActivity extends AppCompatActivity {
             }
         });
     }
+    float salary_tax, salary;
     private void calculateHours(){
         if(et_start_time.getText().toString().isEmpty()){
             Toast.makeText(this,"Please enter start time.",Toast.LENGTH_LONG).show();
@@ -223,7 +225,6 @@ public class AddWorkActivity extends AppCompatActivity {
 
         }catch (Exception e){}
     }
-    float salary_tax,salary;
 
     public void datepicker() {
         final Calendar c = Calendar.getInstance();

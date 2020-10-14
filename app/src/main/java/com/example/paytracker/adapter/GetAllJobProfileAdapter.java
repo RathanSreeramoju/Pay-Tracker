@@ -1,6 +1,8 @@
 package com.example.paytracker.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.paytracker.EditJobActivity;
 import com.example.paytracker.R;
 import com.example.paytracker.model.GetAllJobProfilePojo;
 
@@ -63,12 +66,14 @@ public class GetAllJobProfileAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Toast.makeText(cnt, "Edit Option Clicked", Toast.LENGTH_SHORT).show();
-              /*  Intent intent=new Intent(cnt, EditTeamsActivity.class);
-                intent.putExtra("name",getAllTeams.get(pos).getT_name());
-                intent.putExtra("image",getAllTeams.get(pos).getT_logo());
-                intent.putExtra("id",getAllTeams.get(pos).getTeam_id());
+                Intent intent=new Intent(cnt, EditJobActivity.class);
+                intent.putExtra("cname",getAllJobProfilePojos.get(pos).getCompanyname());
+                intent.putExtra("ctitle",getAllJobProfilePojos.get(pos).getJobtitle());
+                intent.putExtra("csalary",getAllJobProfilePojos.get(pos).getSalaryperhour());
+                intent.putExtra("cprovince",getAllJobProfilePojos.get(pos).getProvince_name());
+                intent.putExtra("jid",getAllJobProfilePojos.get(pos).getJid());
                 cnt.startActivity(intent);
-                ((Activity)cnt).finish();*/
+                ((Activity)cnt).finish();
             }
         });
 
