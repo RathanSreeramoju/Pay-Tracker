@@ -19,7 +19,6 @@ import java.util.List;
 
 public class GetAllJobProfileAdapter extends BaseAdapter {
 
-
     List<GetAllJobProfilePojo> getAllJobProfilePojos;
     Context cnt;
 
@@ -66,7 +65,6 @@ public class GetAllJobProfileAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Toast.makeText(cnt, "Edit Option Clicked", Toast.LENGTH_SHORT).show();
-<<<<<<< HEAD
                 Intent intent = new Intent(cnt, EditJobActivity.class);
                 intent.putExtra("cname", getAllJobProfilePojos.get(pos).getCompanyname());
                 intent.putExtra("ctitle", getAllJobProfilePojos.get(pos).getJobtitle());
@@ -76,16 +74,6 @@ public class GetAllJobProfileAdapter extends BaseAdapter {
                 intent.putExtra("jid", getAllJobProfilePojos.get(pos).getJid());
                 cnt.startActivity(intent);
                 ((Activity) cnt).finish();
-=======
-                Intent intent=new Intent(cnt, EditJobActivity.class);
-                intent.putExtra("cname",getAllJobProfilePojos.get(pos).getCompanyname());
-                intent.putExtra("ctitle",getAllJobProfilePojos.get(pos).getJobtitle());
-                intent.putExtra("csalary",getAllJobProfilePojos.get(pos).getSalaryperhour());
-                intent.putExtra("cprovince",getAllJobProfilePojos.get(pos).getProvince_name());
-                intent.putExtra("jid",getAllJobProfilePojos.get(pos).getJid());
-                cnt.startActivity(intent);
-                ((Activity)cnt).finish();
->>>>>>> 6bf8886d5249bb89df1e9f4d50ece6000ded6da6
             }
         });
 

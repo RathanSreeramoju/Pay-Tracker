@@ -81,9 +81,6 @@ public class GetAllJobProfilePojo {
     public void setJid(String jid) {
         this.jid = jid;
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 6bf8886d5249bb89df1e9f4d50ece6000ded6da6
 
 }

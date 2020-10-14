@@ -86,7 +86,6 @@ public class AddWorkActivity extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
         et_start_time = (EditText) findViewById(R.id.et_start_time);
         et_net_income = (EditText) findViewById(R.id.et_net_income);
         et_tax_deducted = (EditText) findViewById(R.id.et_tax_deducted);
@@ -94,15 +93,6 @@ public class AddWorkActivity extends AppCompatActivity {
         et_net_income = (EditText) findViewById(R.id.et_net_income);
         et_total_hours = (EditText) findViewById(R.id.et_total_hours);
         et_earn_before_tax = (EditText) findViewById(R.id.et_earn_before_tax);
-=======
-        et_start_time=(EditText)findViewById(R.id.et_start_time);
-        et_net_income=(EditText)findViewById(R.id.et_net_income);
-        et_tax_deducted=(EditText)findViewById(R.id.et_tax_deducted);
-        et_tax = (EditText) findViewById(R.id.et_tax);
-        et_net_income=(EditText)findViewById(R.id.et_net_income);
-        et_total_hours=(EditText)findViewById(R.id.et_total_hours);
-        et_earn_before_tax=(EditText)findViewById(R.id.et_earn_before_tax);
->>>>>>> 6bf8886d5249bb89df1e9f4d50ece6000ded6da6
         et_start_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -182,16 +172,10 @@ public class AddWorkActivity extends AppCompatActivity {
         });
     }
     float salary_tax, salary;
-<<<<<<< HEAD
 
     private void calculateHours() {
         if (et_start_time.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please enter start time.", Toast.LENGTH_LONG).show();
-=======
-    private void calculateHours(){
-        if(et_start_time.getText().toString().isEmpty()){
-            Toast.makeText(this,"Please enter start time.",Toast.LENGTH_LONG).show();
->>>>>>> 6bf8886d5249bb89df1e9f4d50ece6000ded6da6
             return;
         }
         if (et_end_time.getText().toString().isEmpty()) {
@@ -236,11 +220,8 @@ public class AddWorkActivity extends AppCompatActivity {
         } catch (Exception e) {
         }
     }
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 6bf8886d5249bb89df1e9f4d50ece6000ded6da6
 
     public void datepicker() {
         final Calendar c = Calendar.getInstance();

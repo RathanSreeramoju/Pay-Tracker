@@ -7,11 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:android="http://schemas.android.com/apk/res/android">
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 6bf8886d5249bb89df1e9f4d50ece6000ded6da6
 
         <TextView
             android:text="Select Job"
@@ -88,36 +85,7 @@
             android:padding="@dimen/_8sdp" />
 
 
-<<<<<<< HEAD
 
-=======
-            <TextView
-                android:text="Tax in Percentage"
-                android:textSize="16dp"
-                android:visibility="gone"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_gravity="left"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:textColor="#111111"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <EditText
-                android:id="@+id/et_tax"
-                android:layout_below="@+id/tv_shift_start"
-                android:inputType="number"
-                android:visibility="gone"
-                android:layout_width="250dp"
-                android:clickable="false"
-                android:enabled="false"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_20sdp"
-                android:background="@drawable/edittext_rounded"
-                android:hint="Tax"
-                android:padding="@dimen/_8sdp" />
->>>>>>> 6bf8886d5249bb89df1e9f4d50ece6000ded6da6
 
         <!--<LinearLayout
             android:layout_width="match_parent"
@@ -192,11 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
-<<<<<<< HEAD
                 android:layout_marginTop="@dimen/_2sdp"
-=======
-                android:layout_marginTop="2.00dp"
->>>>>>> 6bf8886d5249bb89df1e9f4d50ece6000ded6da6
                 android:layout_marginRight="@dimen/_10sdp"
                 android:background="@drawable/edittext_rounded"
                 android:hint="Start Time"
@@ -207,11 +171,7 @@
                 android:layout_toRightOf="@+id/tv_shift_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
                 android:layout_marginLeft="@dimen/_70sdp"
-=======
-                android:layout_marginLeft="70dp"
->>>>>>> 6bf8886d5249bb89df1e9f4d50ece6000ded6da6
                 android:layout_marginTop="@dimen/_2sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:text="Shift End Time" />
@@ -222,13 +182,8 @@
                 android:layout_toRightOf="@+id/tv_shift_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
                 android:layout_marginLeft="@dimen/_70sdp"
                 android:layout_marginTop="@dimen/_2sdp"
-=======
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="2dp"
->>>>>>> 6bf8886d5249bb89df1e9f4d50ece6000ded6da6
                 android:layout_marginRight="@dimen/_10sdp"
                 android:background="@drawable/edittext_rounded"
                 android:hint="Start Time"
@@ -330,11 +285,7 @@
 
         <TableRow
             android:layout_marginTop="@dimen/_2sdp"
-<<<<<<< HEAD
             android:paddingTop="@dimen/_5sdp">
-=======
-            android:padding="@dimen/_5sdp">
->>>>>>> 6bf8886d5249bb89df1e9f4d50ece6000ded6da6
 
             <TextView
                 android:layout_width="match_parent"
