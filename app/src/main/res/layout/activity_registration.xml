@@ -97,42 +97,28 @@
             android:inputType="textPassword"
             android:hint="Confirm Password"
             android:padding="@dimen/_8sdp" />
-
-
         <Button
             android:id="@+id/btn_upload_img"
-            android:text="Upload Image"
-            android:layout_margin="@dimen/_30sdp"
-            android:textColor="#03DAC5"
-            android:background="@drawable/button_rounded3"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp" />
-
-
-
-        <!--<Button
-            android:id="@+id/btn_submit_all"
-            android:text="Submit"
+            android:text="Image Upload"
             android:layout_gravity="right"
-            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_30sdp"
             android:textColor="#03DAC5"
             android:background="@drawable/button_rounded3"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="@dimen/_35sdp" />-->
-
+            android:textStyle="bold"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btn_submit"
             android:text="Sign Up"
-            android:layout_gravity="right"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginRight="@dimen/_30sdp"
-            android:textColor="#ffffff"
+            android:layout_margin="@dimen/_30sdp"
+            android:textColor="#FFFFFF"
             android:background="#03DAC5"
-            android:textStyle="bold"
-            android:layout_width="@dimen/_130sdp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp" />
+
+
 
     </LinearLayout>
 
