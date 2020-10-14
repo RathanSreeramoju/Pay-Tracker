@@ -5,13 +5,6 @@
 
     <string-array name="prov_names">
         <item>Provinces</item>
-        <item>Jaan</item>
-        <item>Ram</item>
-        <item>Ram</item>
-        <item>Ram</item>
-        <item>Ram</item>
-        <item>Ram</item>
-        <item>Ram</item>
     </string-array>
 
     <string name="read_file">This app needs access to your file storage so that it can read photos.</string>
@@ -24,5 +17,18 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string-array name="break_timings">
+        <item>Choose Break Timings</item>
+        <item>0:0 </item>
+        <item>0:15 </item>
+        <item>0:30 </item>
+        <item>0:45 </item>
+        <item>1:0 </item>
+        <item>1:15 </item>
+        <item>1:30 </item>
+        <item>1:45 </item>
+        <item>2:0 </item>
+    </string-array>
 
 </resources>

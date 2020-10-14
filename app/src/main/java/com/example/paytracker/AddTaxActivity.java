@@ -24,6 +24,7 @@ public class AddTaxActivity extends AppCompatActivity {
     EditText et_tax_amount;
     Button btn_submit;
     ProgressDialog pd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
