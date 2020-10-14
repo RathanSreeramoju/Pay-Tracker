@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewProvincesActivity"></activity>
+        <activity android:name=".EditJobActivity"></activity>
+        <activity android:name=".ViewProvincesActivity" />
         <activity android:name=".EditProvincesActivity" />
         <activity android:name=".EditTaxesActivity" />
         <activity android:name=".BaseActivity" />
