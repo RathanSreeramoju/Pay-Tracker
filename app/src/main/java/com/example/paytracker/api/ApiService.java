@@ -126,4 +126,14 @@ public interface ApiService {
             @Query("id") String id
 
     );
+
+    @GET("/PayTracker/editjobprofile.php?")
+    Call<ResponseData> editjobprofile(
+            @Query("companyname") String companyname,
+            @Query("jobtitle") String jobtitle,
+            @Query("salaryperhour") String salaryperhour,
+            @Query("uemail") String uemail,
+            @Query("pid") String pid,
+            @Query("jid") String jid
+    );
 }
