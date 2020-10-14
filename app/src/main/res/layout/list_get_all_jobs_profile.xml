@@ -61,7 +61,7 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginRight="@dimen/_60sdp"
                 android:layout_marginBottom="@dimen/_8sdp"
-                android:visibility="gone"
+
                 android:layout_weight="1"
                 android:src="@drawable/ic_edit"
                 android:textColor="#858585" />

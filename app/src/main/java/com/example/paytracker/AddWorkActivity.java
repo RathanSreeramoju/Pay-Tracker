@@ -38,20 +38,22 @@ import retrofit2.Callback;
 import retrofit2.Response;
 public class AddWorkActivity extends AppCompatActivity {
     TextView tv_date;
-    int mYear,mMonth,mDay;
-    String DAY,MONTH,YEAR;
+    int mYear, mMonth, mDay;
+    String DAY, MONTH, YEAR;
     String work_date;
-    EditText et_start_time,et_end_time,et_earn_before_tax,et_total_hours,et_tax_deducted,et_net_income,et_salperhour,et_tax;
-    Button btn_calculate_hours,btn_submit;
+    EditText et_start_time, et_end_time, et_earn_before_tax, et_total_hours, et_tax_deducted, et_net_income,et_salperhour,et_tax;
+    Button btn_calculate_hours, btn_submit;
     String time;
-    Spinner sp_jobs,spin_break;;
+    Spinner sp_jobs,spin_break;
     ImageView imgeditenable;
     String[] myjobs,sal_pe_hour,tax_amount;
     String[] mytax;
+
     List<GetAllJobProfilePojo> array_jobs;
 
     SharedPreferences sharedPreferences;
     String session;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,25 +70,9 @@ public class AddWorkActivity extends AppCompatActivity {
         et_salperhour=(EditText)findViewById(R.id.et_salperhour);
         getJobs();
 
-      /* * imgeditenable=(ImageView)findViewById(R.id.imgeditenable);
-
-        imgeditenable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                et_salperhour.setEnabled(true);
-                et_salperhour.setFocusable(true);
-                et_salperhour.setFocusableInTouchMode(true);
-                et_salperhour.setClickable(true);
-
-            }
-        });
-        */
-
-
-        tv_date=(TextView)findViewById(R.id.tv_date);
-        btn_calculate_hours=(Button)findViewById(R.id.btn_calculate_hours);
-        btn_submit=(Button)findViewById(R.id.btn_submit);
+        tv_date = (TextView) findViewById(R.id.tv_date);
+        btn_calculate_hours = (Button) findViewById(R.id.btn_calculate_hours);
+        btn_submit = (Button) findViewById(R.id.btn_submit);
         btn_calculate_hours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,12 +86,13 @@ public class AddWorkActivity extends AppCompatActivity {
             }
         });
 
-        et_start_time=(EditText)findViewById(R.id.et_start_time);
-        et_net_income=(EditText)findViewById(R.id.et_net_income);
-        et_tax_deducted=(EditText)findViewById(R.id.et_tax_deducted);
-        et_net_income=(EditText)findViewById(R.id.et_net_income);
-        et_total_hours=(EditText)findViewById(R.id.et_total_hours);
-        et_earn_before_tax=(EditText)findViewById(R.id.et_earn_before_tax);
+        et_start_time = (EditText) findViewById(R.id.et_start_time);
+        et_net_income = (EditText) findViewById(R.id.et_net_income);
+        et_tax_deducted = (EditText) findViewById(R.id.et_tax_deducted);
+        et_tax = (EditText) findViewById(R.id.et_tax);
+        et_net_income = (EditText) findViewById(R.id.et_net_income);
+        et_total_hours = (EditText) findViewById(R.id.et_total_hours);
+        et_earn_before_tax = (EditText) findViewById(R.id.et_earn_before_tax);
         et_start_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,6 +101,7 @@ public class AddWorkActivity extends AppCompatActivity {
             }
         });
         et_end_time = (EditText) findViewById(R.id.et_end_time);
+
         et_end_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,17 +138,20 @@ public class AddWorkActivity extends AppCompatActivity {
             }
         });
     }
+
     ProgressDialog pd;
-    public  void serverData() {
+
+    public void serverData() {
         SharedPreferences sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
-        pd= new ProgressDialog(AddWorkActivity.this);
+        pd = new ProgressDialog(AddWorkActivity.this);
         pd.setTitle("Please wait,Data is being submit...");
         pd.show();
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<ResponseData> call = apiService.add_payment(sharedPreferences.getString("uname","-"),work_date,
-                et_start_time.getText().toString(),et_end_time.getText().toString(),et_earn_before_tax.getText().toString(),
+        Call<ResponseData> call = apiService.add_payment(sharedPreferences.getString("uname", "-"), work_date, et_start_time.getText().toString(),
+                et_end_time.getText().toString(), et_earn_before_tax.getText().toString(),
                 et_tax_deducted.getText().toString(),sp_jobs.getSelectedItem().toString(),et_tax.getText().toString(),
                 et_salperhour.getText().toString(),spin_break.getSelectedItem().toString(),et_total_hours.getText().toString());
+
         call.enqueue(new Callback<ResponseData>() {
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
@@ -180,13 +171,15 @@ public class AddWorkActivity extends AppCompatActivity {
             }
         });
     }
-    private void calculateHours(){
-        if(et_start_time.getText().toString().isEmpty()){
-            Toast.makeText(this,"Please enter start time.",Toast.LENGTH_LONG).show();
+    float salary_tax, salary;
+
+    private void calculateHours() {
+        if (et_start_time.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Please enter start time.", Toast.LENGTH_LONG).show();
             return;
         }
-        if(et_end_time.getText().toString().isEmpty()){
-            Toast.makeText(this,"Please enter end time.",Toast.LENGTH_LONG).show();
+        if (et_end_time.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Please enter end time.", Toast.LENGTH_LONG).show();
             return;
         }
         try {
@@ -197,33 +190,38 @@ public class AddWorkActivity extends AppCompatActivity {
             Date date1 = format.parse(start_time);
             Date date2 = format.parse(end_time);
             Date date3 = format.parse(break_time);
-            long diff = date2.getTime() - date1.getTime();
-            if(diff<0){
-                Toast.makeText(this,"End time should be greater than start date.",Toast.LENGTH_LONG).show();
+            long diff = date2.getTime() - date1.getTime() ;
+            //Toast.makeText(this, ""+diff, Toast.LENGTH_SHORT).show();
+
+            if (diff < 0) {
+                Toast.makeText(this, "End time should be greater than start date.", Toast.LENGTH_LONG).show();
                 return;
             }
+            //long diff=differe - date3.getTime();
             long diffMinutes = diff / (60 * 1000) % 60;
             long diffHours = diff / (60 * 60 * 1000) % 24;
-            et_total_hours.setText(diffHours+"Hr : "+diffMinutes+"Min");
-            if(diffMinutes!=0){
+            et_total_hours.setText(diffHours + "Hr : " + diffMinutes + "Min");
+            if (diffMinutes != 0) {
                 salary = Integer.parseInt(et_salperhour.getText().toString())* (diffHours) + (100 / 60) * diffMinutes;
                 et_earn_before_tax.setText("" + salary);
                 //salary_tax = (float) et_tax.getText().toString() / 100;
                 salary_tax = Float.parseFloat(et_tax.getText().toString())  / 100;
                 //Toast.makeText(this,"Salary -> "+salary_tax,Toast.LENGTH_LONG).show();
-            }else{
+            } else {
                 salary = Integer.parseInt(et_salperhour.getText().toString())* (diffHours);
                 et_earn_before_tax.setText("" + salary);
                 salary_tax = Float.parseFloat(et_tax.getText().toString()) / 100;
                 //Toast.makeText(this,"Salary -> "+salary_tax,Toast.LENGTH_LONG).show();
             }
-            et_tax_deducted.setText(""+(salary_tax*salary));
-            et_net_income.setText(""+(salary-(salary_tax*salary)));
+            et_tax_deducted.setText("" + (salary_tax * salary));
+            et_net_income.setText("" + (salary - (salary_tax * salary)));
 
 
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
-    float salary_tax,salary;
+
+
 
     public void datepicker() {
         final Calendar c = Calendar.getInstance();
@@ -238,13 +236,14 @@ public class AddWorkActivity extends AppCompatActivity {
                         DAY = dayOfMonth + "";
                         MONTH = monthOfYear + 1 + "";
                         YEAR = year + "";
-                        work_date=YEAR+"-"+MONTH+"-"+DAY;
+                        work_date = YEAR + "-" + MONTH + "-" + DAY;
                         tv_date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
     }
-    public void setmTimePicker(){
+
+    public void setmTimePicker() {
 
         // TODO Auto-generated method stub
         Calendar mcurrentTime = Calendar.getInstance();
@@ -254,7 +253,7 @@ public class AddWorkActivity extends AppCompatActivity {
         mTimePicker = new TimePickerDialog(AddWorkActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                et_start_time.setText( selectedHour + ":" + selectedMinute);
+                et_start_time.setText(selectedHour + ":" + selectedMinute);
             }
         }, hour, minute, false);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
@@ -262,7 +261,7 @@ public class AddWorkActivity extends AppCompatActivity {
 
     }
 
-    public void setmTimePicker1(){
+    public void setmTimePicker1() {
 
         // TODO Auto-generated method stub
         Calendar mcurrentTime = Calendar.getInstance();
@@ -272,13 +271,14 @@ public class AddWorkActivity extends AppCompatActivity {
         mTimePicker = new TimePickerDialog(AddWorkActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                et_end_time.setText( selectedHour + ":" + selectedMinute);
+                et_end_time.setText(selectedHour + ":" + selectedMinute);
             }
         }, hour, minute, false);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -289,6 +289,7 @@ public class AddWorkActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     private void getJobs() {
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
         Call<List<GetAllJobProfilePojo>> call = apiService.getmyjobprofile(session);
@@ -300,14 +301,12 @@ public class AddWorkActivity extends AppCompatActivity {
                 myjobs = new String[array_jobs.size() + 1];
                 sal_pe_hour = new String[array_jobs.size() + 1];
                 tax_amount = new String[array_jobs.size() + 1];
-                // mytax = new String[array_jobs.size() + 1];
                 myjobs[0] = "Select Job";
-
-                // mytax[0] = "-1";
                 for (int i = 0; i < array_jobs.size(); i++) {
                     myjobs[i + 1] = array_jobs.get(i).getCompanyname();
                     sal_pe_hour[i + 1] = array_jobs.get(i).getSalaryperhour();
                     tax_amount[i + 1] = array_jobs.get(i).getTax_percentage();
+
                 }
                 ArrayAdapter aa = new ArrayAdapter(AddWorkActivity.this, android.R.layout.simple_spinner_item, myjobs);
                 aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -317,8 +316,15 @@ public class AddWorkActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
                         if (pos > 0) {
+                            /*if(sp_jobs.getSelectedItem().equals("Select Job")){
+                                et_salperhour.getText().clear();
+                            }
+                            else {
+                                et_salperhour.setText(sal_pe_hour[pos]+"/ hour salary");
+                            }*/
                             et_salperhour.setText(sal_pe_hour[pos]/*+"/ hour salary"*/);
                             et_tax.setText(tax_amount[pos]/*+"/ Tax"*/);
+
                         }
                     }
                     @Override
@@ -335,6 +341,4 @@ public class AddWorkActivity extends AppCompatActivity {
         });
     }
 
-
 }
-

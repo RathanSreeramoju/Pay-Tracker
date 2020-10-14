@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 public class GetAllJobProfilePojo {
 
 
-
     public String getCompanyname() {
         return companyname;
     }
@@ -72,5 +71,15 @@ public class GetAllJobProfilePojo {
     @SerializedName("uemail")
     private String uemail;
 
+    @SerializedName("jid")
+    private String jid;
+
+    public String getJid() {
+        return jid;
+    }
+
+    public void setJid(String jid) {
+        this.jid = jid;
+    }
 
 }
