@@ -5,6 +5,9 @@
 
     <string-array name="prov_names">
         <item>Provinces</item>
+        <item>Quebec</item>
+        <item>Ontario</item>
+        <item>Alberta</item>
     </string-array>
 
     <string name="read_file">This app needs access to your file storage so that it can read photos.</string>
