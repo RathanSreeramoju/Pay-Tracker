@@ -5,9 +5,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ReportsActivity">
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:background="@color/colorPrimary"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:text="Date"
+        android:layout_weight="1"
+        android:textSize="@dimen/_14sdp"
+        android:gravity="center"
+
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+        <TextView
+            android:text="Start\nTime"
+            android:layout_weight="1"
+            android:textSize="@dimen/_14sdp"
+            android:gravity="right"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:text="End\nTime"
+            android:textSize="@dimen/_14sdp"
+            android:gravity="right"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:text="Payment"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textSize="@dimen/_14sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </TableRow>
+    </TableLayout>
+
     <ListView
         android:id="@+id/lv"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
 
 </LinearLayout>

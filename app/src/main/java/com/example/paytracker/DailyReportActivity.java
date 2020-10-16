@@ -24,7 +24,6 @@ public class DailyReportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_report);
-
         tv_date=(TextView)findViewById(R.id.tv_date);
         tv_date.setOnClickListener(new View.OnClickListener() {
             @Override

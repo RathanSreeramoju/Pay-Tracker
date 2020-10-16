@@ -44,7 +44,7 @@ public class ReportsActivity extends BaseActivity {
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<List<PaymentPojo>> call = service.get_reports(sharedPreferences.getString("uname","-"),getIntent().getStringExtra("start_date"),getIntent().getStringExtra("end_date"));
+        Call<List<PaymentPojo>> call = service.get_reports(sharedPreferences.getString("uname","-"),getIntent().getStringExtra("end_date"),getIntent().getStringExtra("start_date"));
         call.enqueue(new Callback<List<PaymentPojo>>() {
             @Override
             public void onResponse(Call<List<PaymentPojo>> call, Response<List<PaymentPojo>> response) {
