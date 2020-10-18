@@ -182,7 +182,8 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
                 progressDialog.dismiss();
                 Toast.makeText(EditProfileActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });
+        }   );
+
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
