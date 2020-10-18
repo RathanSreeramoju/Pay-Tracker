@@ -136,4 +136,6 @@ public interface ApiService {
             @Query("pid") String pid,
             @Query("jid") String jid
     );
+
+    Call<List<PaymentPojo>> myworks(String session);
 }

@@ -33,5 +33,6 @@
         <item>1:45 </item>
         <item>2:0 </item>
     </string-array>
+    <string name="title_activity_my_works">MyWorksActivity</string>
 
 </resources>
