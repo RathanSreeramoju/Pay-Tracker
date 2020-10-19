@@ -4,7 +4,7 @@
     android:background="@drawable/bgtwo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="MainActivity"
+    tools:context=".MainActivity"
     android:orientation="vertical">
 
 
@@ -19,9 +19,9 @@
 
         <TextView
             android:text="Company Name "
-            android:textSize="@dimen/_25sdp"
+            android:textSize="25.00dp"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="30.00dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
