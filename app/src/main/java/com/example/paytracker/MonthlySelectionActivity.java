@@ -36,6 +36,22 @@ public class MonthlySelectionActivity  extends AppCompatActivity {
         list_month.add(new MonthSelectionPojo("11", "Dec"));
         gridview = (GridView)findViewById(R.id.gridview);
         gridview.setAdapter(new MonthSelectionAdapter(list_month,MonthlySelectionActivity.this));
-
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Calendar c = Calendar.getInstance();
+                c.set(2020,Integer.parseInt(list_month.get(position).getMonth_no()),1); //------>
+                c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String end_date =sdf.format(c.getTime());
+                String start_date ="2020-"+(Integer.parseInt(list_month.get(position).getMonth_no())+1)+"-01";
+                System.out.println(sdf.format(c.getTime()));
+                // Toast.makeText(getApplicationContext(),sdf.format(c.getTime()),Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(MonthlySelectionActivity.this,ReportsActivity.class);
+                intent.putExtra("start_date",end_date);
+                intent.putExtra("end_date",start_date);
+                startActivity(intent);
+            }
+        });
     }
 }
