@@ -1,5 +1,6 @@
 package com.example.paytracker;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
@@ -7,8 +8,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.content.Intent;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -53,6 +56,7 @@ public class AddWorkActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     String session;
+    View deleteDialogView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,16 +73,59 @@ public class AddWorkActivity extends AppCompatActivity {
         spin_break = (Spinner) findViewById(R.id.spin_break);
         et_salperhour=(EditText)findViewById(R.id.et_salperhour);
         getJobs();
+        LayoutInflater factory = LayoutInflater.from(AddWorkActivity.this);
+        deleteDialogView = factory.inflate(R.layout.alert_popup_window, null);
 
-        tv_date = (TextView) findViewById(R.id.tv_date);
+        et_net_income = (EditText)deleteDialogView.findViewById(R.id.et_net_income);
+        et_total_hours = (EditText)deleteDialogView.findViewById(R.id.et_total_hours);
+        et_earn_before_tax = (EditText)deleteDialogView.findViewById(R.id.et_earn_before_tax);
+        et_tax_deducted = (EditText)deleteDialogView.findViewById(R.id.et_tax_deducted);
+
         btn_calculate_hours = (Button) findViewById(R.id.btn_calculate_hours);
-        btn_submit = (Button) findViewById(R.id.btn_submit);
         btn_calculate_hours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 calculateHours();
+
+                final AlertDialog deleteDialog = new AlertDialog.Builder(AddWorkActivity.this).create();
+                deleteDialog.setView(deleteDialogView);
+                deleteDialogView.findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if(sp_jobs.getSelectedItem().toString().equals("Select Job"))
+                        {
+                            Toast.makeText(AddWorkActivity.this, "Select Job ", Toast.LENGTH_LONG).show();
+                        }
+                        else if(spin_break.getSelectedItem().toString().equals("Choose Break Timings"))
+                        {
+                            Toast.makeText(AddWorkActivity.this, "Select Break Time", Toast.LENGTH_LONG).show();
+                        }
+
+                        else if(et_start_time.getText().toString().equals(""))
+                        {
+                            Toast.makeText(AddWorkActivity.this, "Select Start Time", Toast.LENGTH_LONG).show();
+                        }
+
+                        else if(et_start_time.getText().toString().equals(""))
+                        {
+                            Toast.makeText(AddWorkActivity.this, "Select End Time", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            serverData();
+                        }
+                        //serverData();
+                        deleteDialog.dismiss();
+                    }
+                });
+
+                deleteDialog.show();
             }
         });
+
+        tv_date = (TextView) findViewById(R.id.tv_date);
         tv_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,12 +134,13 @@ public class AddWorkActivity extends AppCompatActivity {
         });
 
         et_start_time = (EditText) findViewById(R.id.et_start_time);
-        et_net_income = (EditText) findViewById(R.id.et_net_income);
-        et_tax_deducted = (EditText) findViewById(R.id.et_tax_deducted);
+
+
         et_tax = (EditText) findViewById(R.id.et_tax);
-        et_net_income = (EditText) findViewById(R.id.et_net_income);
+       /* et_net_income = (EditText) findViewById(R.id.et_net_income);
+       et_tax_deducted = (EditText) findViewById(R.id.et_tax_deducted);
         et_total_hours = (EditText) findViewById(R.id.et_total_hours);
-        et_earn_before_tax = (EditText) findViewById(R.id.et_earn_before_tax);
+        et_earn_before_tax = (EditText) findViewById(R.id.et_earn_before_tax);*/
         et_start_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,34 +157,7 @@ public class AddWorkActivity extends AppCompatActivity {
 
             }
         });
-        btn_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                if(sp_jobs.getSelectedItem().toString().equals("Select Job"))
-                {
-                    Toast.makeText(AddWorkActivity.this, "Select Job ", Toast.LENGTH_LONG).show();
-                }
-                else if(spin_break.getSelectedItem().toString().equals("Choose Break Timings"))
-                {
-                    Toast.makeText(AddWorkActivity.this, "Select Break Time", Toast.LENGTH_LONG).show();
-                }
-
-                else if(et_start_time.getText().toString().equals(""))
-                {
-                    Toast.makeText(AddWorkActivity.this, "Select Start Time", Toast.LENGTH_LONG).show();
-                }
-
-                else if(et_start_time.getText().toString().equals(""))
-                {
-                    Toast.makeText(AddWorkActivity.this, "Select End Time", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    serverData();
-                }
-                //serverData();
-            }
-        });
     }
 
     ProgressDialog pd;

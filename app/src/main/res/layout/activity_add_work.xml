@@ -13,7 +13,7 @@
         <TextView
             android:text="Select Job"
             android:textSize="16dp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_gravity="left"
             android:layout_marginLeft="@dimen/_20sdp"
             android:textColor="#111111"
@@ -27,7 +27,7 @@
             android:background="@drawable/edittext_rounded"
             android:layout_marginRight="@dimen/_20sdp"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
@@ -36,7 +36,7 @@
         <TextView
             android:text="Salary Per Hour"
             android:textSize="16dp"
-            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_gravity="left"
             android:layout_marginLeft="@dimen/_20sdp"
             android:textColor="#111111"
@@ -51,7 +51,7 @@
             android:enabled="false"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_20sdp"
             android:background="@drawable/edittext_rounded"
             android:hint="Salary Per Hour"
@@ -117,7 +117,7 @@
             android:textColor="#ffffff"
             android:padding="@dimen/_8sdp"
             android:layout_marginLeft="@dimen/_50sdp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_50sdp"
             android:text="Choose Date " />
@@ -129,7 +129,7 @@
             android:background="@drawable/edittext_rounded"
             android:layout_marginRight="@dimen/_20sdp"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/break_timings"
@@ -150,7 +150,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:text="Shift Start Time" />
 
@@ -172,7 +172,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_70sdp"
-                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:text="Shift End Time" />
 
@@ -200,7 +200,7 @@
             android:text="Calculate Hours"
             android:textColor="#ffffff"
             android:background="#03DAC5"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>
 
