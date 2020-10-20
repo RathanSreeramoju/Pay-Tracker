@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".EditWorkActivity"></activity>
         <activity android:name=".SearchReportActivity"></activity>
         <activity android:name=".SearchSelectionReportsActivity" />
         <activity android:name=".WeeklySelectionActivity" />

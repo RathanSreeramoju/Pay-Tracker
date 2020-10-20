@@ -68,35 +68,6 @@
             android:hint="Salary Per Hour"
             android:padding="@dimen/_8sdp" />
 
-        <TextView
-            android:text="Tax in Percentage"
-            android:textSize="16dp"
-            android:visibility="visible"
-            android:editable="false"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:layout_gravity="left"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:textColor="#111111"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <EditText
-            android:id="@+id/et_tax"
-            android:layout_below="@+id/tv_shift_start"
-            android:inputType="number"
-            android:visibility="visible"
-            android:layout_width="250dp"
-            android:clickable="false"
-            android:enabled="false"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:background="@drawable/edittext_rounded"
-            android:hint="Tax"
-            android:padding="@dimen/_8sdp" />
-
-
 
 
         <!--<LinearLayout
