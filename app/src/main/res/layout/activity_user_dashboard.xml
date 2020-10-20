@@ -13,27 +13,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_add_work"
-            android:text="Add Work"
-            android:textSize="@dimen/_25sdp"
-            android:layout_margin="@dimen/_15sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <ImageView
-            android:id="@+id/image_add"
-            android:layout_alignRight="@+id/tv_add_work"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:src="@drawable/ic_add"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"/>
-
 
         <LinearLayout
+            android:id="@+id/ad"
+            android:gravity="right"
+            android:background="#fbd55b"
+            android:layout_margin="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+            <TextView
+                android:id="@+id/tv_add_work"
+                android:text="Add Work"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:textSize="@dimen/_18sdp"
+                android:layout_margin="@dimen/_15sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/image_add"
+                android:layout_alignRight="@+id/tv_add_work"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/addworkk"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
             xmlns:app="http://schemas.android.com/tools"
-            android:layout_below="@+id/tv_add_work"
+            android:layout_below="@+id/ad"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,6 +63,7 @@
                     android:layout_weight="1"
                     android:id="@+id/cd_daily"
                     app:cardBackgroundColor="#4D817C"
+
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_2sdp"
                     android:layout_marginRight="@dimen/_2sdp"
@@ -60,23 +72,35 @@
                     card_view:cardUseCompatPadding="true">
 
                     <LinearLayout
-                        android:background="#4D817C"
-                        android:layout_width="match_parent"
+
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_gravity="center"
                         android:orientation="vertical">
 
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:src="@drawable/day"/>
+
+
+
                         <TextView
-                            android:text="Daily"
+
+                            android:text="Daily Report"
+                            android:layout_margin="10dp"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             android:textSize="@dimen/_15sdp"
-                            android:paddingRight="@dimen/_15sdp"
-                            android:gravity="center"
-                            android:textColor="#FFFFFF"
                             android:id="@+id/login_applogo"
-                            android:layout_width="@dimen/_150sdp"
-                            android:layout_height="@dimen/_130sdp" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
 
                     </LinearLayout>
+
+
 
                 </androidx.cardview.widget.CardView>
 
@@ -94,20 +118,31 @@
                     card_view:cardUseCompatPadding="true">
 
                     <LinearLayout
-                        android:background="#F8ED88"
-                        android:layout_width="match_parent"
+
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_gravity="center"
                         android:orientation="vertical">
 
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:src="@drawable/wek"/>
+
+
+
                         <TextView
-                            android:text="Weekly"
-                            android:textSize="@dimen/_15sdp"
-                            android:paddingRight="@dimen/_15sdp"
-                            android:gravity="center"
+
+                            android:text="Weekly Report"
+                            android:layout_margin="10dp"
                             android:textColor="#000000"
-                            android:layout_width="@dimen/_150sdp"
-                            android:layout_height="@dimen/_130sdp"
-                            android:layout_centerHorizontal="true" />
+                            android:textStyle="bold"
+                            android:textSize="@dimen/_15sdp"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -135,20 +170,30 @@
                     card_view:cardUseCompatPadding="true">
 
                     <LinearLayout
-                        android:background="#F8ED88"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_gravity="center"
                         android:orientation="vertical">
 
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:src="@drawable/month"/>
+
+
+
                         <TextView
-                            android:text="Monthly"
-                            android:textSize="@dimen/_15sdp"
-                            android:paddingRight="@dimen/_15sdp"
-                            android:gravity="center"
+
+                            android:text="Monthly Report"
+                            android:layout_margin="10dp"
                             android:textColor="#000000"
-                            android:layout_width="@dimen/_150sdp"
-                            android:layout_height="@dimen/_130sdp"
-                            android:layout_centerHorizontal="true" />
+                            android:textStyle="bold"
+                            android:textSize="@dimen/_15sdp"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
 
                     </LinearLayout>
@@ -169,20 +214,31 @@
                     card_view:cardUseCompatPadding="true">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#4D817C"
+                        android:gravity="center"
+                        android:layout_gravity="center"
                         android:orientation="vertical">
 
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:src="@drawable/yearly"/>
+
+
+
                         <TextView
-                            android:text="Yearly"
+
+                            android:text="Yearly Report"
+                            android:layout_margin="10dp"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             android:textSize="@dimen/_15sdp"
-                            android:paddingRight="@dimen/_15sdp"
-                            android:textColor="#FFFFFF"
-                            android:gravity="center"
-                            android:layout_width="@dimen/_150sdp"
-                            android:layout_height="@dimen/_130sdp"
-                            android:layout_centerHorizontal="true" />
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
