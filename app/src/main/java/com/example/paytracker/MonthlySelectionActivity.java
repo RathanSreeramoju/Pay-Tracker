@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,10 +19,14 @@ import java.util.List;
 
 public class MonthlySelectionActivity  extends AppCompatActivity {
     List<MonthSelectionPojo> list_month=new ArrayList<>();
-    GridView gridview;
+    ListView listview;
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_selection);
+        getSupportActionBar().setTitle(" Monthly Reports");
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         list_month.add(new MonthSelectionPojo("0", "Jan"));
         list_month.add(new MonthSelectionPojo("1", "Feb"));
         list_month.add(new MonthSelectionPojo("2", "Mar"));
@@ -34,9 +39,9 @@ public class MonthlySelectionActivity  extends AppCompatActivity {
         list_month.add(new MonthSelectionPojo("9", "Oct"));
         list_month.add(new MonthSelectionPojo("10", "Nov"));
         list_month.add(new MonthSelectionPojo("11", "Dec"));
-        gridview = (GridView)findViewById(R.id.gridview);
-        gridview.setAdapter(new MonthSelectionAdapter(list_month,MonthlySelectionActivity.this));
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listview = (ListView) findViewById(R.id.listview);
+        listview.setAdapter(new MonthSelectionAdapter(list_month,MonthlySelectionActivity.this));
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Calendar c = Calendar.getInstance();
