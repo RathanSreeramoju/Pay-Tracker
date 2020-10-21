@@ -7,6 +7,7 @@ import com.example.paytracker.model.JobTitlePojo;
 import com.example.paytracker.model.PaymentPojo;
 import com.example.paytracker.model.ProvincesPojo;
 import com.example.paytracker.model.ViewTaxesPojo;
+import com.example.paytracker.model.WorkDatePojo;
 
 import java.util.List;
 import java.util.Map;
@@ -190,5 +191,8 @@ public interface ApiService {
             @Query("pid") String pid,
             @Query("jid") String jid
     );
+
+    @GET("/PayTracker/get_daily_work_dates.php?")
+    Call<List<WorkDatePojo>> get_daily_work_dates(@Query("uname") String uname);
 
 }

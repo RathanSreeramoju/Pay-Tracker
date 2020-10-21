@@ -2,11 +2,13 @@ package com.example.paytracker;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -62,7 +64,7 @@ public class UserDashboardActivity extends AppCompatActivity {
         cd_daily.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
+                /*Calendar calendar = Calendar.getInstance();
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 month = calendar.get(Calendar.MONTH);
                 year = calendar.get(Calendar.YEAR);
@@ -70,11 +72,13 @@ public class UserDashboardActivity extends AppCompatActivity {
                 Date newDate = calendar.getTime();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String end_date = dateFormat.format(newDate);
-                //showMessage(UserDashboardActivity.this,year+"-"+(month+1)+"-"+day);
                 Intent intent=new Intent(UserDashboardActivity.this,ReportsActivity.class);
                 intent.putExtra("start_date",year+"-"+(month+1)+"-"+day);
                 intent.putExtra("end_date",end_date);
+                startActivity(intent);*/
+                Intent intent=new Intent(UserDashboardActivity.this,DailyReportsActivity.class);
                 startActivity(intent);
+
             }
         });
         cd_weekly.setOnClickListener(new View.OnClickListener() {
@@ -164,8 +168,8 @@ public class UserDashboardActivity extends AppCompatActivity {
                         break;
 
                     case R.id.myjobprofile:
-                        Intent jobprofile=new Intent(getApplicationContext(), GetAllJobProfileActivity.class);
-                        startActivity(jobprofile);
+                        Intent job=new Intent(getApplicationContext(), GetAllJobProfileActivity.class);
+                        startActivity(job);
                         break;
 
                     case R.id.myjobworks:
@@ -200,8 +204,9 @@ public class UserDashboardActivity extends AppCompatActivity {
         if (dl.isDrawerOpen(GravityCompat.START)) {
             dl.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            closeApp();
         }
+
     }
 
     /* @Override
@@ -239,5 +244,31 @@ public class UserDashboardActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void closeApp(){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(UserDashboardActivity.this);
+        builder1.setMessage("Do you want to close the Application.");  //message we want to show the end user
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel(); //cancle the alert dialog box
+                        finish();//finish the process
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 }

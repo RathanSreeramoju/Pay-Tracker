@@ -1,8 +1,34 @@
 package com.example.paytracker;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.example.paytracker.R;
+import com.example.paytracker.adapter.ReportsAdapter;
+import com.example.paytracker.api.ApiService;
+import com.example.paytracker.api.RetroClient;
+import com.example.paytracker.model.PaymentPojo;
+import com.example.paytracker.model.WorkDatePojo;
+
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DailyReportsActivity extends AppCompatActivity {
     ListView lv;
@@ -126,7 +152,7 @@ public class DailyReportsActivity extends AppCompatActivity {
                 }else {
                     payments = response.body();
                     //Toast.makeText(ReportsActivity.this,""+payments.size(),Toast.LENGTH_SHORT).show();
-                    lv.setAdapter(new ReportsAdapters(payments, DailyReportsActivity.this));
+                    lv.setAdapter(new ReportsAdapter(payments, DailyReportsActivity.this));
                 }
             }
             @Override
