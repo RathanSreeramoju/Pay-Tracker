@@ -20,7 +20,6 @@ import java.util.List;
 public class YearSelectionActivity  extends AppCompatActivity {
     List<YearSelectionPojo> list_year=new ArrayList<>();
     ListView gridview;
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

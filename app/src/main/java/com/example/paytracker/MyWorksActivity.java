@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.paytracker.adapter.GetMyWorksAdapter;
@@ -33,24 +34,25 @@ public class MyWorksActivity extends AppCompatActivity {
     List<PaymentPojo> a1;
     SharedPreferences sharedPreferences;
     String session;
-
+    Spinner spin_jobs;
+    GetMyWorksAdapter getMyWorksAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_works);
+
         getSupportActionBar().setTitle("My Works");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        spin_jobs = (Spinner)findViewById(R.id.spin_jobs);
 
         sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
         session = sharedPreferences.getString("uname", "def-val");
-        //Toast.makeText(UserPaymentDueActivity.this,session,Toast.LENGTH_SHORT).show();
-
-
 
         list_view=(ListView)findViewById(R.id.list_view);
         a1= new ArrayList<>();
+        getJobs();
         serverData();
     }
 
@@ -71,7 +73,10 @@ public class MyWorksActivity extends AppCompatActivity {
                     Toast.makeText(MyWorksActivity.this,"No data found",Toast.LENGTH_SHORT).show();
                 }else {
                     a1 = response.body();
-                    list_view.setAdapter(new GetMyWorksAdapter(a1, MyWorksActivity.this));
+                    getMyWorksAdapter=new GetMyWorksAdapter(a1, MyWorksActivity.this);
+                    list_view.setAdapter(getMyWorksAdapter);
+
+                    //list_view.setAdapter(new GetMyWorksAdapter(a1, MyWorksActivity.this));
 
                 }
             }
@@ -83,18 +88,6 @@ public class MyWorksActivity extends AppCompatActivity {
             }
         });
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-}
-
     List<JobTitlePojo> array_jobs;
     String myjobs[];
     private void getJobs() {
@@ -117,7 +110,6 @@ public class MyWorksActivity extends AppCompatActivity {
                 }
                 ArrayAdapter aa = new ArrayAdapter(MyWorksActivity.this, android.R.layout.simple_spinner_item, myjobs);
                 aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
                 spin_jobs.setAdapter(aa);
 
                 spin_jobs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

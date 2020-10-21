@@ -164,15 +164,15 @@ public class UserDashboardActivity extends AppCompatActivity {
                         break;
 
                     case R.id.myjobprofile:
-                        Intent job=new Intent(getApplicationContext(), GetAllJobProfileActivity.class);
-                        startActivity(job);
+                        Intent jobprofile=new Intent(getApplicationContext(), GetAllJobProfileActivity.class);
+                        startActivity(jobprofile);
                         break;
 
                     case R.id.myjobworks:
                         Intent myjobworks=new Intent(getApplicationContext(), MyWorksActivity.class);
                         startActivity(myjobworks);
                         break;
-                    case R.id.seach_reports:
+                    case R.id.search_reports:
                         Intent search_report=new Intent(getApplicationContext(), SearchSelectionReportsActivity.class);
                         startActivity(search_report);
                         break;

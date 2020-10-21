@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MonthlySelectionActivity  extends AppCompatActivity {
     List<MonthSelectionPojo> list_month=new ArrayList<>();
-    ListView listview;
+    ListView gridview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +38,9 @@ public class MonthlySelectionActivity  extends AppCompatActivity {
         list_month.add(new MonthSelectionPojo("9", "Oct"));
         list_month.add(new MonthSelectionPojo("10", "Nov"));
         list_month.add(new MonthSelectionPojo("11", "Dec"));
-        listview = (ListView) findViewById(R.id.listview);
-        listview.setAdapter(new MonthSelectionAdapter(list_month,MonthlySelectionActivity.this));
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gridview = (ListView)findViewById(R.id.gridview);
+        gridview.setAdapter(new MonthSelectionAdapter(list_month,MonthlySelectionActivity.this));
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Calendar c = Calendar.getInstance();
