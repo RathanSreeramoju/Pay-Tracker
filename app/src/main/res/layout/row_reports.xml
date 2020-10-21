@@ -2,31 +2,62 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:padding="4dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/tv_work_date"
-        android:layout_margin="@dimen/_8sdp"
+    <TableRow
+        android:id="@+id/tableRow1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/tv_start_time"
-        android:layout_margin="@dimen/_8sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/tv_end_time"
-        android:layout_margin="@dimen/_8sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/tv_payment"
-        android:layout_margin="@dimen/_8sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/tv_payment_deduct"
-        android:layout_margin="@dimen/_8sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_work_date"
+            android:text="Date"
+            android:padding="@dimen/_5sdp"
+            android:textSize="@dimen/_10sdp"
+
+            android:gravity="left"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/tv_start_time"
+            android:text="Start Time"
+            android:gravity="left"
+
+            android:textSize="@dimen/_12sdp"
+
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/tv_end_time"
+            android:text="End Time"
+            android:padding="@dimen/_1sdp"
+            android:textSize="@dimen/_12sdp"
+            android:gravity="left"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/tv_payment"
+            android:text="Payment"
+            android:padding="@dimen/_1sdp"
+            android:textSize="@dimen/_12sdp"
+            android:gravity="left"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/tv_payment_deduct"
+            android:text="Payment"
+            android:visibility="gone"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </TableRow>
 </LinearLayout>
