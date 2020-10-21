@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +22,7 @@ public class MonthlySelectionActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weekly_selection);
+        setContentView(R.layout.activity_week_selection);
         getSupportActionBar().setTitle(" Monthly Reports");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

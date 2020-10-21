@@ -40,7 +40,6 @@ public class GetAllJobProfileActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     Spinner spin_jobs;
     GetAllJobProfileAdapter getAllJobProfilesAdapter;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

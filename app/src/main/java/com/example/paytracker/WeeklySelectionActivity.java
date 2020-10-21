@@ -23,7 +23,7 @@ public class WeeklySelectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weekly_selection);
+        setContentView(R.layout.activity_weeks_work);
         list_week.add(new WeekSelectionPojo("1","Week-1"));
         list_week.add(new WeekSelectionPojo("2","Week-2"));
         list_week.add(new WeekSelectionPojo("3","Week-3"));

@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,12 +30,10 @@ public class UserDashboardActivity extends AppCompatActivity {
     ImageView image_add;
     TextView tv_add_work;
     CardView cd_daily,cd_weekly,cd_monthly,cd_yearly;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_dashboard);
-
         navigationView();
         getSupportActionBar().setTitle("User Dashboard");
 
@@ -60,11 +59,30 @@ public class UserDashboardActivity extends AppCompatActivity {
         cd_weekly=(CardView)findViewById(R.id.cd_weekly);
         cd_monthly=(CardView)findViewById(R.id.cd_monthly);
         cd_yearly=(CardView)findViewById(R.id.cd_yearly);
-
-        cd_weekly.setOnClickListener(new View.OnClickListener() {
+        cd_daily.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                month = calendar.get(Calendar.MONTH);
+                year = calendar.get(Calendar.YEAR);
+
+                Date newDate = calendar.getTime();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String end_date = dateFormat.format(newDate);
+                //showMessage(UserDashboardActivity.this,year+"-"+(month+1)+"-"+day);
+                Intent intent=new Intent(UserDashboardActivity.this,ReportsActivity.class);
+                intent.putExtra("start_date",year+"-"+(month+1)+"-"+day);
+                intent.putExtra("end_date",end_date);
+                startActivity(intent);
+            }
+        });
+        cd_weekly.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(UserDashboardActivity.this,WeeklySelectionActivity.class);
+                startActivity(intent);
+                /*Calendar calendar = Calendar.getInstance();
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 month = calendar.get(Calendar.MONTH);
                 year = calendar.get(Calendar.YEAR);
@@ -76,13 +94,15 @@ public class UserDashboardActivity extends AppCompatActivity {
                 Intent intent=new Intent(UserDashboardActivity.this,ReportsActivity.class);
                 intent.putExtra("start_date",year+"-"+(month+1)+"-"+day);
                 intent.putExtra("end_date",end_date);
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
         cd_monthly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
+                Intent intent=new Intent(UserDashboardActivity.this,MonthlySelectionActivity.class);
+                startActivity(intent);
+                /*Calendar calendar = Calendar.getInstance();
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 month = calendar.get(Calendar.MONTH);
                 year = calendar.get(Calendar.YEAR);
@@ -94,13 +114,16 @@ public class UserDashboardActivity extends AppCompatActivity {
                 Intent intent=new Intent(UserDashboardActivity.this,ReportsActivity.class);
                 intent.putExtra("start_date",year+"-"+(month+1)+"-"+day);
                 intent.putExtra("end_date",end_date);
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
         cd_yearly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
+
+                Intent intent=new Intent(UserDashboardActivity.this,YearSelectionActivity.class);
+                startActivity(intent);
+               /* Calendar calendar = Calendar.getInstance();
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 month = calendar.get(Calendar.MONTH);
                 year = calendar.get(Calendar.YEAR);
@@ -112,11 +135,11 @@ public class UserDashboardActivity extends AppCompatActivity {
                 Intent intent=new Intent(UserDashboardActivity.this,ReportsActivity.class);
                 intent.putExtra("start_date",year+"-"+(month+1)+"-"+day);
                 intent.putExtra("end_date",end_date);
-                startActivity(intent);
+                startActivity(intent);*/
+
             }
         });
     }
-
     private void navigationView(){
         dl = (DrawerLayout)findViewById(R.id.dl_main);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
@@ -143,6 +166,15 @@ public class UserDashboardActivity extends AppCompatActivity {
                     case R.id.myjobprofile:
                         Intent job=new Intent(getApplicationContext(), GetAllJobProfileActivity.class);
                         startActivity(job);
+                        break;
+
+                    case R.id.myjobworks:
+                        Intent myjobworks=new Intent(getApplicationContext(), MyWorksActivity.class);
+                        startActivity(myjobworks);
+                        break;
+                    case R.id.seach_reports:
+                        Intent search_report=new Intent(getApplicationContext(), SearchSelectionReportsActivity.class);
+                        startActivity(search_report);
                         break;
 
                     case R.id.settings:
@@ -172,14 +204,40 @@ public class UserDashboardActivity extends AppCompatActivity {
         }
     }
 
+    /* @Override
+     public boolean onOptionsItemSelected(MenuItem item) {
+         int id = item.getItemId();
+         if (dl.isDrawerOpen(GravityCompat.START)) {
+             dl.closeDrawer(GravityCompat.START);
+         } else {
+             dl.openDrawer(GravityCompat.START);
+         }
+         return super.onOptionsItemSelected(item);
+     }*/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (dl.isDrawerOpen(GravityCompat.START)) {
+
             dl.closeDrawer(GravityCompat.START);
-        } else {
+        }
+        else {
+
             dl.openDrawer(GravityCompat.START);
         }
-        return super.onOptionsItemSelected(item);
+        switch (id){
+
+            case R.id.search_reports:
+                Intent myIntent = new Intent(getApplicationContext(), SearchSelectionReportsActivity.class);
+                startActivity(myIntent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
