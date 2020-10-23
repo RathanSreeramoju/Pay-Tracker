@@ -101,4 +101,20 @@ public class GetMyWorksAdapter extends BaseAdapter {
         }
         notifyDataSetChanged();
     }
+
+    public void filterbyDate(String charText)
+    {
+        charText = charText.toLowerCase(Locale.getDefault());
+        paymentPojo.clear();
+        if (charText.length() == 0) {
+            paymentPojo.addAll(searchpaymentpojo);
+        } else {
+            for (PaymentPojo wp : searchpaymentpojo) {
+                if (wp.getWork_date().toLowerCase(Locale.getDefault()).contains(charText) ) {
+                    paymentPojo.add(wp);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
 }

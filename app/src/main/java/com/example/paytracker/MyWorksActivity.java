@@ -2,15 +2,20 @@ package com.example.paytracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -22,7 +27,9 @@ import com.example.paytracker.model.JobTitlePojo;
 import com.example.paytracker.model.PaymentPojo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +43,10 @@ public class MyWorksActivity extends AppCompatActivity {
     String session;
     Spinner spin_jobs;
     GetMyWorksAdapter getMyWorksAdapter;
+    EditText tv_date;
+    int mYear, mMonth, mDay;
+    String DAY, MONTH, YEAR;
+    String work_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +65,55 @@ public class MyWorksActivity extends AppCompatActivity {
         a1= new ArrayList<>();
         getJobs();
         serverData();
+
+        tv_date = (EditText) findViewById(R.id.tv_date);
+//        tv_date.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                datepicker();
+//            }
+//        });
+
+        tv_date.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+                String text = tv_date.getText().toString().toLowerCase(Locale.getDefault());
+                getMyWorksAdapter.filterbyDate(text);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+                // TODO Auto-generated method stub
+            }
+        });
     }
 
+
+    public void datepicker() {
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        DAY = dayOfMonth + "";
+                        MONTH = monthOfYear + 1 + "";
+                        YEAR = year + "";
+                        work_date = YEAR + "-" + MONTH + "-" + DAY;
+                        tv_date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                    }
+                }, mYear, mMonth, mDay);
+        datePickerDialog.show();
+    }
     public void serverData(){
         progressDialog = new ProgressDialog(MyWorksActivity.this);
         progressDialog.setMessage("Loading....");
