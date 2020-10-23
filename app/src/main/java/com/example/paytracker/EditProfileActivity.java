@@ -151,6 +151,8 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
                 et_pass.setFocusableInTouchMode(true);
                 et_pass.setClickable(true);
                 bt_update.setVisibility(View.VISIBLE);
+
+                btn_upload_img.setVisibility(View.VISIBLE);
             }
         });
 

@@ -71,7 +71,7 @@ public class AdminDashBoardActivity extends AppCompatActivity {
         cd_view_texas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(AdminDashBoardActivity.this,ViewTaxesActivity.class);
+                Intent intent=new Intent(AdminDashBoardActivity.this,ViewTaxActivity.class);
                 startActivity(intent);
 
             }
