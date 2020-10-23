@@ -30,7 +30,7 @@ public class UserDashboardActivity extends AppCompatActivity {
 
     int day,month,year;
     ImageView image_add;
-    TextView tv_add_work;
+    TextView tv_add_work,addjob;
     CardView cd_daily,cd_weekly,cd_monthly,cd_yearly;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,23 @@ public class UserDashboardActivity extends AppCompatActivity {
         tv_add_work=(TextView)findViewById(R.id.tv_add_work);
 
         image_add=(ImageView)findViewById(R.id.image_add);
+        image_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(UserDashboardActivity.this,AddWorkActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        addjob=(TextView)findViewById(R.id.addjob);
+        addjob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(UserDashboardActivity.this,GetAllJobProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
         image_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

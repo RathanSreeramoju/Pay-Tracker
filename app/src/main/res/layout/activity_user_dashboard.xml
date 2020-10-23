@@ -16,30 +16,73 @@
 
         <LinearLayout
             android:id="@+id/ad"
-            android:gravity="right"
-            android:background="#fbd55b"
-            android:layout_margin="20dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
-            <TextView
-                android:id="@+id/tv_add_work"
-                android:text="Add Work"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:textSize="@dimen/_18sdp"
-                android:layout_margin="@dimen/_15sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/image_add"
-                android:layout_alignRight="@+id/tv_add_work"
-                android:layout_marginTop="@dimen/_10sdp"
+            <LinearLayout
+
+                android:gravity="right"
+                android:background="#fbd55b"
+                android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/addworkk"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"/>
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+                <TextView
+                    android:id="@+id/tv_add_work"
+                    android:text="Add Work"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_18sdp"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/image_add"
+                    android:layout_alignRight="@+id/tv_add_work"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/addworkk"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"/>
+
+            </LinearLayout>
+
+            <!--            <color name="colorPrimary">#55bbdc</color>-->
+            <!--            <color name="colorPrimaryDark">#03DAC5</color>-->
+            <LinearLayout
+
+                android:gravity="left"
+                android:background="#03DAC5"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+                <TextView
+                    android:id="@+id/addjob"
+                    android:text="Add Job"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_18sdp"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/img_addjob"
+                    android:layout_alignRight="@+id/tv_add_work"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/addworkk"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
         <LinearLayout
