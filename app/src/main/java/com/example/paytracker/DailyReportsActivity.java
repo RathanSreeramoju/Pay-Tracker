@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.paytracker.R;
+import com.example.paytracker.adapter.DailyReportAdapter;
 import com.example.paytracker.adapter.ReportsAdapter;
 import com.example.paytracker.api.ApiService;
 import com.example.paytracker.api.RetroClient;
@@ -36,7 +37,7 @@ public class DailyReportsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_daily_reports);
+        setContentView(R.layout.activity_reports);
         getSupportActionBar().setTitle(" Reports");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -152,7 +153,7 @@ public class DailyReportsActivity extends AppCompatActivity {
                 }else {
                     payments = response.body();
                     //Toast.makeText(ReportsActivity.this,""+payments.size(),Toast.LENGTH_SHORT).show();
-                    lv.setAdapter(new ReportsAdapter(payments, DailyReportsActivity.this));
+                    lv.setAdapter(new DailyReportAdapter(payments, DailyReportsActivity.this));
                 }
             }
             @Override
@@ -172,4 +173,5 @@ public class DailyReportsActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }
