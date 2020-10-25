@@ -194,6 +194,39 @@ public class AddWorkActivity extends AppCompatActivity {
     }
     float salary_tax, salary;
 
+
+    /*
+    public void serverData1() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
+        pd = new ProgressDialog(AddWorkActivity.this);
+        pd.setTitle("Please wait,Data is being submit...");
+        pd.show();
+        ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+        Call<ResponseData> call = apiService.add_payment(sharedPreferences.getString("uname", "-"), work_date, et_start_time.getText().toString(),
+
+
+        call.enqueue(new Callback<ResponseData>() {
+            @Override
+            public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
+                pd.dismiss();
+                if (response.body().status.equals("true")) {
+                    Toast.makeText(AddWorkActivity.this, "Data Added Successfully", Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+                    Toast.makeText(AddWorkActivity.this, response.body().message, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseData> call, Throwable t) {
+                pd.dismiss();
+                Toast.makeText(AddWorkActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    float salary_tax, salary;
+     */
+
     private void calculateHours() {
         if (et_start_time.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please enter start time.", Toast.LENGTH_LONG).show();
