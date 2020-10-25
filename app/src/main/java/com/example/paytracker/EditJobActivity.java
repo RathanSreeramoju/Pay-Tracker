@@ -32,13 +32,13 @@ public class EditJobActivity extends AppCompatActivity {
 
 
     ProgressDialog pd;
-    EditText et_sal,et_job_title,et_company_name;
+    EditText et_sal, et_job_title, et_company_name;
     Button btn_submit;
     private static final String SERVER_PATH = "http://paytracker.ca/";
     private Uri uri;
     Spinner spin_provinces;
     List<ProvincesPojo> a2;
-    String[] proviences,ids;
+    String[] proviences, ids;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +47,10 @@ public class EditJobActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Job Profile");
-        et_sal=(EditText)findViewById(R.id.et_sal);
-        et_job_title=(EditText)findViewById(R.id.et_job_title);
-        et_company_name=(EditText)findViewById(R.id.et_company_name);
-        spin_provinces=(Spinner)findViewById(R.id.spin_provinces);
+        et_sal = (EditText) findViewById(R.id.et_sal);
+        et_job_title = (EditText) findViewById(R.id.et_job_title);
+        et_company_name = (EditText) findViewById(R.id.et_company_name);
+        spin_provinces = (Spinner) findViewById(R.id.spin_provinces);
 
 
         et_company_name.setText(getIntent().getStringExtra("cname"));
@@ -58,26 +58,20 @@ public class EditJobActivity extends AppCompatActivity {
         et_sal.setText(getIntent().getStringExtra("csalary"));
         // spin_provinces.set(getIntent().getStringExtra("cprovince"));
 
-        btn_submit=(Button)findViewById(R.id.btn_submit);
+        btn_submit = (Button) findViewById(R.id.btn_submit);
 
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(et_company_name.getText().toString().equals(""))
-                {
+                if (et_company_name.getText().toString().equals("")) {
                     Toast.makeText(EditJobActivity.this, "Enter Company Name", Toast.LENGTH_LONG).show();
-                }
-                else if(et_job_title.getText().toString().equals(""))
-                {
+                } else if (et_job_title.getText().toString().equals("")) {
                     Toast.makeText(EditJobActivity.this, "Enter Job Title", Toast.LENGTH_LONG).show();
-                }
-                else if(et_sal.getText().toString().equals(""))
-                {
+                } else if (et_sal.getText().toString().equals("")) {
                     Toast.makeText(EditJobActivity.this, "Enter Salary", Toast.LENGTH_LONG).show();
-                }
-                else {
+                } else {
                     updateJobProfile();
-                    String jid =getIntent().getStringExtra("jid") ;
+                    String jid = getIntent().getStringExtra("jid");
                     Toast.makeText(EditJobActivity.this, jid, Toast.LENGTH_LONG).show();
 
                 }
@@ -92,15 +86,14 @@ public class EditJobActivity extends AppCompatActivity {
         String sal = et_sal.getText().toString();
         String company_name = et_company_name.getText().toString();
         String jobtitle = et_job_title.getText().toString();
-        String jid =getIntent().getStringExtra("jid") ;
+        String jid = getIntent().getStringExtra("jid");
 
         pd = new ProgressDialog(EditJobActivity.this);
         pd.setMessage("Loading....");
         pd.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<ResponseData> call = service.editjobprofile(company_name,jobtitle,sal,sharedPreferences.getString("uname","-"),ids[spin_provinces.getSelectedItemPosition()],jid);
-
+        Call<ResponseData> call = service.editjobprofile(company_name, jobtitle, sal, sharedPreferences.getString("uname", "-"), ids[spin_provinces.getSelectedItemPosition()], jid);
 
 
         call.enqueue(new Callback<ResponseData>() {
@@ -109,7 +102,7 @@ public class EditJobActivity extends AppCompatActivity {
                 pd.dismiss();
                 if (response.body().status.equals("true")) {
                     Toast.makeText(EditJobActivity.this, response.body().message, Toast.LENGTH_LONG).show();
-                    Intent intent=new Intent(EditJobActivity.this, GetAllJobProfileActivity.class);
+                    Intent intent = new Intent(EditJobActivity.this, GetAllJobProfileActivity.class);
                     startActivity(intent);
                     finish();
 
@@ -117,6 +110,7 @@ public class EditJobActivity extends AppCompatActivity {
                     Toast.makeText(EditJobActivity.this, response.body().message, Toast.LENGTH_LONG).show();
                 }
             }
+
             @Override
             public void onFailure(Call<ResponseData> call, Throwable t) {
                 pd.dismiss();
@@ -134,7 +128,7 @@ public class EditJobActivity extends AppCompatActivity {
                 a2 = response.body();
                 Log.d("TAG", "Response = " + a2);
                 proviences = new String[a2.size() + 1];
-                ids=new String[a2.size()+1];
+                ids = new String[a2.size() + 1];
                 ids[0] = "-1";
                 proviences[0] = "Select Provinces";
                 for (int i = 0; i < a2.size(); i++) {
@@ -151,6 +145,7 @@ public class EditJobActivity extends AppCompatActivity {
                         if (pos > 0) {
                         }
                     }
+
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -164,6 +159,7 @@ public class EditJobActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -174,4 +170,4 @@ public class EditJobActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-]
+}
