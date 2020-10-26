@@ -24,6 +24,7 @@
         <TextView
             android:id="@+id/select_date"
             android:text="Select Date"
+            android:visibility="gone"
             android:textSize="16dp"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_gravity="left"
