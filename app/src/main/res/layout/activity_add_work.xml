@@ -8,6 +8,38 @@
         android:layout_height="match_parent"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
+        <LinearLayout
+
+            android:gravity="right"
+            android:background="#03DAC5"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+            <TextView
+                android:id="@+id/addjob"
+                android:text="Add Job"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:textSize="@dimen/_18sdp"
+                android:layout_margin="@dimen/_15sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/img_addjob"
+                android:layout_alignRight="@+id/tv_add_work"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/addworkk"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"/>
+
+        </LinearLayout>
+
 
 
         <TextView
