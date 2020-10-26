@@ -16,9 +16,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Activity to display monthly reports of salary of user
+ */
 public class MonthlySelectionActivity  extends AppCompatActivity {
     List<MonthSelectionPojo> list_month=new ArrayList<>();
     ListView gridview;
+
+    /**
+     * Display monthly reports
+     * @param savedInstanceState : parameter of type Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
