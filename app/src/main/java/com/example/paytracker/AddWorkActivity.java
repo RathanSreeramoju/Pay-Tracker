@@ -50,6 +50,8 @@ public class AddWorkActivity extends AppCompatActivity {
     Spinner sp_jobs,spin_break;
     ImageView imgeditenable;
     String[] myjobs,sal_pe_hour,tax_amount;
+    ImageView image_add,img_addjob;
+    TextView tv_add_work,addjob;
     String[] mytax;
 
     List<GetAllJobProfilePojo> array_jobs;
@@ -66,6 +68,24 @@ public class AddWorkActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Add Work");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        img_addjob=(ImageView)findViewById(R.id.img_addjob);
+        img_addjob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(AddWorkActivity.this,GetAllJobProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        addjob=(TextView)findViewById(R.id.addjob);
+        addjob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(AddWorkActivity.this,GetAllJobProfileActivity.class);
+                startActivity(intent);
+            }
+        });
         sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
         session = sharedPreferences.getString("uname", "def-val");
 
