@@ -2,6 +2,7 @@ package com.example.paytracker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -52,18 +53,31 @@ public class MonthlySelectionActivity  extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Calendar c = Calendar.getInstance();
-                c.set(2020,Integer.parseInt(list_month.get(position).getMonth_no()),1); //------>
+                c.set(2020, Integer.parseInt(list_month.get(position).getMonth_no()), 1); //------>
                 c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                String end_date =sdf.format(c.getTime());
-                String start_date ="2020-"+(Integer.parseInt(list_month.get(position).getMonth_no())+1)+"-01";
+                String end_date = sdf.format(c.getTime());
+                String start_date = "2020-" + (Integer.parseInt(list_month.get(position).getMonth_no()) + 1) + "-01";
                 System.out.println(sdf.format(c.getTime()));
                 // Toast.makeText(getApplicationContext(),sdf.format(c.getTime()),Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(MonthlySelectionActivity.this,ReportsActivity.class);
-                intent.putExtra("start_date",end_date);
-                intent.putExtra("end_date",start_date);
+                Intent intent = new Intent(MonthlySelectionActivity.this, ReportsActivity.class);
+                intent.putExtra("start_date", end_date);
+                intent.putExtra("end_date", start_date);
                 startActivity(intent);
+
             }
         });
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
+
+
