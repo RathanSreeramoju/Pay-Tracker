@@ -2,6 +2,7 @@ package com.example.paytracker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -24,6 +25,11 @@ public class WeeklySelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weeks_work);
+
+        getSupportActionBar().setTitle("Weekly Reports");
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         list_week.add(new WeekSelectionPojo("1","Week-1"));
         list_week.add(new WeekSelectionPojo("2","Week-2"));
         list_week.add(new WeekSelectionPojo("3","Week-3"));
@@ -111,4 +117,16 @@ public class WeeklySelectionActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
+
