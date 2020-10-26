@@ -204,25 +204,7 @@ public class MyWorksActivity extends AppCompatActivity {
         }
     }
 
-    /*
-    *  public void datepicker() {
-        final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year,
-                                          int monthOfYear, int dayOfMonth) {
-                        DAY = dayOfMonth + "";
-                        MONTH = monthOfYear + 1 + "";
-                        YEAR = year + "";
-                        work_date = YEAR + "-" + MONTH + "-" + DAY;
-                        tv_date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-                    }
-                }, mYear, mMonth, mDay);
-        datePickerDialog.show();
-    }*/
+
+    
 }
 
