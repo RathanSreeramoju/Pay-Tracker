@@ -72,6 +72,7 @@ public class GetMyWorksAdapter extends BaseAdapter {
                 Intent intent=new Intent(cnt, EditWorkActivity.class);
                 intent.putExtra("id",paymentPojo.get(pos).getId());
                 intent.putExtra("uname",paymentPojo.get(pos).getUname());
+                intent.putExtra("cname",paymentPojo.get(pos).getCompany_name());
                 intent.putExtra("stime",paymentPojo.get(pos).getStart_time());
                 intent.putExtra("etime",paymentPojo.get(pos).getEnd_time());
                 intent.putExtra("thours",paymentPojo.get(pos).getTotal_hours());
