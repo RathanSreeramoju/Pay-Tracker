@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".ReportsActivity">
+    tools:context=".activities.ReportsActivity">
 
     <Spinner
         android:id="@+id/spin_jobs"
+        android:visibility="gone"
         android:padding="@dimen/_10sdp"
         android:background="@drawable/edittext_rounded"
         android:layout_marginRight="@dimen/_20sdp"
@@ -19,6 +20,38 @@
         android:layout_height="wrap_content"
         android:scrollbars="none"
         android:spinnerMode="dropdown"/>
+
+
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:id="@+id/barchart"/>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:id="@+id/piechart"/>
+
+
+    </LinearLayout>
+
+
 
 
     <TableLayout
