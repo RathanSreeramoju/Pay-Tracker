@@ -59,7 +59,7 @@ public class UserDashboardActivity extends AppCompatActivity {
     ArrayList<Entry> entries1 = new ArrayList<>();
 
     int day,month,year;
-    ImageView image_add;
+    ImageView image_add,img_addjob;
     TextView tv_add_work,addjob;
     CardView cd_daily,cd_weekly,cd_monthly,cd_yearly;
 
@@ -74,18 +74,28 @@ public class UserDashboardActivity extends AppCompatActivity {
         getdata();
 
 
+
         tv_add_work=(TextView)findViewById(R.id.tv_add_work);
 
         image_add=(ImageView)findViewById(R.id.image_add);
-        image_add.setOnClickListener(new View.OnClickListener() {
+
+        img_addjob=(ImageView)findViewById(R.id.img_addjob);
+        img_addjob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(UserDashboardActivity.this,AddWorkActivity.class);
+                Intent intent=new Intent(UserDashboardActivity.this,GetAllJobProfileActivity.class);
                 startActivity(intent);
             }
         });
 
-
+        addjob=(TextView)findViewById(R.id.addjob);
+        addjob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(UserDashboardActivity.this,GetAllJobProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         image_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +111,7 @@ public class UserDashboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         cd_daily=(CardView)findViewById(R.id.cd_daily);
         cd_weekly=(CardView)findViewById(R.id.cd_weekly);
