@@ -110,7 +110,23 @@
                     android:layout_weight="1"
                     android:id="@+id/barchart"/>
 
-                
+
+
+
+
+
+
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:id="@+id/piechart"/>
+
+
+
 
 
             </LinearLayout>
