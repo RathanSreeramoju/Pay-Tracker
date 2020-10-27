@@ -19,6 +19,36 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <LinearLayout
+
+                android:gravity="right"
+                android:background="#03DAC5"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="55dp">
+                <TextView
+                    android:id="@+id/addjob"
+                    android:text="Add Job"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_18sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/img_addjob"
+                    android:layout_alignRight="@+id/tv_add_work"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/addworkk"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"/>
+
+            </LinearLayout>
 
             <LinearLayout
 
@@ -53,36 +83,6 @@
 
             <!--            <color name="colorPrimary">#55bbdc</color>-->
             <!--            <color name="colorPrimaryDark">#03DAC5</color>-->
-            <LinearLayout
-
-                android:gravity="left"
-                android:background="#03DAC5"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="55dp">
-                <TextView
-                    android:id="@+id/addjob"
-                    android:text="Add Job"
-                    android:textStyle="bold"
-                    android:textColor="#000"
-                    android:textSize="@dimen/_18sdp"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <ImageView
-                    android:id="@+id/img_addjob"
-                    android:layout_alignRight="@+id/tv_add_work"
-                    android:layout_marginTop="@dimen/_1sdp"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/addworkk"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"/>
-
-            </LinearLayout>
 
         </LinearLayout>
 
