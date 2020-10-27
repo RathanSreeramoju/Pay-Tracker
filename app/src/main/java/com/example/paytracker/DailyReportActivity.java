@@ -111,7 +111,7 @@ public class DailyReportActivity extends AppCompatActivity {
     }
 }
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@org.jetbrains.annotations.NotNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
@@ -120,4 +120,5 @@ public class DailyReportActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }
