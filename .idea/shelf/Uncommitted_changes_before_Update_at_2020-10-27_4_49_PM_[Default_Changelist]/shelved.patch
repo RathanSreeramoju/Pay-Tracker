@@ -1,0 +1,141 @@
+Index: app/src/main/java/com/example/paytracker/EditJobActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.paytracker;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.app.ProgressDialog;\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.net.Uri;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.AdapterView;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Spinner;\r\nimport android.widget.Toast;\r\n\r\nimport com.example.paytracker.api.ApiService;\r\nimport com.example.paytracker.api.RetroClient;\r\nimport com.example.paytracker.model.ProvincesPojo;\r\n\r\nimport java.util.List;\r\n\r\nimport retrofit2.Call;\r\nimport retrofit2.Callback;\r\nimport retrofit2.Response;\r\n\r\npublic class EditJobActivity extends AppCompatActivity {\r\n\r\n\r\n    ProgressDialog pd;\r\n    EditText et_sal,et_job_title,et_company_name;\r\n    Button btn_submit;\r\n    private static final String SERVER_PATH = \"http://paytracker.ca/\";\r\n    private Uri uri;\r\n    Spinner spin_provinces;\r\n    List<ProvincesPojo> a2;\r\n    String[] proviences,ids;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_edit_job);\r\n        getSupportActionBar().setHomeButtonEnabled(true);\r\n        getSupportActionBar().setDisplayHomeAsUpEnabled(true);\r\n        getSupportActionBar().setTitle(\"Edit Job Profile\");\r\n        et_sal=(EditText)findViewById(R.id.et_sal);\r\n        et_job_title=(EditText)findViewById(R.id.et_job_title);\r\n        et_company_name=(EditText)findViewById(R.id.et_company_name);\r\n        spin_provinces=(Spinner)findViewById(R.id.spin_provinces);\r\n\r\n\r\n        et_company_name.setText(getIntent().getStringExtra(\"cname\"));\r\n        et_job_title.setText(getIntent().getStringExtra(\"ctitle\"));\r\n        et_sal.setText(getIntent().getStringExtra(\"csalary\"));\r\n        // spin_provinces.set(getIntent().getStringExtra(\"cprovince\"));\r\n\r\n        btn_submit=(Button)findViewById(R.id.btn_submit);\r\n\r\n        btn_submit.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                if(et_company_name.getText().toString().equals(\"\"))\r\n                {\r\n                    Toast.makeText(EditJobActivity.this, \"Enter Company Name\", Toast.LENGTH_LONG).show();\r\n                }\r\n                else if(et_job_title.getText().toString().equals(\"\"))\r\n                {\r\n                    Toast.makeText(EditJobActivity.this, \"Enter Job Title\", Toast.LENGTH_LONG).show();\r\n                }\r\n                else if(et_sal.getText().toString().equals(\"\"))\r\n                {\r\n                    Toast.makeText(EditJobActivity.this, \"Enter Salary\", Toast.LENGTH_LONG).show();\r\n                }\r\n                else {\r\n                    updateJobProfile();\r\n                    String jid =getIntent().getStringExtra(\"jid\") ;\r\n                    Toast.makeText(EditJobActivity.this, jid, Toast.LENGTH_LONG).show();\r\n\r\n                }\r\n            }\r\n        });\r\n        getProvinces();\r\n    }\r\n\r\n\r\n    private void updateJobProfile() {\r\n        SharedPreferences sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);\r\n        String sal = et_sal.getText().toString();\r\n        String company_name = et_company_name.getText().toString();\r\n        String jobtitle = et_job_title.getText().toString();\r\n        String jid =getIntent().getStringExtra(\"jid\") ;\r\n\r\n        pd = new ProgressDialog(EditJobActivity.this);\r\n        pd.setMessage(\"Loading....\");\r\n        pd.show();\r\n\r\n        ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);\r\n        Call<ResponseData> call = service.editjobprofile(company_name,jobtitle,sal,sharedPreferences.getString(\"uname\",\"-\"),ids[spin_provinces.getSelectedItemPosition()],jid);\r\n\r\n\r\n\r\n        call.enqueue(new Callback<ResponseData>() {\r\n            @Override\r\n            public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {\r\n                pd.dismiss();\r\n                if (response.body().status.equals(\"true\")) {\r\n                    Toast.makeText(EditJobActivity.this, response.body().message, Toast.LENGTH_LONG).show();\r\n                    Intent intent=new Intent(EditJobActivity.this, GetAllJobProfileActivity.class);\r\n                    startActivity(intent);\r\n                    finish();\r\n\r\n                } else {\r\n                    Toast.makeText(EditJobActivity.this, response.body().message, Toast.LENGTH_LONG).show();\r\n                }\r\n            }\r\n            @Override\r\n            public void onFailure(Call<ResponseData> call, Throwable t) {\r\n                pd.dismiss();\r\n                Toast.makeText(EditJobActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();\r\n            }\r\n        });\r\n    }\r\n\r\n    private void getProvinces() {\r\n        ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);\r\n        Call<List<ProvincesPojo>> call = apiService.get_provinces();\r\n        call.enqueue(new Callback<List<ProvincesPojo>>() {\r\n            @Override\r\n            public void onResponse(Call<List<ProvincesPojo>> call, Response<List<ProvincesPojo>> response) {\r\n                a2 = response.body();\r\n                Log.d(\"TAG\", \"Response = \" + a2);\r\n                proviences = new String[a2.size() + 1];\r\n                ids=new String[a2.size()+1];\r\n                ids[0] = \"-1\";\r\n                proviences[0] = \"Select Provinces\";\r\n                for (int i = 0; i < a2.size(); i++) {\r\n                    proviences[i + 1] = a2.get(i).getProvince_name();\r\n                    ids[i + 1] = a2.get(i).getId();\r\n\r\n                }\r\n                ArrayAdapter aa = new ArrayAdapter(EditJobActivity.this, android.R.layout.simple_spinner_item, proviences);\r\n                aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n                spin_provinces.setAdapter(aa);\r\n                spin_provinces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {\r\n                    @Override\r\n                    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {\r\n                        if (pos > 0) {\r\n                        }\r\n                    }\r\n                    @Override\r\n                    public void onNothingSelected(AdapterView<?> adapterView) {\r\n\r\n                    }\r\n                });\r\n            }\r\n\r\n            @Override\r\n            public void onFailure(Call<List<ProvincesPojo>> call, Throwable t) {\r\n                Log.d(\"TAG\", \"Response = \" + t.toString());\r\n            }\r\n        });\r\n    }\r\n    @Override\r\n    public boolean onOptionsItemSelected(MenuItem item) {\r\n        switch (item.getItemId()) {\r\n            case android.R.id.home:\r\n                this.finish();\r\n                return true;\r\n            default:\r\n                return super.onOptionsItemSelected(item);\r\n        }\r\n    }\r\n]\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/paytracker/EditJobActivity.java	(revision 3aeec981ca1d5bf64165126f9808c979cd9bb3c0)
++++ app/src/main/java/com/example/paytracker/EditJobActivity.java	(date 1603769576243)
+@@ -32,13 +32,13 @@
+ 
+ 
+     ProgressDialog pd;
+-    EditText et_sal,et_job_title,et_company_name;
++    EditText et_sal, et_job_title, et_company_name;
+     Button btn_submit;
+     private static final String SERVER_PATH = "http://paytracker.ca/";
+     private Uri uri;
+     Spinner spin_provinces;
+     List<ProvincesPojo> a2;
+-    String[] proviences,ids;
++    String[] proviences, ids;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -47,10 +47,10 @@
+         getSupportActionBar().setHomeButtonEnabled(true);
+         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+         getSupportActionBar().setTitle("Edit Job Profile");
+-        et_sal=(EditText)findViewById(R.id.et_sal);
+-        et_job_title=(EditText)findViewById(R.id.et_job_title);
+-        et_company_name=(EditText)findViewById(R.id.et_company_name);
+-        spin_provinces=(Spinner)findViewById(R.id.spin_provinces);
++        et_sal = (EditText) findViewById(R.id.et_sal);
++        et_job_title = (EditText) findViewById(R.id.et_job_title);
++        et_company_name = (EditText) findViewById(R.id.et_company_name);
++        spin_provinces = (Spinner) findViewById(R.id.spin_provinces);
+ 
+ 
+         et_company_name.setText(getIntent().getStringExtra("cname"));
+@@ -58,26 +58,20 @@
+         et_sal.setText(getIntent().getStringExtra("csalary"));
+         // spin_provinces.set(getIntent().getStringExtra("cprovince"));
+ 
+-        btn_submit=(Button)findViewById(R.id.btn_submit);
++        btn_submit = (Button) findViewById(R.id.btn_submit);
+ 
+         btn_submit.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+-                if(et_company_name.getText().toString().equals(""))
+-                {
++                if (et_company_name.getText().toString().equals("")) {
+                     Toast.makeText(EditJobActivity.this, "Enter Company Name", Toast.LENGTH_LONG).show();
+-                }
+-                else if(et_job_title.getText().toString().equals(""))
+-                {
++                } else if (et_job_title.getText().toString().equals("")) {
+                     Toast.makeText(EditJobActivity.this, "Enter Job Title", Toast.LENGTH_LONG).show();
+-                }
+-                else if(et_sal.getText().toString().equals(""))
+-                {
++                } else if (et_sal.getText().toString().equals("")) {
+                     Toast.makeText(EditJobActivity.this, "Enter Salary", Toast.LENGTH_LONG).show();
+-                }
+-                else {
++                } else {
+                     updateJobProfile();
+-                    String jid =getIntent().getStringExtra("jid") ;
++                    String jid = getIntent().getStringExtra("jid");
+                     Toast.makeText(EditJobActivity.this, jid, Toast.LENGTH_LONG).show();
+ 
+                 }
+@@ -92,24 +86,23 @@
+         String sal = et_sal.getText().toString();
+         String company_name = et_company_name.getText().toString();
+         String jobtitle = et_job_title.getText().toString();
+-        String jid =getIntent().getStringExtra("jid") ;
++        String jid = getIntent().getStringExtra("jid");
+ 
+         pd = new ProgressDialog(EditJobActivity.this);
+         pd.setMessage("Loading....");
+         pd.show();
+ 
+         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
+-        Call<ResponseData> call = service.editjobprofile(company_name,jobtitle,sal,sharedPreferences.getString("uname","-"),ids[spin_provinces.getSelectedItemPosition()],jid);
++        Call<ResponseData> call = service.editjobprofile(company_name, jobtitle, sal, sharedPreferences.getString("uname", "-"), ids[spin_provinces.getSelectedItemPosition()], jid);
+ 
+ 
+-
+         call.enqueue(new Callback<ResponseData>() {
+             @Override
+             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
+                 pd.dismiss();
+                 if (response.body().status.equals("true")) {
+                     Toast.makeText(EditJobActivity.this, response.body().message, Toast.LENGTH_LONG).show();
+-                    Intent intent=new Intent(EditJobActivity.this, GetAllJobProfileActivity.class);
++                    Intent intent = new Intent(EditJobActivity.this, GetAllJobProfileActivity.class);
+                     startActivity(intent);
+                     finish();
+ 
+@@ -117,6 +110,7 @@
+                     Toast.makeText(EditJobActivity.this, response.body().message, Toast.LENGTH_LONG).show();
+                 }
+             }
++
+             @Override
+             public void onFailure(Call<ResponseData> call, Throwable t) {
+                 pd.dismiss();
+@@ -134,7 +128,7 @@
+                 a2 = response.body();
+                 Log.d("TAG", "Response = " + a2);
+                 proviences = new String[a2.size() + 1];
+-                ids=new String[a2.size()+1];
++                ids = new String[a2.size() + 1];
+                 ids[0] = "-1";
+                 proviences[0] = "Select Provinces";
+                 for (int i = 0; i < a2.size(); i++) {
+@@ -151,6 +145,7 @@
+                         if (pos > 0) {
+                         }
+                     }
++
+                     @Override
+                     public void onNothingSelected(AdapterView<?> adapterView) {
+ 
+@@ -164,6 +159,7 @@
+             }
+         });
+     }
++
+     @Override
+     public boolean onOptionsItemSelected(MenuItem item) {
+         switch (item.getItemId()) {
+@@ -174,4 +170,4 @@
+                 return super.onOptionsItemSelected(item);
+         }
+     }
+-]
++}
+diff --git .idea/shelf/Uncommitted_changes_before_Update_at_2020-10-23_7_00_PM__Default_Changelist_.xml .idea/shelf/Uncommitted_changes_before_Update_at_2020-10-23_7_00_PM__Default_Changelist_.xml
