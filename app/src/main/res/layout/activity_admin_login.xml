@@ -9,7 +9,6 @@
 
     android:background="@drawable/bg">
 
-
     <androidx.cardview.widget.CardView
         android:layout_marginTop="5dp"
         android:layout_marginRight="12dp"

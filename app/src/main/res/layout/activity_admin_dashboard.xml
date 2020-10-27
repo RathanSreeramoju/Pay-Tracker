@@ -36,7 +36,6 @@
                     android:text="Add Provinces"
                     android:textSize="@dimen/_13sdp"
                     android:paddingRight="@dimen/_15sdp"
-                    android:visibility="gone"
                     android:gravity="center"
                     android:textColor="#FFFFFF"
                     android:id="@+id/login_applogo"
