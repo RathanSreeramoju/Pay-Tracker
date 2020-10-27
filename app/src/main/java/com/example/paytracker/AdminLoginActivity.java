@@ -28,6 +28,7 @@ public class AdminLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_login);
+        getSupportActionBar().setTitle("Admin Login");
         et_adminun=(EditText)findViewById(R.id.etadmin_uname);
         et_adminpass=(EditText)findViewById(R.id.etadmin_pwd);
 

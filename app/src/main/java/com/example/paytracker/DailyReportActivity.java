@@ -1,5 +1,6 @@
 package com.example.paytracker;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -20,11 +21,16 @@ public class DailyReportActivity extends AppCompatActivity {
     String DAY,MONTH,YEAR;
     EditText et_start_time,et_start_end;
     String time;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_report);
+
+        getSupportActionBar().setTitle("DailyReport");
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         tv_date=(TextView)findViewById(R.id.tv_date);
         tv_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +55,7 @@ public class DailyReportActivity extends AppCompatActivity {
 
             }
         });
+
     }
     public void datepicker() {
         final Calendar c = Calendar.getInstance();
@@ -87,11 +94,6 @@ public class DailyReportActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-
     public void setmTimePicker1(){
 
         // TODO Auto-generated method stub
@@ -109,15 +111,14 @@ public class DailyReportActivity extends AppCompatActivity {
         mTimePicker.show();
 
     }
-}
     @Override
-    public boolean onOptionsItemSelected(@org.jetbrains.annotations.NotNull MenuItem item) {
-        switch (item.getItemId())
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
     }
-
 }

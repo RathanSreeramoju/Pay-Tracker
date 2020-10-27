@@ -74,7 +74,19 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
-
+                /* Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);*/
+                if(et_uname.getText().toString().equals(""))
+                {
+                    Toast.makeText(LoginActivity.this, "Enter Email", Toast.LENGTH_LONG).show();
+                }
+                else if(et_pwd.getText().toString().equals(""))
+                {
+                    Toast.makeText(LoginActivity.this, "Enter Password", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    loginData();
+                }
             }
         });
     }

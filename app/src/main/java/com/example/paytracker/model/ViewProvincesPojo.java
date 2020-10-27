@@ -4,8 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class ViewProvincesPojo {
     @SerializedName("id")
-    public String id;
-
     public String getId() {
         return id;
     }
@@ -13,6 +11,7 @@ public class ViewProvincesPojo {
     public void setId(String id) {
         this.id = id;
     }
+
 
     public String getProvinces_name() {
         return provinces_name;
@@ -22,18 +21,17 @@ public class ViewProvincesPojo {
         this.provinces_name = provinces_name;
     }
 
-    public String getTax() {
-        return tax;
+    public ViewProvincesPojo(String id, String provinces_name) {
+        this.id = id;
+        this.provinces_name = provinces_name;
     }
 
-    public void setTax(String tax) {
-        this.tax = tax;
-    }
+    @SerializedName("id")
+    public String id;
+
 
     @SerializedName("provinces_name")
     public String provinces_name;
 
-    @SerializedName("tax")
-    public String tax;
 
 }
