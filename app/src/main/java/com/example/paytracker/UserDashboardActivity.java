@@ -3,6 +3,7 @@ package com.example.paytracker;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -200,6 +201,10 @@ public class UserDashboardActivity extends AppCompatActivity {
             }
         });
     }
+
+    SharedPreferences sharedPreferences;
+    String session;
+
     private void getdata() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url ="http://paytracker.ca/PayTracker/getmonthreport.php";
