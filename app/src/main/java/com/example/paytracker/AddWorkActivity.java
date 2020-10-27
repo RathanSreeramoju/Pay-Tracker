@@ -274,9 +274,24 @@ public class AddWorkActivity extends AppCompatActivity {
             //long diff=differe - date3.getTime();
             long diffMinutes = diff / (60 * 1000) % 60;
             long diffHours = diff / (60 * 60 * 1000) % 24;
+
+            String kk[]=break_time.split(":");
+            int hrs=Integer.parseInt(kk[0]);
+            int mins=Integer.parseInt(kk[1]);
+
+            diffHours=diffHours-hrs;
+            if(diffMinutes>mins){
+                diffMinutes=diffMinutes-mins;
+
+            }else{
+                diffHours=diffHours-1;
+                int temp=60-mins;
+                diffMinutes=diffMinutes+temp;
+            }
+
             et_total_hours.setText(diffHours + "Hr : " + diffMinutes + "Min");
             if (diffMinutes != 0) {
-                salary = Integer.parseInt(et_salperhour.getText().toString())* (diffHours) + (100 / 60) * diffMinutes;
+                salary = Integer.parseInt(et_salperhour.getText().toString())* (diffHours) + (((float)diffMinutes)/ 60) * Integer.parseInt(et_salperhour.getText().toString());
                 et_earn_before_tax.setText("" + salary);
                 //salary_tax = (float) et_tax.getText().toString() / 100;
                 salary_tax = Float.parseFloat(et_tax.getText().toString())  / 100;
