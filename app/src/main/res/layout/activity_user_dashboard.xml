@@ -26,24 +26,24 @@
                 android:background="#fbd55b"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="70dp">
+                android:layout_height="55dp">
                 <TextView
                     android:id="@+id/tv_add_work"
                     android:text="Add Work"
                     android:textStyle="bold"
                     android:textColor="#000"
                     android:textSize="@dimen/_18sdp"
-                    android:layout_margin="@dimen/_15sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <ImageView
                     android:id="@+id/image_add"
                     android:layout_alignRight="@+id/tv_add_work"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/addworkk"
                     android:layout_width="@dimen/_35sdp"
@@ -59,24 +59,24 @@
                 android:background="#03DAC5"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="70dp">
+                android:layout_height="55dp">
                 <TextView
                     android:id="@+id/addjob"
                     android:text="Add Job"
                     android:textStyle="bold"
                     android:textColor="#000"
                     android:textSize="@dimen/_18sdp"
-                    android:layout_margin="@dimen/_15sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <ImageView
                     android:id="@+id/img_addjob"
                     android:layout_alignRight="@+id/tv_add_work"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_1sdp"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/addworkk"
                     android:layout_width="@dimen/_35sdp"
@@ -85,6 +85,10 @@
             </LinearLayout>
 
         </LinearLayout>
+
+
+
+
         <LinearLayout
             xmlns:app="http://schemas.android.com/tools"
             android:layout_below="@+id/ad"
@@ -95,13 +99,34 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:id="@+id/barchart"/>
+
+                
+
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:id="@+id/cd_daily"
@@ -123,15 +148,15 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
                             android:src="@drawable/day"/>
 
 
 
                         <TextView
 
-                            android:text="Daily Report"
+                            android:text="DailyReport"
                             android:layout_margin="10dp"
                             android:textColor="#000000"
                             android:textStyle="bold"
@@ -149,7 +174,7 @@
 
                 <androidx.cardview.widget.CardView
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
@@ -169,8 +194,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
                             android:src="@drawable/wek"/>
 
 
@@ -200,7 +225,7 @@
                 <androidx.cardview.widget.CardView
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:id="@+id/cd_monthly"
@@ -221,8 +246,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/month"/>
 
 
@@ -245,7 +270,7 @@
 
                 <androidx.cardview.widget.CardView
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
@@ -265,8 +290,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/yearly"/>
 
 
