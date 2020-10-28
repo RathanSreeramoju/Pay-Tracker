@@ -60,7 +60,7 @@ public class MonthlySelectionActivity  extends AppCompatActivity {
                 String start_date = "2020-" + (Integer.parseInt(list_month.get(position).getMonth_no()) + 1) + "-01";
                 System.out.println(sdf.format(c.getTime()));
                 // Toast.makeText(getApplicationContext(),sdf.format(c.getTime()),Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MonthlySelectionActivity.this, ReportsActivity.class);
+                Intent intent = new Intent(MonthlySelectionActivity.this, MonthlyReportsActivity.class);
                 intent.putExtra("start_date", end_date);
                 intent.putExtra("end_date", start_date);
                 startActivity(intent);

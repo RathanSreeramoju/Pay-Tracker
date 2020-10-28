@@ -5,18 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -46,13 +49,13 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 
-public class ReportsActivity extends BaseActivity {
+public class MonthlyReportsActivity extends AppCompatActivity {
     ListView lv;
     Spinner spin_jobs;
     SharedPreferences sharedPreferences;
     String session;
+    Button btn_pie,btn_bar;
 
     BarChart barChart;
     BarData barData,data;
@@ -68,7 +71,7 @@ public class ReportsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reports);
+        setContentView(R.layout.activity_monthly_reports);
 
         getSupportActionBar().setTitle(" Reports");
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -76,6 +79,36 @@ public class ReportsActivity extends BaseActivity {
 
         barChart=findViewById(R.id.barchart);
         p=findViewById(R.id.piechart);
+
+        btn_pie=(Button)findViewById(R.id.btn_pie);
+
+        btn_bar=(Button)findViewById(R.id.btn_bar);
+
+
+        btn_bar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_bar.setBackgroundColor(Color.parseColor("#03DAC5"));
+                btn_pie.setBackgroundColor(Color.parseColor("#d5d5d5"));
+                p.setVisibility(View.GONE);
+                barChart.setVisibility(View.VISIBLE);
+            }
+        });
+        btn_pie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_pie.setBackgroundColor(Color.parseColor("#03DAC5"));
+                btn_bar.setBackgroundColor(Color.parseColor("#d5d5d5"));
+                barChart.setVisibility(View.GONE);
+                p.setVisibility(View.VISIBLE);
+
+            }
+        });
+        btn_bar.setBackgroundColor(Color.parseColor("#03DAC5"));
+        btn_pie.setBackgroundColor(Color.parseColor("#d5d5d5"));
+
+
+
         getdata();
 
         sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
@@ -86,15 +119,13 @@ public class ReportsActivity extends BaseActivity {
 
         lv=(ListView)findViewById(R.id.lv);
         serverData();
-        Toast.makeText(getApplicationContext(),getIntent().getStringExtra("start_date")+"  "+getIntent().getStringExtra("end_date"),Toast.LENGTH_SHORT).show();
-
-
+        Toast.makeText(getApplicationContext(),session+getIntent().getStringExtra("start_date")+"  "+getIntent().getStringExtra("end_date"),Toast.LENGTH_SHORT).show();
     }
     ProgressDialog progressDialog;
     List<PaymentPojo> payments;
     private void serverData(){
         SharedPreferences sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
-        progressDialog = new ProgressDialog(ReportsActivity.this);
+        progressDialog = new ProgressDialog(MonthlyReportsActivity.this);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
@@ -102,16 +133,16 @@ public class ReportsActivity extends BaseActivity {
         Call<List<PaymentPojo>> call = service.get_reports(sharedPreferences.getString("uname","-"),getIntent().getStringExtra("end_date"),getIntent().getStringExtra("start_date"));
         call.enqueue(new Callback<List<PaymentPojo>>() {
             @Override
-            public void onResponse(Call<List<PaymentPojo>> call, Response<List<PaymentPojo>> response) {
+            public void onResponse(Call<List<PaymentPojo>> call, retrofit2.Response<List<PaymentPojo>> response) {
                 //Toast.makeText(AvalableRoomsActivity.this,"ddddd   "+response.body().size(),Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
                 if(response.body()==null){
-                    Toast.makeText(ReportsActivity.this,"No data found",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MonthlyReportsActivity.this,"No data found",Toast.LENGTH_SHORT).show();
                 }else {
                     payments = response.body();
                     //Toast.makeText(ReportsActivity.this,""+payments.size(),Toast.LENGTH_SHORT).show();
 
-                    reportsAdapters=new ReportsAdapter(payments, ReportsActivity.this);
+                    reportsAdapters=new ReportsAdapter(payments, MonthlyReportsActivity.this);
                     lv.setAdapter(reportsAdapters);
                     //lv.setAdapter(new ReportsAdapters(payments, ReportsActivity.this));
                 }
@@ -119,7 +150,7 @@ public class ReportsActivity extends BaseActivity {
             @Override
             public void onFailure(Call<List<PaymentPojo>> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(ReportsActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MonthlyReportsActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -131,12 +162,11 @@ public class ReportsActivity extends BaseActivity {
 
     private void getdata() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url ="http://paytracker.ca/PayTracker/get_payment_history.php";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,url , new com.android.volley.Response.Listener<String>() {
+        String url ="http://paytracker.ca/PayTracker/getmom.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,url , new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
                 JSONObject json = null;
                 try {
                     JSONArray jsonArray = new JSONArray(response);
@@ -147,14 +177,14 @@ public class ReportsActivity extends BaseActivity {
                         jObj = jsonArray.getJSONObject(i);
                         String data=jObj.getString("work_date");
                         String link=jObj.getString("payment");
-                        Toast.makeText(ReportsActivity.this,data+""+link,Toast.LENGTH_LONG).show();
+                        Toast.makeText(MonthlyReportsActivity.this,data+""+link,Toast.LENGTH_LONG).show();
                         entries.add(new BarEntry(Integer.parseInt(link), t1++));
                         entries1.add(new Entry(Integer.parseInt(link), t1));
                         dates.add(data);
                     }
 
 
-                    BarDataSet bardataset = new BarDataSet(entries, "Lastest Week Report");
+                    BarDataSet bardataset = new BarDataSet(entries, "Month Report");
 
 
 
@@ -166,9 +196,7 @@ public class ReportsActivity extends BaseActivity {
 
 
 
-
-
-                    PieDataSet pd = new PieDataSet(entries1, "Lastest Week Report");
+                    PieDataSet pd = new PieDataSet(entries1, "");
 
 
 
@@ -181,13 +209,12 @@ public class ReportsActivity extends BaseActivity {
                     //p.animateY(5000);
 
 
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
             }
-        }, new com.android.volley.Response.ErrorListener() {
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),"Server Issue",Toast.LENGTH_SHORT).show();
@@ -202,7 +229,7 @@ public class ReportsActivity extends BaseActivity {
                 session = sharedPreferences.getString("uname", "def-val");
                 Map<String, String> params = new HashMap<String, String>();
                 //  params.put("type",sptype.getSelectedItem().toString());//
-                params.put("email",session);//
+                params.put("uname",session);//
                 params.put("start_date","2020-10-01");//
                 params.put("end_date","2020-10-31");//
 
@@ -214,16 +241,12 @@ public class ReportsActivity extends BaseActivity {
 
     }
 
-
-
-
-
     private void getJobs() {
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
         Call<List<JobTitlePojo>> call = apiService.getjobtypes_by_uname(session);
         call.enqueue(new Callback<List<JobTitlePojo>>() {
             @Override
-            public void onResponse(Call<List<JobTitlePojo>> call, Response<List<JobTitlePojo>> response) {
+            public void onResponse(Call<List<JobTitlePojo>> call, retrofit2.Response<List<JobTitlePojo>> response) {
                 array_jobs = response.body();
                 if(array_jobs!=null){
                     if(array_jobs.size()>0) {
@@ -236,7 +259,7 @@ public class ReportsActivity extends BaseActivity {
                 for (int i = 0; i < array_jobs.size(); i++) {
                     myjobs[i + 1] = array_jobs.get(i).getCompany_name();
                 }
-                ArrayAdapter aa = new ArrayAdapter(ReportsActivity.this, android.R.layout.simple_spinner_item, myjobs);
+                ArrayAdapter aa = new ArrayAdapter(MonthlyReportsActivity.this, android.R.layout.simple_spinner_item, myjobs);
                 aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spin_jobs.setAdapter(aa);
 
@@ -263,6 +286,10 @@ public class ReportsActivity extends BaseActivity {
             }
         });
     }
+
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -273,6 +300,5 @@ public class ReportsActivity extends BaseActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
 }
