@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_height="match_parent">
+    <TextView
+        android:textColor="#000000"
+        android:textSize="24dp"
+        android:layout_margin="20dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:text="About This Application"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/iv"
+        android:src="@drawable/clock"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:padding="10dp"
+        android:gravity="start"
+        android:textSize="18dp"
+        android:text="Pay-Tracker for Android software is a report application, which is basically
+used to keep track of the payments you are getting from your work and notifying
+users on payment dates.
+Works on Android 4.4 and above with basic mobile configurations."
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:padding="10dp"
+        android:gravity="start"
+        android:textSize="18dp"
+        android:text="All Rights Reserved."
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:padding="10dp"
+        android:gravity="start"
+        android:textSize="18dp"
+        android:text="Copyright (c) 2020 by Rathan Sreeramoju and Team.
+All rights reserved. No part of this application may be
+reproduced or used in any manner without written permission
+of the copyright owner."
+        />
+
+</LinearLayout>
