@@ -40,14 +40,14 @@ public class AdminDashBoardActivity extends AppCompatActivity {
         cd_view_texas=(CardView)findViewById(R.id.cd_view_texas);
         cd_add_texas=(CardView)findViewById(R.id.cd_add_texas);
 
-       /* cd_add_provinces.setOnClickListener(new View.OnClickListener() {
+        cd_add_provinces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(AdminDashBoardActivity.this,AddProvincesActivity.class);
                 startActivity(intent);
 
             }
-        });*/
+        });
 
         cd_view_provinces.setOnClickListener(new View.OnClickListener() {
             @Override
