@@ -107,7 +107,7 @@ public class WeeklySelectionActivity extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),formatter.format(calendar.getTime()),Toast.LENGTH_SHORT).show();
                 calendar.add(Calendar.DAY_OF_WEEK, 6);
                 String end_date = formatter.format(calendar.getTime());
-                Intent intent=new Intent(WeeklySelectionActivity.this,ReportsActivity.class);
+                Intent intent=new Intent(WeeklySelectionActivity.this,WeekReportsActivity.class);
                 intent.putExtra("start_date",end_date);
                 intent.putExtra("end_date",start_date);
                 startActivity(intent);
