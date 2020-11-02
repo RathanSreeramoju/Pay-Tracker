@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +46,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class    UserDashboardActivity extends AppCompatActivity {
+public class UserDashboardActivity extends AppCompatActivity {
     private ActionBarDrawerToggle t;
     private NavigationView nv;
     private DrawerLayout dl;
@@ -58,7 +60,7 @@ public class    UserDashboardActivity extends AppCompatActivity {
     int t1=0;
     ArrayList<BarEntry> entries = new ArrayList<>();
     ArrayList<Entry> entries1 = new ArrayList<>();
-
+    Button btn_pie,btn_bar;
     int day,month,year;
     ImageView image_add,img_addjob;
     TextView tv_add_work,addjob;
@@ -72,7 +74,38 @@ public class    UserDashboardActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("User Dashboard");
         barChart=findViewById(R.id.barchart);
         p=findViewById(R.id.piechart);
+        barChart=findViewById(R.id.barchart);
+        p=findViewById(R.id.piechart);
+
+        btn_pie=(Button)findViewById(R.id.btn_pie);
+
+        btn_bar=(Button)findViewById(R.id.btn_bar);
+
+
+        btn_bar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_bar.setBackgroundColor(Color.parseColor("#03DAC5"));
+                btn_pie.setBackgroundColor(Color.parseColor("#d5d5d5"));
+                p.setVisibility(View.GONE);
+                barChart.setVisibility(View.VISIBLE);
+            }
+        });
+        btn_pie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_pie.setBackgroundColor(Color.parseColor("#03DAC5"));
+                btn_bar.setBackgroundColor(Color.parseColor("#d5d5d5"));
+                barChart.setVisibility(View.GONE);
+                p.setVisibility(View.VISIBLE);
+
+            }
+        });
+        btn_bar.setBackgroundColor(Color.parseColor("#03DAC5"));
+        btn_pie.setBackgroundColor(Color.parseColor("#d5d5d5"));
         getdata();
+
+
 
 
 
@@ -229,7 +262,7 @@ public class    UserDashboardActivity extends AppCompatActivity {
                     }
 
 
-                    BarDataSet bardataset = new BarDataSet(entries, "Lastest Week Report");
+                    BarDataSet bardataset = new BarDataSet(entries, "Latest Week Report");
 
 
 
@@ -243,7 +276,7 @@ public class    UserDashboardActivity extends AppCompatActivity {
 
 
 
-                    PieDataSet pd = new PieDataSet(entries1, "Lastest Week Report");
+                    PieDataSet pd = new PieDataSet(entries1, "Latest Week Report");
 
 
 
