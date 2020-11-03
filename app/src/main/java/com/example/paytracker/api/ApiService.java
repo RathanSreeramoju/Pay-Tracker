@@ -75,7 +75,8 @@ public interface ApiService {
     @GET("/PayTracker/update_provinces.php?")
     Call<ResponseData> update_provinces(
             @Query("id") String id,
-            @Query("provinces_name") String provinces_name
+            @Query("provinces_name") String provinces_name,
+            @Query("tax") String tax
 
     );
 
@@ -87,10 +88,11 @@ public interface ApiService {
 
 
     @GET("/PayTracker/myworks.php?")
-    Call<List<PaymentPojo>> myworks(
+    Call<List<PaymentPojo>>  myworks(
             @Query("uname") String uname
 
     );
+
 
 
     @GET("/PayTracker/add_payment_history.php?")
@@ -128,8 +130,13 @@ public interface ApiService {
     @GET("/PayTracker/get_taxes.php?")
     Call<List<ViewTaxesPojo>> get_taxes();
 
+    @GET("/PayTracker/get_daily_work_dates.php?")
+    Call<List<WorkDatePojo>> get_daily_work_dates(@Query("uname") String uname);
+
     @GET("/PayTracker/get_payment_history.php?")
-    Call<List<PaymentPojo>> get_reports(@Query("uname") String uname, @Query("start_date") String start_date, @Query("end_date") String end_date);
+    Call<List<PaymentPojo>> get_reports(@Query("uname") String uname,
+                                        @Query("start_date") String start_date,
+                                        @Query("end_date") String end_date);
 
     @GET("/PayTracker/get_search_payment_history.php?")
     Call<List<PaymentPojo>> get_search_reports(@Query("uname") String uname, @Query("start_date") String start_date, @Query("end_date") String end_date, @Query("job_type") String job_type);
@@ -146,6 +153,8 @@ public interface ApiService {
             @Query("tax") String tax,
             @Query("id") String id
     );
+
+
 
 
     @Multipart
@@ -192,7 +201,5 @@ public interface ApiService {
             @Query("jid") String jid
     );
 
-    @GET("/PayTracker/get_daily_work_dates.php?")
-    Call<List<WorkDatePojo>> get_daily_work_dates(@Query("uname") String uname);
 
 }

@@ -1,4 +1,4 @@
-package com.example.paytracker.model;
+package com.example.paytracker;
 
 import android.os.Bundle;
 
