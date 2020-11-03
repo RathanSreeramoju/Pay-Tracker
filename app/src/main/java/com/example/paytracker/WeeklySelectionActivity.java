@@ -20,6 +20,7 @@ import java.util.List;
 
 public class WeeklySelectionActivity extends AppCompatActivity {
     List<WeekSelectionPojo> list_week=new ArrayList<>();
+    List<String> week=new ArrayList<String>();
     GridView gridview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class WeeklySelectionActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Weekly Reports");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        week();
         list_week.add(new WeekSelectionPojo("1","Week-1"));
         list_week.add(new WeekSelectionPojo("2","Week-2"));
         list_week.add(new WeekSelectionPojo("3","Week-3"));
@@ -116,6 +117,46 @@ public class WeeklySelectionActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void week() {
+        String[] months= {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        int Days[]=new int[12];
+        Days [0] = 31;
+        Days [1] = 28;
+        Days [2] = 31;
+        Days [3] = 30;
+        Days [4] = 31;
+        Days [5] = 30;
+        Days [6] = 31;
+        Days [7] = 31;
+        Days [8] = 30;
+        Days [9] = 31;
+        Days [10] = 30;
+        Days [11] = 31;
+
+        int prev=1;
+        int last=1;
+        int temp=1;
+        for(int j=0;j<12;j++){
+
+            for(int i=1;i<=Days[j];i++){
+                if(temp%7==0){
+                    prev=last;
+                    last=i;
+                    if(prev>last){
+                        week.add(months[j-1]+" - " +prev+" "+months[j]+" - " +last);
+                    }else{
+                        week.add(months[j]+" - " +prev+" "+months[j]+" - " +last);
+                    }
+                    temp=1;
+
+                }else{
+                    temp=temp+1;
+                }
+
+            }
+        }
     }
 
     @Override
