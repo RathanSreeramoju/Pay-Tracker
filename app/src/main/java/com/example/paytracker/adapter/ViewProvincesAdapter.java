@@ -54,16 +54,22 @@ public class ViewProvincesAdapter extends BaseAdapter {
         LayoutInflater obj1 = (LayoutInflater) cnt.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View obj2 = obj1.inflate(R.layout.list_view_provinces, null);
 
-            TextView tv_name = (TextView) obj2.findViewById(R.id.tv_name);
-          tv_name.setText("Province Name  :" + ar.get(pos).getProvince_name());
+        TextView tv_name = (TextView) obj2.findViewById(R.id.tv_name);
+        tv_name.setText("Province Name  :" + ar.get(pos).getProvince_name());
 
-          Button btn_edit=(Button)obj2.findViewById(R.id.btn_edit);
-             btn_edit.setOnClickListener(new View.OnClickListener() {
+        TextView tv_tax = (TextView) obj2.findViewById(R.id.tv_tax);
+        tv_tax.setText("Tax Percentage  :" + ar.get(pos).getTax_percentage());
+
+
+
+        Button btn_edit=(Button)obj2.findViewById(R.id.btn_edit);
+        btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(cnt, EditProvincesActivity.class);
                 intent.putExtra("id",ar.get(pos).getId());
                 intent.putExtra("Provinces_name",ar.get(pos).getProvince_name());
+                intent.putExtra("tax",ar.get(pos).getTax_percentage());
                 cnt.startActivity(intent);
             }
         });
@@ -76,14 +82,12 @@ public class ViewProvincesAdapter extends BaseAdapter {
 
                 serverData(ar.get(pos).getId());
 
-          }
-         });
-          return obj2;
+            }
+        });
+        return obj2;
     }
-
     ProgressDialog progressDialog;
-
-    public void serverData(String id) {
+    public void serverData(String id){
         progressDialog = new ProgressDialog(cnt);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
@@ -93,16 +97,15 @@ public class ViewProvincesAdapter extends BaseAdapter {
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
                 progressDialog.dismiss();
-                if (response.body() == null) {
-                    Toast.makeText(cnt, "Server issue", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent intent = new Intent(cnt, ViewProvincesActivity.class);
+                if(response.body()==null){
+                    Toast.makeText(cnt,"Server issue",Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent=new Intent(cnt, ViewProvincesActivity.class);
                     cnt.startActivity(intent);
-                    Toast.makeText(cnt, "Deleted successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(cnt,"Deleted successfully",Toast.LENGTH_SHORT).show();
 
                 }
             }
-
             @Override
             public void onFailure(Call<ResponseData> call, Throwable t) {
                 progressDialog.dismiss();

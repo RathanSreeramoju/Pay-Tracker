@@ -1,18 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <Button
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_6sdp"
+    card_view:cardCornerRadius="@dimen/_6sdp"
+    card_view:cardElevation="@dimen/_2sdp"
+    card_view:cardUseCompatPadding="true">
+    <RelativeLayout
+        android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/btn_delete"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/btn_edit"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/tv_name"/>
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <TextView
+            android:id="@+id/tv_tax"
+            android:layout_below="@+id/tv_name"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_edit"
+            android:layout_below="@+id/tv_tax"
+            android:text="Edit"
+            android:layout_margin="@dimen/_15sdp"
+            android:background="@drawable/button_rounded"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_32sdp" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:text="Delete"
+            android:layout_below="@+id/tv_tax"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/_15sdp"
+            android:background="@drawable/button_rounded"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_32sdp" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

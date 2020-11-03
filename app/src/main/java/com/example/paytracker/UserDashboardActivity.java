@@ -343,6 +343,10 @@ public class UserDashboardActivity extends AppCompatActivity {
                         Intent home=new Intent(getApplicationContext(), UserDashboardActivity.class);
                         startActivity(home);
                         break;
+                    case R.id.about:
+                        Intent about=new Intent(getApplicationContext(), AboutActivity.class);
+                        startActivity(about);
+                        break;
 
                     case R.id.myjobprofile:
                         Intent job=new Intent(getApplicationContext(), GetAllJobProfileActivity.class);
