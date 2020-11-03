@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:visibility="gone"
             android:id="@+id/cd_add_provinces"
             app:cardBackgroundColor="#4D817C"
             android:layout_gravity="center"
@@ -56,6 +57,7 @@
             android:id="@+id/cd_add_texas"
             app:cardBackgroundColor="#F8ED88"
             android:layout_marginRight="@dimen/_2sdp"
+            android:visibility="gone"
             card_view:cardCornerRadius="@dimen/_10sdp"
             card_view:cardElevation="@dimen/_10sdp"
             card_view:cardUseCompatPadding="true">
@@ -89,7 +91,7 @@
         <androidx.cardview.widget.CardView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/cd_view_provinces"
@@ -103,15 +105,16 @@
 
             <LinearLayout
                 android:background="#F8ED88"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
-                    android:text="View Provinces"
+                    android:text="View Provinces and Taxes"
                     android:textSize="@dimen/_13sdp"
                     android:paddingRight="@dimen/_15sdp"
                     android:gravity="center"
+                    android:layout_gravity="center"
                     android:textColor="#000000"
                     android:layout_width="@dimen/_150sdp"
                     android:layout_height="@dimen/_130sdp"
@@ -123,6 +126,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:visibility="gone"
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

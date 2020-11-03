@@ -1,5 +1,6 @@
 package com.example.paytracker;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,6 +39,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EditWorkActivity extends AppCompatActivity {
+
     TextView tv_date,tv_rid;
     int mYear, mMonth, mDay;
     String DAY, MONTH, YEAR;
@@ -48,6 +51,7 @@ public class EditWorkActivity extends AppCompatActivity {
     ImageView imgeditenable;
     String[] myjobs,sal_pe_hour,tax_amount;
     String[] mytax;
+    View deleteDialogView;
 
     List<GetAllJobProfilePojo> array_jobs;
 
@@ -69,19 +73,68 @@ public class EditWorkActivity extends AppCompatActivity {
 
         tv_rid=(TextView)findViewById(R.id.tv_rid);
         sp_jobs = (Spinner) findViewById(R.id.spin_jobs);
+        // sp_jobs.setSelected(getIntent().getStringExtra("cname"));
         spin_break = (Spinner) findViewById(R.id.spin_break);
         et_salperhour=(EditText)findViewById(R.id.et_salperhour);
         getJobs();
 
+        LayoutInflater factory = LayoutInflater.from(EditWorkActivity.this);
+        deleteDialogView = factory.inflate(R.layout.alert_popup_window, null);
+
+        et_net_income = (EditText)deleteDialogView.findViewById(R.id.et_net_income);
+        et_total_hours = (EditText)deleteDialogView.findViewById(R.id.et_total_hours);
+        et_earn_before_tax = (EditText)deleteDialogView.findViewById(R.id.et_earn_before_tax);
+        et_tax_deducted = (EditText)deleteDialogView.findViewById(R.id.et_tax_deducted);
+
         tv_date = (TextView) findViewById(R.id.tv_date);
         btn_calculate_hours = (Button) findViewById(R.id.btn_calculate_hours);
-        btn_submit = (Button) findViewById(R.id.btn_submit);
+
         btn_calculate_hours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 calculateHours();
+
+                final AlertDialog deleteDialog = new AlertDialog.Builder(EditWorkActivity.this).create();
+                deleteDialog.setView(deleteDialogView);
+                deleteDialogView.findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if(sp_jobs.getSelectedItem().toString().equals("Select Job"))
+                        {
+                            Toast.makeText(EditWorkActivity.this, "Select Job ", Toast.LENGTH_LONG).show();
+                        }
+                        else if(spin_break.getSelectedItem().toString().equals("Choose Break Timings"))
+                        {
+                            Toast.makeText(EditWorkActivity.this, "Select Break Time", Toast.LENGTH_LONG).show();
+                        }
+
+                        else if(et_start_time.getText().toString().equals(""))
+                        {
+                            Toast.makeText(EditWorkActivity.this, "Select Start Time", Toast.LENGTH_LONG).show();
+                        }
+
+                        else if(et_start_time.getText().toString().equals(""))
+                        {
+                            Toast.makeText(EditWorkActivity.this, "Select End Time", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            serverData();
+                        }
+
+                        deleteDialog.dismiss();
+                    }
+                });
+
+                deleteDialog.show();
             }
         });
+
+
+
+
         tv_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,12 +143,12 @@ public class EditWorkActivity extends AppCompatActivity {
         });
 
         et_start_time = (EditText) findViewById(R.id.et_start_time);
-        et_net_income = (EditText) findViewById(R.id.et_net_income);
-        et_tax_deducted = (EditText) findViewById(R.id.et_tax_deducted);
+
         et_tax = (EditText) findViewById(R.id.et_tax);
-        et_net_income = (EditText) findViewById(R.id.et_net_income);
+        /*et_net_income = (EditText) findViewById(R.id.et_net_income);
+        et_tax_deducted = (EditText) findViewById(R.id.et_tax_deducted);
         et_total_hours = (EditText) findViewById(R.id.et_total_hours);
-        et_earn_before_tax = (EditText) findViewById(R.id.et_earn_before_tax);
+        et_earn_before_tax = (EditText) findViewById(R.id.et_earn_before_tax);*/
         et_start_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,34 +173,7 @@ public class EditWorkActivity extends AppCompatActivity {
         et_total_hours.setText(getIntent().getStringExtra("thours"));
         et_tax_deducted.setText(getIntent().getStringExtra("td"));
         et_net_income.setText(getIntent().getStringExtra("ni"));
-        btn_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                if(sp_jobs.getSelectedItem().toString().equals("Select Job"))
-                {
-                    Toast.makeText(EditWorkActivity.this, "Select Job ", Toast.LENGTH_LONG).show();
-                }
-                else if(spin_break.getSelectedItem().toString().equals("Choose Break Timings"))
-                {
-                    Toast.makeText(EditWorkActivity.this, "Select Break Time", Toast.LENGTH_LONG).show();
-                }
-
-                else if(et_start_time.getText().toString().equals(""))
-                {
-                    Toast.makeText(EditWorkActivity.this, "Select Start Time", Toast.LENGTH_LONG).show();
-                }
-
-                else if(et_start_time.getText().toString().equals(""))
-                {
-                    Toast.makeText(EditWorkActivity.this, "Select End Time", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    serverData();
-                }
-                //serverData();
-            }
-        });
     }
 
 
@@ -173,6 +199,9 @@ public class EditWorkActivity extends AppCompatActivity {
             long diff = date2.getTime() - date1.getTime() ;
             //Toast.makeText(this, ""+diff, Toast.LENGTH_SHORT).show();
 
+            //time hours-12:15
+            //Toast.makeText(this, ""+diff, Toast.LENGTH_SHORT).show();
+
             if (diff < 0) {
                 Toast.makeText(this, "End time should be greater than start date.", Toast.LENGTH_LONG).show();
                 return;
@@ -180,9 +209,22 @@ public class EditWorkActivity extends AppCompatActivity {
             //long diff=differe - date3.getTime();
             long diffMinutes = diff / (60 * 1000) % 60;
             long diffHours = diff / (60 * 60 * 1000) % 24;
+            /////////////////////////////////////
+            String kk[]=break_time.split(":");
+            int hrs=Integer.parseInt(kk[0]);
+            int mins=Integer.parseInt(kk[1]);
+            diffHours=diffHours-hrs;
+            if(diffMinutes>mins){
+                diffMinutes=diffMinutes-mins;
+
+            }else{
+                diffHours=diffHours-1;
+                int temp=60-mins;
+                diffMinutes=diffMinutes+temp;
+            }
             et_total_hours.setText(diffHours + "Hr : " + diffMinutes + "Min");
             if (diffMinutes != 0) {
-                salary = Integer.parseInt(et_salperhour.getText().toString())* (diffHours) + (100 / 60) * diffMinutes;
+                salary = (Integer.parseInt(et_salperhour.getText().toString())* (diffHours)) + (((float)diffMinutes)/ 60) * Integer.parseInt(et_salperhour.getText().toString());
                 et_earn_before_tax.setText("" + salary);
                 //salary_tax = (float) et_tax.getText().toString() / 100;
                 salary_tax = Float.parseFloat(et_tax.getText().toString())  / 100;
@@ -195,7 +237,6 @@ public class EditWorkActivity extends AppCompatActivity {
             }
             et_tax_deducted.setText("" + (salary_tax * salary));
             et_net_income.setText("" + (salary - (salary_tax * salary)));
-
 
         } catch (Exception e) {
         }
