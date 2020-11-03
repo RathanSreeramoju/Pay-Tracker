@@ -5,13 +5,13 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.content.Intent;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,7 +30,6 @@ import com.example.paytracker.api.ApiService;
 import com.example.paytracker.api.RetroClient;
 import com.example.paytracker.model.GetAllJobProfilePojo;
 
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,6 +38,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 public class AddWorkActivity extends AppCompatActivity {
     TextView tv_date;
     int mYear, mMonth, mDay;
@@ -59,7 +59,7 @@ public class AddWorkActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     String session;
     View deleteDialogView;
-
+    AlertDialog deleteDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,12 +104,10 @@ public class AddWorkActivity extends AppCompatActivity {
         btn_calculate_hours = (Button) findViewById(R.id.btn_calculate_hours);
         btn_calculate_hours.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
 
-
-                calculateHours();
-
-                final AlertDialog deleteDialog = new AlertDialog.Builder(AddWorkActivity.this).create();
+                deleteDialog = new AlertDialog.Builder(AddWorkActivity.this).create();
                 deleteDialog.setView(deleteDialogView);
                 deleteDialogView.findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -133,15 +131,24 @@ public class AddWorkActivity extends AppCompatActivity {
                         {
                             Toast.makeText(AddWorkActivity.this, "Select End Time", Toast.LENGTH_LONG).show();
                         }
+                        else if(sp_jobs.getSelectedItem().toString().equals(""))
+                        {
+                            Toast.makeText(AddWorkActivity.this, "Please Add Job ", Toast.LENGTH_LONG).show();
+                        }
+                        else if(et_start_time.getText().toString().equals(et_end_time.getText().toString()))
+                        {
+                            Toast.makeText(AddWorkActivity.this, "Start time and End time should not be same.", Toast.LENGTH_LONG).show();
+                        }
                         else {
                             serverData();
                         }
                         //serverData();
-                        deleteDialog.dismiss();
+                        //deleteDialog.dismiss();
+
                     }
                 });
-
-                deleteDialog.show();
+                calculateHours();
+                //deleteDialog.show();
             }
         });
 
@@ -252,65 +259,82 @@ public class AddWorkActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter start time.", Toast.LENGTH_LONG).show();
             return;
         }
-        if (et_end_time.getText().toString().isEmpty()) {
+        else if (et_end_time.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please enter end time.", Toast.LENGTH_LONG).show();
             return;
         }
-        try {
-            String start_time = et_start_time.getText().toString();
-            String end_time = et_end_time.getText().toString();
-            String break_time=spin_break.getSelectedItem().toString();
-            SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-            Date date1 = format.parse(start_time);
-            Date date2 = format.parse(end_time);
-            Date date3 = format.parse(break_time);
-            long diff = date2.getTime() - date1.getTime() ;
-            //Toast.makeText(this, ""+diff, Toast.LENGTH_SHORT).show();
-
-            if (diff < 0) {
-                Toast.makeText(this, "End time should be greater than start date.", Toast.LENGTH_LONG).show();
-                return;
-            }
-            //long diff=differe - date3.getTime();
-            long diffMinutes = diff / (60 * 1000) % 60;
-            long diffHours = diff / (60 * 60 * 1000) % 24;
-
-            String kk[]=break_time.split(":");
-            int hrs=Integer.parseInt(kk[0]);
-            int mins=Integer.parseInt(kk[1]);
-
-            diffHours=diffHours-hrs;
-            if(diffMinutes>mins){
-                diffMinutes=diffMinutes-mins;
-
-            }else{
-                diffHours=diffHours-1;
-                int temp=60-mins;
-                diffMinutes=diffMinutes+temp;
-            }
-
-            et_total_hours.setText(diffHours + "Hr : " + diffMinutes + "Min");
-            if (diffMinutes != 0) {
-                salary = Integer.parseInt(et_salperhour.getText().toString())* (diffHours) + (((float)diffMinutes)/ 60) * Integer.parseInt(et_salperhour.getText().toString());
-                et_earn_before_tax.setText("" + salary);
-                //salary_tax = (float) et_tax.getText().toString() / 100;
-                salary_tax = Float.parseFloat(et_tax.getText().toString())  / 100;
-                //Toast.makeText(this,"Salary -> "+salary_tax,Toast.LENGTH_LONG).show();
-            } else {
-                salary = Integer.parseInt(et_salperhour.getText().toString())* (diffHours);
-                et_earn_before_tax.setText("" + salary);
-                salary_tax = Float.parseFloat(et_tax.getText().toString()) / 100;
-                //Toast.makeText(this,"Salary -> "+salary_tax,Toast.LENGTH_LONG).show();
-            }
-            et_tax_deducted.setText("" + (salary_tax * salary));
-            et_net_income.setText("" + (salary - (salary_tax * salary)));
-
-
-        } catch (Exception e) {
+        else if (sp_jobs.getSelectedItem().toString().equals("Select Job")) {
+            Toast.makeText(AddWorkActivity.this, "Select Job ", Toast.LENGTH_LONG).show();
         }
+        else if (spin_break.getSelectedItem().toString().equals("Choose Break Timings")) {
+            Toast.makeText(AddWorkActivity.this, "Select Break Time", Toast.LENGTH_LONG).show();
+        }
+        else if (sp_jobs.getSelectedItem().toString().equals(""))
+        {
+            Toast.makeText(AddWorkActivity.this, "Please Add Job ", Toast.LENGTH_LONG).show();
+        }
+        else if (et_start_time.getText().toString().equals(et_end_time.getText().toString()))
+        {
+            Toast.makeText(AddWorkActivity.this, "Start time and End time should not be same.", Toast.LENGTH_LONG).show();
+            deleteDialog.hide();
+        }
+        else {
+
+            try {
+                String start_time = et_start_time.getText().toString();
+                String end_time = et_end_time.getText().toString();
+                String break_time = spin_break.getSelectedItem().toString();
+                SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+                Date date1 = format.parse(start_time);
+                Date date2 = format.parse(end_time);
+                Date date3 = format.parse(break_time);
+                long diff = date2.getTime() - date1.getTime();
+                //Toast.makeText(this, ""+diff, Toast.LENGTH_SHORT).show();
+
+                if (diff < 0) {
+                    Toast.makeText(this, "End time should be greater than start date.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                //long diff=differe - date3.getTime();
+                long diffMinutes = diff / (60 * 1000) % 60;
+                long diffHours = diff / (60 * 60 * 1000) % 24;
+
+                String kk[] = break_time.split(":");
+                int hrs = Integer.parseInt(kk[0]);
+                int mins = Integer.parseInt(kk[1]);
+
+                diffHours = diffHours - hrs;
+                if (diffMinutes > mins) {
+                    diffMinutes = diffMinutes - mins;
+
+                } else {
+                    diffHours = diffHours - 1;
+                    int temp = 60 - mins;
+                    diffMinutes = diffMinutes + temp;
+                }
+
+                et_total_hours.setText(diffHours + "Hr : " + diffMinutes + "Min");
+                if (diffMinutes != 0) {
+                    salary = Integer.parseInt(et_salperhour.getText().toString()) * (diffHours) + (((float) diffMinutes) / 60) * Integer.parseInt(et_salperhour.getText().toString());
+                    et_earn_before_tax.setText("" + salary);
+                    //salary_tax = (float) et_tax.getText().toString() / 100;
+                    salary_tax = Float.parseFloat(et_tax.getText().toString()) / 100;
+                    //Toast.makeText(this,"Salary -> "+salary_tax,Toast.LENGTH_LONG).show();
+                } else {
+                    salary = Integer.parseInt(et_salperhour.getText().toString()) * (diffHours);
+                    et_earn_before_tax.setText("" + salary);
+                    salary_tax = Float.parseFloat(et_tax.getText().toString()) / 100;
+                    //Toast.makeText(this,"Salary -> "+salary_tax,Toast.LENGTH_LONG).show();
+                }
+                et_tax_deducted.setText("" + (salary_tax * salary));
+                et_net_income.setText("" + (salary - (salary_tax * salary)));
+
+
+            } catch (Exception e) {
+            }
+        }
+
     }
-
-
 
     public void datepicker() {
         final Calendar c = Calendar.getInstance();
