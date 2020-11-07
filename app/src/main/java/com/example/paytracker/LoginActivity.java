@@ -22,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
+public class   LoginActivity extends AppCompatActivity {
     Button bt_signin;
     EditText et_uname, et_pwd;
     TextView tv_forget_pass, bt_signup,tv_admin;

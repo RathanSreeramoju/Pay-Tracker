@@ -13,10 +13,10 @@ import com.example.paytracker.model.WeekSelectionPojo;
 import java.util.List;
 
 public class WeekSelectionAdapter extends BaseAdapter {
-    List<WeekSelectionPojo> ar;
+    List<String> ar;
     Context cnt;
 
-    public WeekSelectionAdapter(List<WeekSelectionPojo> ar, Context cnt) {
+    public WeekSelectionAdapter(List<String> ar, Context cnt) {
         this.ar = ar;
         this.cnt = cnt;
     }
@@ -42,7 +42,7 @@ public class WeekSelectionAdapter extends BaseAdapter {
         View obj2 = obj1.inflate(R.layout.row_week_selection, null);
 
         TextView tv_time = (TextView) obj2.findViewById(R.id.tv_time);
-        tv_time.setText(ar.get(pos).getWeek_display_name());
+        tv_time.setText(ar.get(pos));
 
         return obj2;
     }

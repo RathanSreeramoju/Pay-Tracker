@@ -2,7 +2,7 @@ package com.example.paytracker.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ViewTaxesPojo {
+public class  ViewTaxesPojo {
 
 
     @SerializedName("id")

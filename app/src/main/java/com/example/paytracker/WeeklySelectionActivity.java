@@ -90,7 +90,7 @@ public class WeeklySelectionActivity extends AppCompatActivity {
 
 
         gridview = (GridView)findViewById(R.id.gridview);
-        gridview.setAdapter(new WeekSelectionAdapter(list_week,WeeklySelectionActivity.this));
+        gridview.setAdapter(new WeekSelectionAdapter(week,WeeklySelectionActivity.this));
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -119,7 +119,8 @@ public class WeeklySelectionActivity extends AppCompatActivity {
 
     }
 
-    private void week() {
+    private void week()
+    {
         String[] months= {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         int Days[]=new int[12];
         Days [0] = 31;
@@ -146,8 +147,10 @@ public class WeeklySelectionActivity extends AppCompatActivity {
                     last=i;
                     if(prev>last){
                         week.add(months[j-1]+" - " +prev+" "+months[j]+" - " +last);
+                        System.out.println(months[j-1]+" - " +prev+" "+months[j]+" - " +last);
                     }else{
                         week.add(months[j]+" - " +prev+" "+months[j]+" - " +last);
+                        System.out.println(months[j]+" - " +prev+" "+months[j]+" - " +last);
                     }
                     temp=1;
 
