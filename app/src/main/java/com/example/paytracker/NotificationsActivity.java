@@ -114,7 +114,46 @@ public class NotificationsActivity extends AppCompatActivity {
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
     }
     private void getJobs() {
-        // TO-DO
+        ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+        Call<List<JobTitlePojo>> call = apiService.getjobtypes_by_uname(session);
+        call.enqueue(new Callback<List<JobTitlePojo>>() {
+            @Override
+            public void onResponse(Call<List<JobTitlePojo>> call, Response<List<JobTitlePojo>> response) {
+                array_jobs = response.body();
+                if(array_jobs!=null){
+                    if(array_jobs.size()>0) {
+                        myjobs = new String[array_jobs.size()+1];
+                        myjobs[0] = "Select Job";
+                        Toast.makeText(getApplicationContext(),""+array_jobs.size(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                for (int i = 0; i < array_jobs.size(); i++) {
+                    myjobs[i + 1] = array_jobs.get(i).getCompany_name();
+                }
+                ArrayAdapter aa = new ArrayAdapter(NotificationsActivity.this, android.R.layout.simple_spinner_item, myjobs);
+                aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spin_jobs.setAdapter(aa);
+
+                spin_jobs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+                        if (pos > 0) {
+
+                        }
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<List<JobTitlePojo>> call, Throwable t) {
+                Log.d("TAG", "Response = " + t.toString());
+            }
+        });
     }
 
     public void datepicker() {
