@@ -50,10 +50,9 @@ public class AddWorkActivity extends AppCompatActivity {
     Spinner sp_jobs,spin_break;
     ImageView imgeditenable;
     String[] myjobs,sal_pe_hour,tax_amount;
+    String[] mytax;
     ImageView image_add,img_addjob;
     TextView tv_add_work,addjob;
-    String[] mytax;
-
     List<GetAllJobProfilePojo> array_jobs;
 
     SharedPreferences sharedPreferences;
@@ -68,7 +67,6 @@ public class AddWorkActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Add Work");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         img_addjob=(ImageView)findViewById(R.id.img_addjob);
         img_addjob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +84,7 @@ public class AddWorkActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
         session = sharedPreferences.getString("uname", "def-val");
 
@@ -93,6 +92,8 @@ public class AddWorkActivity extends AppCompatActivity {
         spin_break = (Spinner) findViewById(R.id.spin_break);
         et_salperhour=(EditText)findViewById(R.id.et_salperhour);
         getJobs();
+
+
         LayoutInflater factory = LayoutInflater.from(AddWorkActivity.this);
         deleteDialogView = factory.inflate(R.layout.alert_popup_window, null);
 
@@ -101,11 +102,15 @@ public class AddWorkActivity extends AppCompatActivity {
         et_earn_before_tax = (EditText)deleteDialogView.findViewById(R.id.et_earn_before_tax);
         et_tax_deducted = (EditText)deleteDialogView.findViewById(R.id.et_tax_deducted);
 
+        // btn_submit = (Button)deleteDialogView.findViewById(R.id.btn_submit);
+
+        tv_date = (TextView) findViewById(R.id.tv_date);
         btn_calculate_hours = (Button) findViewById(R.id.btn_calculate_hours);
+
         btn_calculate_hours.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
+
 
                 deleteDialog = new AlertDialog.Builder(AddWorkActivity.this).create();
                 deleteDialog.setView(deleteDialogView);
@@ -127,7 +132,7 @@ public class AddWorkActivity extends AppCompatActivity {
                             Toast.makeText(AddWorkActivity.this, "Select Start Time", Toast.LENGTH_LONG).show();
                         }
 
-                        else if(et_start_time.getText().toString().equals(""))
+                        else if(et_end_time.getText().toString().equals(""))
                         {
                             Toast.makeText(AddWorkActivity.this, "Select End Time", Toast.LENGTH_LONG).show();
                         }
@@ -139,20 +144,20 @@ public class AddWorkActivity extends AppCompatActivity {
                         {
                             Toast.makeText(AddWorkActivity.this, "Start time and End time should not be same.", Toast.LENGTH_LONG).show();
                         }
+
                         else {
                             serverData();
                         }
-                        //serverData();
-                        //deleteDialog.dismiss();
 
+                        //deleteDialog.show();
                     }
                 });
                 calculateHours();
-                //deleteDialog.show();
-            }
-        });
+                // deleteDialog.show();
 
-        tv_date = (TextView) findViewById(R.id.tv_date);
+            }
+
+        });
         tv_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -221,39 +226,6 @@ public class AddWorkActivity extends AppCompatActivity {
     }
     float salary_tax, salary;
 
-
-    /*
-    public void serverData1() {
-        SharedPreferences sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
-        pd = new ProgressDialog(AddWorkActivity.this);
-        pd.setTitle("Please wait,Data is being submit...");
-        pd.show();
-        ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<ResponseData> call = apiService.add_payment(sharedPreferences.getString("uname", "-"), work_date, et_start_time.getText().toString(),
-
-
-        call.enqueue(new Callback<ResponseData>() {
-            @Override
-            public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
-                pd.dismiss();
-                if (response.body().status.equals("true")) {
-                    Toast.makeText(AddWorkActivity.this, "Data Added Successfully", Toast.LENGTH_LONG).show();
-                    finish();
-                } else {
-                    Toast.makeText(AddWorkActivity.this, response.body().message, Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseData> call, Throwable t) {
-                pd.dismiss();
-                Toast.makeText(AddWorkActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-    float salary_tax, salary;
-     */
-
     private void calculateHours() {
         if (et_start_time.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please enter start time.", Toast.LENGTH_LONG).show();
@@ -263,24 +235,28 @@ public class AddWorkActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter end time.", Toast.LENGTH_LONG).show();
             return;
         }
-        else if (sp_jobs.getSelectedItem().toString().equals("Select Job")) {
+        else if(sp_jobs.getSelectedItem().toString().equals("Select Job"))
+        {
             Toast.makeText(AddWorkActivity.this, "Select Job ", Toast.LENGTH_LONG).show();
         }
-        else if (spin_break.getSelectedItem().toString().equals("Choose Break Timings")) {
+        else if(spin_break.getSelectedItem().toString().equals("Choose Break Timings"))
+        {
             Toast.makeText(AddWorkActivity.this, "Select Break Time", Toast.LENGTH_LONG).show();
         }
-        else if (sp_jobs.getSelectedItem().toString().equals(""))
+
+
+        else if(sp_jobs.getSelectedItem().toString().equals(""))
         {
             Toast.makeText(AddWorkActivity.this, "Please Add Job ", Toast.LENGTH_LONG).show();
         }
-        else if (et_start_time.getText().toString().equals(et_end_time.getText().toString()))
+        else if(et_start_time.getText().toString().equals(et_end_time.getText().toString()))
         {
             Toast.makeText(AddWorkActivity.this, "Start time and End time should not be same.", Toast.LENGTH_LONG).show();
             deleteDialog.hide();
         }
         else {
-
             try {
+                deleteDialog.show();
                 String start_time = et_start_time.getText().toString();
                 String end_time = et_end_time.getText().toString();
                 String break_time = spin_break.getSelectedItem().toString();
@@ -289,6 +265,8 @@ public class AddWorkActivity extends AppCompatActivity {
                 Date date2 = format.parse(end_time);
                 Date date3 = format.parse(break_time);
                 long diff = date2.getTime() - date1.getTime();
+
+                //time hours-12:15
                 //Toast.makeText(this, ""+diff, Toast.LENGTH_SHORT).show();
 
                 if (diff < 0) {
@@ -298,11 +276,10 @@ public class AddWorkActivity extends AppCompatActivity {
                 //long diff=differe - date3.getTime();
                 long diffMinutes = diff / (60 * 1000) % 60;
                 long diffHours = diff / (60 * 60 * 1000) % 24;
-
+                /////////////////////////////////////
                 String kk[] = break_time.split(":");
                 int hrs = Integer.parseInt(kk[0]);
                 int mins = Integer.parseInt(kk[1]);
-
                 diffHours = diffHours - hrs;
                 if (diffMinutes > mins) {
                     diffMinutes = diffMinutes - mins;
@@ -312,10 +289,9 @@ public class AddWorkActivity extends AppCompatActivity {
                     int temp = 60 - mins;
                     diffMinutes = diffMinutes + temp;
                 }
-
                 et_total_hours.setText(diffHours + "Hr : " + diffMinutes + "Min");
                 if (diffMinutes != 0) {
-                    salary = Integer.parseInt(et_salperhour.getText().toString()) * (diffHours) + (((float) diffMinutes) / 60) * Integer.parseInt(et_salperhour.getText().toString());
+                    salary = (Integer.parseInt(et_salperhour.getText().toString()) * (diffHours)) + (((float) diffMinutes) / 60) * Integer.parseInt(et_salperhour.getText().toString());
                     et_earn_before_tax.setText("" + salary);
                     //salary_tax = (float) et_tax.getText().toString() / 100;
                     salary_tax = Float.parseFloat(et_tax.getText().toString()) / 100;
@@ -333,8 +309,9 @@ public class AddWorkActivity extends AppCompatActivity {
             } catch (Exception e) {
             }
         }
-
     }
+
+
 
     public void datepicker() {
         final Calendar c = Calendar.getInstance();

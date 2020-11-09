@@ -1,7 +1,5 @@
 package com.example.paytracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,6 +14,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -230,8 +230,8 @@ public class MonthlyReportsActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 //  params.put("type",sptype.getSelectedItem().toString());//
                 params.put("uname",session);//
-                params.put("start_date","2020-10-01");//
-                params.put("end_date","2020-10-31");//
+                params.put("start_date","2020-10-01");
+                params.put("end_date","2020-10-31");
 
                 return params;
             }
