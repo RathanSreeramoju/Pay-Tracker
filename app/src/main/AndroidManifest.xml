@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NotificationsActivity"></activity>
+        <activity android:name=".YearlyReportsActivity"></activity>
+        <activity android:name=".NotificationsActivity" />
         <activity android:name=".WeekReportsActivity" />
         <activity android:name=".MonthlyReportsActivity" />
         <activity android:name=".PaySlipActivity" />
