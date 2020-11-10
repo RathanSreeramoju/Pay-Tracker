@@ -28,6 +28,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Represents
+ */
 public class AddJobProfileActivity extends AppCompatActivity {
     ProgressDialog pd;
     EditText et_sal,et_job_title,et_company_name;

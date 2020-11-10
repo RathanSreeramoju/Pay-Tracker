@@ -199,8 +199,11 @@ public class AddWorkActivity extends AppCompatActivity {
         pd = new ProgressDialog(AddWorkActivity.this);
         pd.setTitle("Please wait,Data is being submit...");
         pd.show();
+
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+        // Using ApiService calls through Retrofit Client Instance
         Call<ResponseData> call = apiService.add_payment(sharedPreferences.getString("uname", "-"), work_date, et_start_time.getText().toString(),
+                //  Calling Web Service using web call add_payment
                 et_end_time.getText().toString(), et_earn_before_tax.getText().toString(),
                 et_tax_deducted.getText().toString(),sp_jobs.getSelectedItem().toString(),et_tax.getText().toString(),
                 et_salperhour.getText().toString(),spin_break.getSelectedItem().toString(),et_total_hours.getText().toString());

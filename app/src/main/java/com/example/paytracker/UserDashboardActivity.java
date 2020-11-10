@@ -362,9 +362,9 @@ public class UserDashboardActivity extends AppCompatActivity {
                         startActivity(search_report);
                         break;
 
-                    case R.id.settings:
-                        Intent set=new Intent(getApplicationContext(), SettingsActivity.class);
-                        startActivity(set);
+                    case R.id.mypayment:
+                        Intent notification=new Intent(getApplicationContext(), NotificationsActivity.class);
+                        startActivity(notification);
                         break;
 
                     case R.id.logout:
