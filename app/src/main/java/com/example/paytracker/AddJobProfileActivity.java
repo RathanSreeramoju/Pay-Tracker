@@ -1,7 +1,5 @@
 package com.example.paytracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,10 +13,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.paytracker.api.ApiService;
 import com.example.paytracker.api.RetroClient;
@@ -48,6 +46,8 @@ public class AddJobProfileActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add Job Profile");
+
+
         et_sal=(EditText)findViewById(R.id.et_sal);
         et_job_title=(EditText)findViewById(R.id.et_job_title);
         et_company_name=(EditText)findViewById(R.id.et_company_name);
@@ -126,7 +126,7 @@ public class AddJobProfileActivity extends AppCompatActivity {
         String sal = et_sal.getText().toString();
         String company_name = et_company_name.getText().toString();
         String jobtitle = et_job_title.getText().toString();
-        // String email = et_email.getText().toString();
+
 
         pd = new ProgressDialog(AddJobProfileActivity.this);
         pd.setMessage("Loading....");

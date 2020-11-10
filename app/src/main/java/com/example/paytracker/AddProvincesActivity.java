@@ -19,7 +19,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+//This class is used to add provinces to admin dashboard
     public class AddProvincesActivity extends AppCompatActivity {
         EditText et_provinces_name;
         ProgressDialog pd;
