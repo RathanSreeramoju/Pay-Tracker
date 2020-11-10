@@ -73,7 +73,7 @@ public class MonthlyReportsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monthly_reports);
 
-        getSupportActionBar().setTitle(" Reports");
+        getSupportActionBar().setTitle(" Monthly Reports");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -205,7 +205,7 @@ public class MonthlyReportsActivity extends AppCompatActivity {
                     // set the description
                     pd.setColors(ColorTemplate.COLORFUL_COLORS);
                     p.setDescription("Pie Chart");
-                    p.setCenterText("Clock Work");
+                    p.setCenterText("Pay Tracker");
                     //p.animateY(5000);
 
 
