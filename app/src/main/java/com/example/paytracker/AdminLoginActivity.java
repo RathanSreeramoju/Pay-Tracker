@@ -19,6 +19,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ *  Admin can login by email-id and password
+ */
 public class AdminLoginActivity extends AppCompatActivity {
 
     EditText et_adminun,et_adminpass;
@@ -61,7 +64,9 @@ public class AdminLoginActivity extends AppCompatActivity {
         progress.setTitle("Loading...");
         progress.show();
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+        // Using ApiService calls through Retrofit Client Instance
         Call<ResponseData> call = apiService.adminLogin(et_adminun.getText().toString(),et_adminpass.getText().toString());
+        //Calling web services using web call add_Taxes
         call.enqueue(new Callback<ResponseData>() {
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {

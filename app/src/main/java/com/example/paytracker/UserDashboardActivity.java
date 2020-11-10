@@ -46,6 +46,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * User can see their reports in the form of bar chart and pie chart
+ */
+
 public class UserDashboardActivity extends AppCompatActivity {
     private ActionBarDrawerToggle t;
     private NavigationView nv;

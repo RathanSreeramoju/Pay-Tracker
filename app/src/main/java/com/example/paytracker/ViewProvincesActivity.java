@@ -20,6 +20,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Admin can view the province activity
+ */
+
 public class ViewProvincesActivity extends AppCompatActivity {
     ListView list_view;
     ProgressDialog progressDialog;
@@ -48,6 +52,7 @@ public class ViewProvincesActivity extends AppCompatActivity {
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
+        // Using ApiService calls through Retrofit Client Instance
         Call<List<ProvincesPojo>> call = service.get_provinces();
         call.enqueue(new Callback<List<ProvincesPojo>>() {
             @Override

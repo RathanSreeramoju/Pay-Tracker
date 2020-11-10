@@ -38,6 +38,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * User can edit their work details
+ */
+
 public class EditWorkActivity extends AppCompatActivity {
 
     TextView tv_date,tv_rid;
@@ -307,7 +311,9 @@ public class EditWorkActivity extends AppCompatActivity {
         pd.setTitle("Please wait,Data is being submit...");
         pd.show();
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+        // Using ApiService calls through Retrofit Client Instance
         Call<ResponseData> call = apiService.update_payment(sharedPreferences.getString("uname", "-"), work_date, et_start_time.getText().toString(),
+                //Calling web services using web call add_Update_payment
                 et_end_time.getText().toString(), et_earn_before_tax.getText().toString(),
                 et_tax_deducted.getText().toString(),sp_jobs.getSelectedItem().toString(),et_tax.getText().toString(),
                 et_salperhour.getText().toString(),spin_break.getSelectedItem().toString(),et_total_hours.getText().toString(),getIntent().getStringExtra("id"));

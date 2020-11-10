@@ -4,6 +4,10 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * User can see about the application
+ */
+
 public class AboutActivity extends AppCompatActivity {
 
     @Override

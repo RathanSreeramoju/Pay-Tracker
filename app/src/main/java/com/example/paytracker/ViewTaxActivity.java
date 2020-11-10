@@ -20,6 +20,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Admin can vies the tax activity
+ */
+
 public class ViewTaxActivity extends AppCompatActivity {
     ListView list_view;
     ProgressDialog progressDialog;
@@ -50,6 +54,7 @@ public class ViewTaxActivity extends AppCompatActivity {
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
+        // Using ApiService calls through Retrofit Client Instance
         Call<List<ViewTaxesPojo>> call = service.get_taxes();
         call.enqueue(new Callback<List<ViewTaxesPojo>>() {
             @Override

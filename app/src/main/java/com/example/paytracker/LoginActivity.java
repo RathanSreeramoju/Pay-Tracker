@@ -22,6 +22,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * User can login through their username and password
+ */
+
 public class   LoginActivity extends AppCompatActivity {
     Button bt_signin;
     EditText et_uname, et_pwd;
@@ -93,7 +97,9 @@ public class   LoginActivity extends AppCompatActivity {
         pd.setTitle("Loading...");
         pd.show();
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+        // Using ApiService calls through Retrofit Client Instance
         Call<ResponseData> call = apiService.userLogin(et_uname.getText().toString(),et_pwd.getText().toString());
+        //Calling web services using web call Add_login
         call.enqueue(new Callback<ResponseData>() {
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {

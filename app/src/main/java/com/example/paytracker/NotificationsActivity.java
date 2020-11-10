@@ -32,6 +32,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * user can get notifications
+ */
+
 public class NotificationsActivity extends AppCompatActivity {
     Spinner spin_jobs;
     TextView tv_date,tv_time;
@@ -115,6 +119,7 @@ public class NotificationsActivity extends AppCompatActivity {
     }
     private void getJobs() {
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+        // Using ApiService calls through Retrofit Client Instance
         Call<List<JobTitlePojo>> call = apiService.getjobtypes_by_uname(session);
         call.enqueue(new Callback<List<JobTitlePojo>>() {
             @Override

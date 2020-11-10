@@ -7,6 +7,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * user can view their payslip for particular day
+ */
+
 public class PaySlipActivity extends AppCompatActivity {
 
 

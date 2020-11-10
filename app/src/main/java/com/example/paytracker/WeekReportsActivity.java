@@ -50,6 +50,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * User can view their weekly reports
+ */
+
 public class WeekReportsActivity extends AppCompatActivity {
 
     ListView lv;
@@ -101,6 +105,7 @@ public class WeekReportsActivity extends AppCompatActivity {
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
+        // Using ApiService calls through Retrofit Client Instance
         Call<List<PaymentPojo>> call = service.get_reports(sharedPreferences.getString("uname","-"),getIntent().getStringExtra("end_date"),getIntent().getStringExtra("start_date"));
         call.enqueue(new Callback<List<PaymentPojo>>() {
             @Override

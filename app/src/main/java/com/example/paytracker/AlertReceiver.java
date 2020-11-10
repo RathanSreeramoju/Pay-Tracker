@@ -6,6 +6,10 @@ import android.content.Intent;
 
 import androidx.core.app.NotificationCompat;
 
+/**
+ * User can get alerts
+ */
+
 public class AlertReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {

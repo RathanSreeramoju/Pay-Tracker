@@ -47,6 +47,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * user can edit their profile
+ */
+
 public class EditProfileActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
     EditText et_first_name,et_lastname,et_pass,et_username;
     ProgressDialog progressDialog;
@@ -162,7 +166,10 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
+        // Using ApiService calls through Retrofit Client Instance
+
         Call<List<EditProfilePojo>> call = service.get_user_profile(session);
+        //Calling web services using web call add_Taxes
 
         call.enqueue(new Callback<List<EditProfilePojo>>() {
             @Override
@@ -251,7 +258,10 @@ public class EditProfileActivity extends AppCompatActivity implements EasyPermis
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService uploadImage = retrofit.create(ApiService.class);
+        // Using ApiService calls through Retrofit Client Instance
         Call<ResponseData> fileUpload = uploadImage.user_update_profile(fileToUpload, map);
+        //Calling web services using web call add_Update_profile
+
         fileUpload.enqueue(new Callback<ResponseData>() {
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {

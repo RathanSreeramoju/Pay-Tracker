@@ -49,7 +49,9 @@ import retrofit2.Response;
             pd.setTitle("Please wait,Data is being submit...");
             pd.show();
             ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+            // Using ApiService calls through Retrofit Client Instance
             Call<ResponseData> call = apiService.add_provinces(et_provinces_name.getText().toString());
+            //Calling web services using web call add_provinces
             call.enqueue(new Callback<ResponseData>() {
                 @Override
                 public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
@@ -81,5 +83,9 @@ import retrofit2.Response;
             }
         }
     }
+
+/**
+ * We Are Adding Provinces
+ */
 
 

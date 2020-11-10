@@ -15,6 +15,10 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
+/**
+ * User can get their daily work reports
+ */
+
 public class DailyReportActivity extends AppCompatActivity {
     TextView tv_date;
     int mYear,mMonth,mDay;

@@ -18,6 +18,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * User can view their weekly jobs
+ */
+
 public class WeeklySelectionActivity extends AppCompatActivity {
     List<WeekSelectionPojo> list_week=new ArrayList<>();
     List<String> week=new ArrayList<String>();

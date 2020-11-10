@@ -31,6 +31,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * user can view their daily reports
+ */
+
 public class DailyReportsActivity extends BaseActivity {
     ListView lv;
     String start_date,end_date;
@@ -107,6 +111,7 @@ public class DailyReportsActivity extends BaseActivity {
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
+        // Using ApiService calls through Retrofit Client Instance
         Call<List<WorkDatePojo>> call = service.get_daily_work_dates(sharedPreferences.getString("uname","-"));
         call.enqueue(new Callback<List<WorkDatePojo>>() {
             @Override
@@ -142,6 +147,7 @@ public class DailyReportsActivity extends BaseActivity {
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
+        // Using ApiService calls through Retrofit Client Instance
         Call<List<PaymentPojo>> call = service.get_reports(sharedPreferences.getString("uname","-"),start_date,end_date);
         call.enqueue(new Callback<List<PaymentPojo>>() {
             @Override

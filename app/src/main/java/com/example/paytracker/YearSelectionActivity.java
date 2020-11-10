@@ -15,6 +15,9 @@ import com.example.paytracker.model.YearSelectionPojo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * User can view their Yearly reports by selecting year
+ */
 
 public class YearSelectionActivity  extends AppCompatActivity {
     List<YearSelectionPojo> list_year=new ArrayList<>();

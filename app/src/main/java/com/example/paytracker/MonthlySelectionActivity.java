@@ -20,7 +20,7 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * Activity to display monthly reports of salary of user
+ * Activity to display monthly  salary reports of user
  */
 public class MonthlySelectionActivity  extends AppCompatActivity {
     List<MonthSelectionPojo> list_month=new ArrayList<>();

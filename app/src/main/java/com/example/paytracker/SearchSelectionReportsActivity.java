@@ -29,6 +29,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * user can select their reports by selecting dates
+ */
+
 public class SearchSelectionReportsActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
@@ -121,6 +125,7 @@ public class SearchSelectionReportsActivity extends AppCompatActivity {
     String myjobs[];
     private void getJobs() {
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+        // Using ApiService calls through Retrofit Client Instance
         Call<List<JobTitlePojo>> call = apiService.getjobtypes_by_uname(session);
         call.enqueue(new Callback<List<JobTitlePojo>>() {
             @Override
