@@ -49,6 +49,8 @@ public class AddJobProfileActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add Job Profile");
+
+
         et_sal=(EditText)findViewById(R.id.et_sal);
         et_job_title=(EditText)findViewById(R.id.et_job_title);
         et_company_name=(EditText)findViewById(R.id.et_company_name);
@@ -127,7 +129,7 @@ public class AddJobProfileActivity extends AppCompatActivity {
         String sal = et_sal.getText().toString();
         String company_name = et_company_name.getText().toString();
         String jobtitle = et_job_title.getText().toString();
-        // String email = et_email.getText().toString();
+
 
         pd = new ProgressDialog(AddJobProfileActivity.this);
         pd.setMessage("Loading....");

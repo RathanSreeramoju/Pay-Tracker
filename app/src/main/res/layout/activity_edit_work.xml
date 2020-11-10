@@ -71,7 +71,7 @@
         <TextView
             android:text="Tax in Percentage"
             android:textSize="16dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:editable="false"
             android:layout_marginTop="@dimen/_2sdp"
             android:layout_gravity="left"
@@ -84,7 +84,7 @@
             android:id="@+id/et_tax"
             android:layout_below="@+id/tv_shift_start"
             android:inputType="number"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="250dp"
             android:clickable="false"
             android:enabled="false"
@@ -217,120 +217,120 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>
 
-        <TableRow
+        <!-- <TableRow
 
-            android:paddingTop="@dimen/_5sdp">
+             android:paddingTop="@dimen/_5sdp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_weight="0"
-                android:text="Total Hours " />
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="@dimen/_10sdp"
+                 android:layout_marginTop="@dimen/_2sdp"
+                 android:layout_marginRight="@dimen/_10sdp"
+                 android:layout_weight="0"
+                 android:text="Total Hours " />
 
-            <EditText
-                android:id="@+id/et_total_hours"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:editable="false"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:background="@drawable/edittext_rounded"
-                android:hint=""
-                android:padding="@dimen/_8sdp" />
-        </TableRow>
+             <EditText
+                 android:id="@+id/et_total_hours"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                 android:editable="false"
+                 android:layout_marginLeft="@dimen/_10sdp"
+                 android:layout_marginTop="@dimen/_2sdp"
+                 android:layout_marginRight="@dimen/_10sdp"
+                 android:background="@drawable/edittext_rounded"
+                 android:hint=""
+                 android:padding="@dimen/_8sdp" />
+         </TableRow>
 
-        <TableRow
-            android:paddingTop="@dimen/_5sdp">
+         <TableRow
+             android:paddingTop="@dimen/_5sdp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_weight="0"
-                android:text="Earning Before Tax" />
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="@dimen/_10sdp"
+                 android:layout_marginTop="@dimen/_2sdp"
+                 android:layout_marginRight="@dimen/_10sdp"
+                 android:layout_weight="0"
+                 android:text="Earning Before Tax" />
 
-            <EditText
-                android:id="@+id/et_earn_before_tax"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:editable="false"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:background="@drawable/edittext_rounded"
-                android:hint="Earning Before Tax"
-                android:padding="@dimen/_8sdp" />
-        </TableRow>
+             <EditText
+                 android:id="@+id/et_earn_before_tax"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                 android:editable="false"
+                 android:layout_marginLeft="@dimen/_10sdp"
+                 android:layout_marginTop="@dimen/_2sdp"
+                 android:layout_marginRight="@dimen/_10sdp"
+                 android:background="@drawable/edittext_rounded"
+                 android:hint="Earning Before Tax"
+                 android:padding="@dimen/_8sdp" />
+         </TableRow>
 
-        <TableRow
-            android:paddingTop="@dimen/_5sdp">
+         <TableRow
+             android:paddingTop="@dimen/_5sdp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_weight="0"
-                android:text="Tax Deducted" />
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="@dimen/_10sdp"
+                 android:layout_marginTop="@dimen/_2sdp"
+                 android:layout_marginRight="@dimen/_10sdp"
+                 android:layout_weight="0"
+                 android:text="Tax Deducted" />
 
-            <EditText
-                android:id="@+id/et_tax_deducted"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:background="@drawable/edittext_rounded"
-                android:hint="Tax Deducted"
-                android:padding="@dimen/_8sdp" />
-        </TableRow>
+             <EditText
+                 android:id="@+id/et_tax_deducted"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                 android:layout_marginLeft="@dimen/_10sdp"
+                 android:layout_marginTop="@dimen/_2sdp"
+                 android:layout_marginRight="@dimen/_10sdp"
+                 android:background="@drawable/edittext_rounded"
+                 android:hint="Tax Deducted"
+                 android:padding="@dimen/_8sdp" />
+         </TableRow>
 
 
-        <TableRow
-            android:layout_marginTop="@dimen/_2sdp"
-            android:paddingTop="@dimen/_5sdp">
+         <TableRow
+             android:layout_marginTop="@dimen/_2sdp"
+             android:paddingTop="@dimen/_5sdp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_weight="0"
-                android:text="Net Income" />
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="@dimen/_10sdp"
+                 android:layout_marginTop="@dimen/_2sdp"
+                 android:layout_marginRight="@dimen/_10sdp"
+                 android:layout_weight="0"
+                 android:text="Net Income" />
 
-            <EditText
-                android:id="@+id/et_net_income"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:background="@drawable/edittext_rounded"
-                android:hint="Net Income"
-                android:padding="@dimen/_8sdp" />
-        </TableRow>
+             <EditText
+                 android:id="@+id/et_net_income"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                 android:layout_marginLeft="@dimen/_10sdp"
+                 android:layout_marginTop="@dimen/_2sdp"
+                 android:layout_marginRight="@dimen/_10sdp"
+                 android:background="@drawable/edittext_rounded"
+                 android:hint="Net Income"
+                 android:padding="@dimen/_8sdp" />
+         </TableRow>
 
-        <Button
-            android:id="@+id/btn_submit"
-            android:text="Update"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:textColor="#ffffff"
-            android:background="#03DAC5"
-            android:layout_marginLeft="@dimen/_70sdp"
-            android:layout_marginRight="@dimen/_70sdp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+         <Button
+             android:id="@+id/btn_submit"
+             android:text="Update"
+             android:layout_marginTop="@dimen/_5sdp"
+             android:textColor="#ffffff"
+             android:background="#03DAC5"
+             android:layout_marginLeft="@dimen/_70sdp"
+             android:layout_marginRight="@dimen/_70sdp"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />-->
     </TableLayout>
 </ScrollView>
