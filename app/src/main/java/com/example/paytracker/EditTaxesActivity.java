@@ -49,7 +49,7 @@ public class EditTaxesActivity extends AppCompatActivity {
         });
     }
 
-    private void serverData() {
+    public void serverData() {
         pd= new ProgressDialog(EditTaxesActivity.this);
         pd.setTitle("Please wait,Data is being submit...");
         pd.show();

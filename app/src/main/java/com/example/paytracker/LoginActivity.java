@@ -49,7 +49,7 @@ public class   LoginActivity extends AppCompatActivity {
 
         bt_signup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent=new Intent(LoginActivity.this,RegistrationActivity.class);
                 startActivity(intent);
 
@@ -64,8 +64,14 @@ public class   LoginActivity extends AppCompatActivity {
 
                /* Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);*/
+                if (et_uname.getText().toString().equals("")) {
+                    Toast.makeText(LoginActivity.this, "Enter Email", Toast.LENGTH_LONG).show();
+                } else if (et_pwd.getText().toString().equals("")) {
+                    Toast.makeText(LoginActivity.this, "Enter Password", Toast.LENGTH_LONG).show();
+                } else {
 
-                loginData();
+                    loginData();
+                }
             }
         });
         tv_forget_pass = (TextView) findViewById(R.id.tv_forget_pass);
@@ -76,17 +82,7 @@ public class   LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 /* Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);*/
-                if(et_uname.getText().toString().equals(""))
-                {
-                    Toast.makeText(LoginActivity.this, "Enter Email", Toast.LENGTH_LONG).show();
-                }
-                else if(et_pwd.getText().toString().equals(""))
-                {
-                    Toast.makeText(LoginActivity.this, "Enter Password", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    loginData();
-                }
+
             }
         });
     }

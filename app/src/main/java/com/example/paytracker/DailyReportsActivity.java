@@ -31,7 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DailyReportsActivity extends AppCompatActivity {
+public class DailyReportsActivity extends BaseActivity {
     ListView lv;
     String start_date,end_date;
     @Override
