@@ -47,6 +47,7 @@
         <activity android:name=".MonthlySelectionActivity" />
         <activity android:name=".YearSelectionActivity" />
         <activity android:name=".AboutActivity" />
+        <receiver android:name=".AlertReceiver" />
         <activity
             android:name=".WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
