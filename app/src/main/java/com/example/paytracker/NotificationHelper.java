@@ -14,8 +14,8 @@ import androidx.core.app.TaskStackBuilder;
 
 
 public class NotificationHelper extends ContextWrapper {
-    public static final String channelID = "ClockWork";
-    public static final String channelName = "CHClockWork";
+    public static final String channelID = "PayTracker";
+    public static final String channelName = "PTPayTracker";
     private NotificationManager mManager;
     public NotificationHelper(Context base) {
         super(base);
