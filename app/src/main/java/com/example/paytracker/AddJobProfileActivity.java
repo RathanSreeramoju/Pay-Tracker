@@ -1,7 +1,5 @@
 package com.example.paytracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,10 +13,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.paytracker.api.ApiService;
 import com.example.paytracker.api.RetroClient;
@@ -30,6 +28,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Represents
+ */
 public class AddJobProfileActivity extends AppCompatActivity {
     ProgressDialog pd;
     EditText et_sal,et_job_title,et_company_name;

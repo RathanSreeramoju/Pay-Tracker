@@ -1,7 +1,5 @@
 package com.example.paytracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.paytracker.api.ApiService;
 import com.example.paytracker.api.RetroClient;
 
@@ -19,12 +19,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Represents Tax Editings which are handled by Admin
+ */
 public class AddTaxActivity extends AppCompatActivity {
     Spinner spin_prov_names;
     EditText et_tax_amount;
     Button btn_submit;
     ProgressDialog pd;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

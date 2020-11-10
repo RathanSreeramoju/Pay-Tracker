@@ -46,6 +46,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".MonthlySelectionActivity" />
         <activity android:name=".YearSelectionActivity" />
+        <activity android:name=".AboutActivity" />
         <activity
             android:name=".WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />

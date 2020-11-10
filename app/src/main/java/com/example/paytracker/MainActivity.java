@@ -3,13 +3,14 @@ package com.example.paytracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.navigation.NavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,11 +40,6 @@ public class MainActivity extends AppCompatActivity {
                   case R.id.myprofile:
                         Intent intent=new Intent(getApplicationContext(), EditProfileActivity.class);
                         startActivity(intent);
-                        break;
-
-                    case R.id.settings:
-                        Intent set=new Intent(getApplicationContext(), SettingsActivity.class);
-                        startActivity(set);
                         break;
 
                     case R.id.logout:
