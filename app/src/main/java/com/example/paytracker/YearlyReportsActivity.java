@@ -84,7 +84,7 @@ public class YearlyReportsActivity extends BaseActivity {
 
         lv=(ListView)findViewById(R.id.lv);
         serverData();
-        Toast.makeText(getApplicationContext(),getIntent().getStringExtra("start_date")+"  "+getIntent().getStringExtra("end_date"),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),getIntent().getStringExtra("start_date")+"  "+getIntent().getStringExtra("end_date"),Toast.LENGTH_SHORT).show();
 
 
     }
@@ -145,7 +145,7 @@ public class YearlyReportsActivity extends BaseActivity {
                         jObj = jsonArray.getJSONObject(i);
                         String data=jObj.getString("work_date");
                         String link=jObj.getString("payment");
-                        Toast.makeText(YearlyReportsActivity.this,data+""+link,Toast.LENGTH_LONG).show();
+                        //Toast.makeText(YearlyReportsActivity.this,data+""+link,Toast.LENGTH_LONG).show();
                         entries.add(new BarEntry(Integer.parseInt(link), t1++));
                         entries1.add(new Entry(Integer.parseInt(link), t1));
                         dates.add(data);
@@ -227,7 +227,7 @@ public class YearlyReportsActivity extends BaseActivity {
                     if(array_jobs.size()>0) {
                         myjobs = new String[array_jobs.size()+1];
                         myjobs[0] = "Select Job";
-                        Toast.makeText(getApplicationContext(),""+array_jobs.size(),Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getApplicationContext(),""+array_jobs.size(),Toast.LENGTH_SHORT).show();
                     }
                 }
 

@@ -1,7 +1,5 @@
 package com.example.paytracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,13 +13,13 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.paytracker.R;
-import com.example.paytracker.Utils;
 import com.example.paytracker.adapter.ReportsAdapter;
 import com.example.paytracker.api.ApiService;
 import com.example.paytracker.api.RetroClient;
@@ -92,7 +90,7 @@ public class WeekReportsActivity extends AppCompatActivity {
 
         lv=(ListView)findViewById(R.id.lv);
         serverData();
-        Toast.makeText(getApplicationContext(),getIntent().getStringExtra("start_date")+"  "+getIntent().getStringExtra("end_date"),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),getIntent().getStringExtra("start_date")+"  "+getIntent().getStringExtra("end_date"),Toast.LENGTH_SHORT).show();
 
 
     }
@@ -143,7 +141,7 @@ private void getdata(){
         @Override
         public void onResponse(String response) {
 
-            Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
             JSONObject json = null;
             try {
                 JSONArray jsonArray = new JSONArray(response);
@@ -154,7 +152,7 @@ private void getdata(){
                     jObj = jsonArray.getJSONObject(i);
                     String data=jObj.getString("work_date");
                     String link=jObj.getString("payment");
-                    Toast.makeText(WeekReportsActivity.this,data+""+link,Toast.LENGTH_LONG).show();
+                   // Toast.makeText(WeekReportsActivity.this,data+""+link,Toast.LENGTH_LONG).show();
                     entries.add(new BarEntry(Integer.parseInt(link), t1++));
                     entries1.add(new Entry(Integer.parseInt(link), t1));
                     dates.add(data);
@@ -235,7 +233,7 @@ private void getJobs(){
                 if(array_jobs.size()>0) {
                     myjobs = new String[array_jobs.size()+1];
                     myjobs[0] = "Select Job";
-                    Toast.makeText(getApplicationContext(),""+array_jobs.size(),Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(),""+array_jobs.size(),Toast.LENGTH_SHORT).show();
                 }
             }
 

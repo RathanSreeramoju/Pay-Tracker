@@ -6,7 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.paytracker.adapter.WeekSelectionAdapter;
@@ -98,7 +98,7 @@ public class WeeklySelectionActivity extends AppCompatActivity {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),list_week.get(position).getWeek_no(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),list_week.get(position).getWeek_no(),Toast.LENGTH_SHORT).show();
                 int year = 2020;
                 int week = 50;
                 Calendar calendar = Calendar.getInstance();

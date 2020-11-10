@@ -259,7 +259,7 @@ public class UserDashboardActivity extends AppCompatActivity {
                         jObj = jsonArray.getJSONObject(i);
                         String data=jObj.getString("work_date");
                         String link=jObj.getString("payment");
-                        Toast.makeText(UserDashboardActivity.this,data+""+link,Toast.LENGTH_LONG).show();
+                        //Toast.makeText(UserDashboardActivity.this,data+""+link,Toast.LENGTH_LONG).show();
                         entries.add(new BarEntry(Integer.parseInt(link), t1++));
                         entries1.add(new Entry(Integer.parseInt(link), t1));
                         dates.add(data);

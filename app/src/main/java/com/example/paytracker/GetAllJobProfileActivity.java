@@ -1,8 +1,5 @@
 package com.example.paytracker;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +14,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.paytracker.adapter.GetAllJobProfileAdapter;
 import com.example.paytracker.api.ApiService;
@@ -115,7 +115,7 @@ public class GetAllJobProfileActivity extends AppCompatActivity {
                     if(array_jobs.size()>0) {
                         myjobs = new String[array_jobs.size()+1];
                         myjobs[0] = "Select Job";
-                        Toast.makeText(getApplicationContext(),""+array_jobs.size(),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),""+array_jobs.size(),Toast.LENGTH_SHORT).show();
                     }
                 }
 

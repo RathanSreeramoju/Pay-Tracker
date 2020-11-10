@@ -1,12 +1,12 @@
 <?php
-
+// Details of who can access the web call
             include 'config.php';
 
-
+// Initializing variables using GET method
 $emailid=$_GET["emailid"];
 $pwd="";
                $con=mysqli_connect($hostname, $username, $password,$dbname);
-
+            // Query lists the data based on email id from user_table
             $query_json = "SELECT * from user_table where email='$emailid';";
 
           //  echo $query_json;

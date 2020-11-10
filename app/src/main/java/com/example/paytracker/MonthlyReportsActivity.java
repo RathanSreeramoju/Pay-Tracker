@@ -119,7 +119,7 @@ public class MonthlyReportsActivity extends AppCompatActivity {
 
         lv=(ListView)findViewById(R.id.lv);
         serverData();
-        Toast.makeText(getApplicationContext(),session+getIntent().getStringExtra("start_date")+"  "+getIntent().getStringExtra("end_date"),Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(),session+getIntent().getStringExtra("start_date")+"  "+getIntent().getStringExtra("end_date"),Toast.LENGTH_SHORT).show();
     }
     ProgressDialog progressDialog;
     List<PaymentPojo> payments;
@@ -177,7 +177,7 @@ public class MonthlyReportsActivity extends AppCompatActivity {
                         jObj = jsonArray.getJSONObject(i);
                         String data=jObj.getString("work_date");
                         String link=jObj.getString("payment");
-                        Toast.makeText(MonthlyReportsActivity.this,data+""+link,Toast.LENGTH_LONG).show();
+                       // Toast.makeText(MonthlyReportsActivity.this,data+""+link,Toast.LENGTH_LONG).show();
                         entries.add(new BarEntry(Integer.parseInt(link), t1++));
                         entries1.add(new Entry(Integer.parseInt(link), t1));
                         dates.add(data);
@@ -252,7 +252,7 @@ public class MonthlyReportsActivity extends AppCompatActivity {
                     if(array_jobs.size()>0) {
                         myjobs = new String[array_jobs.size()+1];
                         myjobs[0] = "Select Job";
-                        Toast.makeText(getApplicationContext(),""+array_jobs.size(),Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getApplicationContext(),""+array_jobs.size(),Toast.LENGTH_SHORT).show();
                     }
                 }
 
