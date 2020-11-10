@@ -62,6 +62,7 @@ public class EditProvincesActivity extends AppCompatActivity {
                 if (response.body().status.equals("true")) {
                     Toast.makeText(EditProvincesActivity.this, "Data Added Successfully", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(EditProvincesActivity.this, ViewProvincesActivity.class));
+                    finish();
                 } else {
                     Toast.makeText(EditProvincesActivity.this, response.body().message, Toast.LENGTH_LONG).show();
                 }
