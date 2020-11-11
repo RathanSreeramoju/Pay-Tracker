@@ -1,1 +1,1 @@
-![Alt text](Pay Tracker.gif)
+![Alt text](PayTracker.gif)

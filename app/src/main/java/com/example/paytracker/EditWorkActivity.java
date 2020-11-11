@@ -350,6 +350,7 @@ public class EditWorkActivity extends AppCompatActivity {
         }
     }
 
+
     private void getJobs() {
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
         Call<List<GetAllJobProfilePojo>> call = apiService.getmyjobprofile(session);
