@@ -61,7 +61,7 @@ public class GetAllJobProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(GetAllJobProfileActivity.this,AddJobProfileActivity.class));
-                finish();
+
             }
         });
 
