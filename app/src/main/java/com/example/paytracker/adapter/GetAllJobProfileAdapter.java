@@ -78,7 +78,6 @@ public class GetAllJobProfileAdapter extends BaseAdapter {
 
                 intent.putExtra("jid",getAllJobProfilePojos.get(pos).getJid());
                 cnt.startActivity(intent);
-                ((Activity)cnt).finish();
             }
         });
 
